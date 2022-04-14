@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <?php include 'components/head-meta.php'?>
-    <?php include 'components/css-all.php'?>
-    <title>Daftar Akun | HitungCuan</title>
-</head>
 <body id="login-body">
     <div id="overlay"></div>
-    <?php include 'components/html-simplenavbar.php'?>
+    <?php include 'pages/components/html-simplenavbar.php'?>
 
     <div id="login-container" class="container-fluid mb-5 mt-5 pt-5">
         <div class="row h-100">
@@ -85,8 +78,4 @@
             </div>
         </div>
     </div>
-
-    <?php include 'components/script-bootstrap.php'?>
-    <?php include 'components/script-aos.php'?>
 </body>
-</html>

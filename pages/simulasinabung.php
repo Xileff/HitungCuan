@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <?php include 'components/head-meta.php' ?>
-    <?php include 'components/css-all.php'?>
-    <title>NabungCalc | HitungCuan</title>
-</head>
 <body>
-    <?php include 'components/html-navbar.php' ?>
+    <?php include 'pages/components/html-navbar.php' ?>
 
     <div class="container mt-5 pt-5 px-5" data-aos="fade-up">
         <div class="row d-flex flex-row justify-content-center">
@@ -76,17 +69,10 @@
         </div>
     </div>
 
-    <?php include 'components/script-bootstrap.php'?>
-    <?php include 'components/html-top.php'?>
-    <?php include 'components/script-aos.php'?>
-    <?php include 'components/script-swal.php'?>
+    <?php include 'pages/components/html-top.php'?>
 
     <!-- Other scripts -->
-    <script src="../js/autoNumeric.min.js"></script>
-    <script src="../js/swal.js"></script>
-    <script src="../js/simulasinabung.js"></script>
+    <script src="js/swal.js"></script>
+    <script src="js/autoNumeric.min.js"></script>
+    <script src="js/simulasinabung.js"></script>
 </body>
-</html>
-
-<!-- Sweet Alert -->
-    <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->

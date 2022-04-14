@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <?php include 'components/head-meta.php'?>
-    <?php include 'components/css-all.php'?>
-    <title>Admin</title>
-</head>
 <body>
 
     <nav class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-expand-xl fixed-top p-3 shadow-sm">
@@ -90,9 +83,4 @@
         </tbody>
         </table>
     </div>
-
-    <?php include 'components/html-top.php'?>
-    <?php include 'components/script-bootstrap.php'?>
-    <?php include 'components/script-aos.php'?>
 </body>
-</html>

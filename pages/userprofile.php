@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <?php include 'components/head-meta.php'?>
-    <?php include 'components/css-all.php'?>
-    <title>User's Profile</title>
-</head>
 <body>
-    <?php include 'components/html-navbar.php'?>
+    <?php include 'pages/components/html-navbar.php'?>
     <div class="container mt-5 pt-5 d-flex flex-column justify-content-center">
         <h1 class="poppins text-center mt-5 mb-5">
             User's Profile
@@ -85,11 +78,10 @@
         </form>
     </div>
 
-    <script src="../js/triggerClick.js"></script>
+    <script src="js/triggerClick.js"></script>
 
-    <?php include 'components/html-top.php'?>
-    <?php include 'components/script-bootstrap.php'?>
-    <?php include 'components/script-aos.php'?>
+    <?php include 'pages/components/html-top.php'?>
+    <?php include 'pages/components/html-footer.php'?>
 </body>
 </html>
 

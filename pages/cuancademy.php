@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <?php include 'components/head-meta.php'?>
-    <?php include 'components/css-all.php'?>
-    <title>CuanCademy | HitungCuan</title>
-</head>
 <body>
-    <?php include 'components/html-navbar.php'?>
+    <?php include 'pages/components/html-navbar.php'?>
     <div class="container p-5 mt-5">
         <div class="container-fluid" data-aos="fade-up">
             <a href="lesson.php" target="_blank" class="link-unstyled">
@@ -36,9 +29,6 @@
         </div>
     </div>
 
-    <?php include 'components/html-top.php'?>
-    <?php include 'components/script-bootstrap.php'?>
-    <?php include 'components/script-aos.php'?>
+    <?php include 'pages/components/html-top.php'?>
+    <?php include 'pages/components/html-footer.php'?>
 </body>
-
-</html>

@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <?php include 'components/head-meta.php'?>
-    <?php include 'components/css-all.php'?>
-    <title>News Page | HitungCuan</title>
-</head>
-
 <body>
-    <?php include 'components/html-navbar.php'?>
-
+    <?php include 'pages/components/html-navbar.php'?>
     <div class="container mt-5 pt-5">
         <p id="news-date" class="fs-6 mb-0" style="color: gray;">Senin, 7 Februari 2022</p>
         <p id="news-author" class="fs-6" style="color: gray;">Author: HitungCuan</p>
         <h1>Crypto Crash Lagi?</h1>
         <div class="news-image mt-3">
-            <img src="../images/news/cryptocurrency1.jpg" alt="news_image" class="img-fluid">
+            <img src="images/news/cryptocurrency1.jpg" alt="news_image" class="img-fluid">
         </div>
         <p id="news-caption" class="fs-6" style="color: gray;">Ilustrasi: Cryptocurrency</p>
         <div class="news-text">
@@ -58,7 +48,7 @@
         <div class="row posted-comment pt-4 px-2">
             <div class="wrapper-comment">
                 <div class="user-img">
-                    <img src="../images/news/comment/childe.png" alt="user" class="img-fluid" style="border-radius: 100%;">
+                    <img src="images/news/comment/childe.png" alt="user" class="img-fluid" style="border-radius: 100%;">
                 </div>
                 <div class="px-3 pt-1 pb-1">
                     <p class="comment-author mb-0">Childe</p>
@@ -71,9 +61,7 @@
         </div>
     </div>
 
-    <?php include 'components/html-footer.php'?>
-    <?php include 'components/html-top.php'?>
-    <?php include 'components/script-bootstrap.php'?>
-    <?php include 'components/script-aos.php'?>
+    <?php include 'pages/components/html-footer.php'?>
+    <?php include 'pages/components/html-top.php'?>
 </body>
 </html>
