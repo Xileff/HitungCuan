@@ -72,7 +72,6 @@
     <?php include 'pages/components/html-top.php'?>
 
     <!-- Other scripts -->
-    <script src="js/swal.js"></script>
     <script src="js/autoNumeric.min.js"></script>
     <script src="js/simulasinabung.js"></script>
 </body>

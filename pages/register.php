@@ -1,3 +1,27 @@
+<?php 
+
+if(isset($_POST['register'])){
+    $fullName = $_POST['nama'];
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirmPassword'];
+
+    // cek panjang password
+    if (strlen($password) >= 8 && strlen($password) <= 17) {
+        // cek password === confirmPassword
+        if ($password === $confirmPassword) {
+            $existingUser = $conn->query("SELECT * FROM users WHERE username = '$username' OR email = '$email';");
+            // cek email/username udah kepakai atau blum
+            if($existingUser->num_rows === 0){
+                register($fullName, $username, $email, $password) === 1 ? alertRedirect('Berhasil Registrasi', 'Akun berhasil didaftarkan', 'index.php?page=login', 'Login') : alertError('Error', 'Gagal mendaftarkan akun', 'Ok');
+            } else alertError('Username/Email Unavailable', 'Username atau email ini sudah terpakai', 'Ok');
+        } else alertError('Password', 'Pastikan password dan konfirmasi password sama', 'Ok');
+    } else alertError('Invalid Password', 'Password harus memiliki panjang 8-16 karakter', 'Ok');
+}
+
+?>
+
 <body id="login-body">
     <div id="overlay"></div>
     <?php include 'pages/components/html-simplenavbar.php'?>
@@ -60,7 +84,7 @@
                         class="form-control montserrat w-75 mx-auto mt-3 mb-4" 
                         id="loginTxtPassword" 
                         placeholder="Konfirmasi Password" 
-                        name="konfirmasi-password" 
+                        name="confirmPassword" 
                         pattern="[A-Za-z\d\!\?\.\^\&]{8,17}"
                         title="Password boleh menggunakan huruf, angka, dan karakter seperti !?.%^&*"
                         autocomplete="off"
@@ -72,9 +96,7 @@
                         name="register" 
                         class="w-75 bg-dark align-center mt-3 p-2 mx-auto montserrat">Buat Akun</button>
                     </form>
-
                 </div>
-
             </div>
         </div>
     </div>

@@ -10,8 +10,8 @@
                     <h1>HitungCuan.</h1>
                     <div class="d-flex flex-column">
                         <h3 class="text-center">Belajar Cara Mengatur Uang dengan Efektif dan Efisien</h3>
-                        <button class="w-75 mx-auto p-3 mt-4 mb-3 index-headline-button fs-6" id="btnMembership" onclick="window.location.href='homepage.php#h2Membership'">Membership</button>
-                        <button class="w-75 mx-auto p-3 index-headline-button fs-6" id="btnFinancialCheckUp" onclick="window.location.href='simulasinabung.php'">Cek Kondisi Keuangan</button>
+                        <button class="w-75 mx-auto p-3 mt-4 mb-3 index-headline-button fs-6" id="btnMembership" onclick="window.location.href='#h2Membership'">Membership</button>
+                        <button class="w-75 mx-auto p-3 index-headline-button fs-6" id="btnFinancialCheckUp" onclick="window.location.href='index.php?page=simulasinabung'">Cek Kondisi Keuangan</button>
                     </div>
                 </div>
             </div>

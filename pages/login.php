@@ -1,3 +1,19 @@
+<?php 
+
+if(isset($_POST["login"])){
+    $username = $_POST['username'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    if($existingUser = $conn->query("SELECT * FROM users WHERE username = '$username'")->fetch_assoc()){
+        if(($username === $existingUser['username'])&&($password === $existingUser['password'])){
+            $_SESSION['username'] = $username;
+            $_SESSION['passoword'] = $password;
+        } else alertError('Invalid Login','Username atau password salah','Ok');
+    } else alertError('Error','Tidak ada user dengan akun ini','Ok');
+}
+
+?>
+
 <body id="login-body"  style="z-index: 1;">
     <?php include 'pages/components/html-simplenavbar.php'?>
     <div id="overlay"></div>
@@ -28,7 +44,7 @@
                         ></input>
 
                         <div class="w-75 mt-1 mb-3 mx-auto d-flex flex-row justify-content-around">
-                            <a href="register.php" target="_blank" class="align-start montserrat login-links">Register Account</a>
+                            <a href="index.php?page=register" target="_blank" class="align-start montserrat login-links">Register Account</a>
                             <a href="#" class="align-end montserrat login-links">Forgot Password</a>
                         </div>
 
