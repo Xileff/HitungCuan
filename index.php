@@ -1,5 +1,6 @@
 <?php 
 session_start();
+$_SESSION['login'] = true;
 $_SESSION['username'] = 'felix';
 $_SESSION['password'] = 'password';
 ?>

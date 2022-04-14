@@ -13,22 +13,14 @@
         <ul class="navbar-nav ms-auto">
             <!-- Masing-masing item navbar -->
             <li class="nav-item px-2 pt-1">
-                <a href="<?php 
-                if(!isset($_GET['page'])){
-                    echo $_SERVER['REQUEST_URI'] . "?page=simulasinabung";
-                }
-                ?>" class="nav-link">Cek Kondisi Keuangan</a>
+                <a href="index.php?page=simulasinabung" class="nav-link">Cek Kondisi Keuangan</a>
             </li>
             <li class="nav-item px-2 pt-1">
-                <a href="<?php 
-                if(!isset($_GET['page'])){
-                    echo $_SERVER['REQUEST_URI'] . "?page=news";
-                } else echo '?page=news';
-                ?>" class="nav-link">Berita Cuan</a>
+                <a href="index.php?page=news" class="nav-link">Berita Cuan</a>
             </li>
             <?php if(!isset($_SESSION["login"])):?>
                 <li class="nav-item" id="nav-item-login">
-                    <a href="<?=$_SERVER['REQUEST_URI']?>?page=login.php" target="_blank" class="nav-link w-100" id="nav-link-login">Masuk</a>
+                    <a href="<?php echo "index.php?page=login"?>" target="_blank" class="nav-link w-100" id="nav-link-login">Masuk</a>
                 </li>
             <?php endif?>
             <?php if(isset($_SESSION["login"])):?>
@@ -38,7 +30,7 @@
                         <a class="nav-link dropdown-toggle d-flex flex-row align-items-center" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="ratio ratio-1x1 d-inline-block mx-2" style="width: 2.1rem;">
                                 <img 
-                                    src="images/users-profile/childe.jpg" 
+                                    src="images/users-profile/childe.png" 
                                     alt="navbar-profile-image" 
                                     class="img-fluid article-img rounded-circle" 
                                     style="height: 2.1rem; object-fit:cover">
@@ -46,8 +38,8 @@
                             <span class="montserrat text-center mx-1 mb-0 d-inline-block"><?php echo $_SESSION["username"]?></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownDarkMenuLink">
-                            <li><a class="dropdown-item navbar-dropdown-menu montserrat" href="userprofile.php">Profile</a></li>
-                            <li><a class="dropdown-item navbar-dropdown-menu montserrat" href="logout.php">Log Out</a></li>
+                            <li><a class="dropdown-item navbar-dropdown-menu montserrat" href="index.php?page=userprofile">Profile</a></li>
+                            <li><a class="dropdown-item navbar-dropdown-menu montserrat" href="index.php?page=logout">Log Out</a></li>
                         </ul>
                     </li>
                 </li>
