@@ -2,10 +2,7 @@
 require 'dbconn.php';
 require 'functions.php';
 
-
 session_start();
-// $_SESSION['username'] = 'a';
-// $_SESSION['password'] = 'a';
 
 ?>
 <!DOCTYPE html>

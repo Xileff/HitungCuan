@@ -14,6 +14,7 @@ if(isset($_POST['register'])){
             $existingUser = $conn->query("SELECT * FROM users WHERE username = '$username' OR email = '$email';");
             // cek email/username udah kepakai atau blum
             if($existingUser->num_rows === 0){
+                // register
                 register($fullName, $username, $email, $password) === 1 ? alertRedirect('Berhasil Registrasi', 'Akun berhasil didaftarkan', 'index.php?page=login', 'Login') : alertError('Error', 'Gagal mendaftarkan akun', 'Ok');
             } else alertError('Username/Email Unavailable', 'Username atau email ini sudah terpakai', 'Ok');
         } else alertError('Password', 'Pastikan password dan konfirmasi password sama', 'Ok');

@@ -37,4 +37,10 @@ function register($name, $username, $email, $password){
     return $conn->affected_rows;
 }
 
+function login($table, $username, $password){
+    global $conn;
+    $hash = $conn->query("SELECT password FROM $table WHERE username = '$username'")->fetch_assoc()['password'];
+
+    return password_verify($password, $hash);
+}
 ?>

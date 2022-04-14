@@ -2,14 +2,9 @@
 
 if(isset($_POST["login"])){
     $username = $_POST['username'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password = $_POST['password'];
 
-    if($existingUser = $conn->query("SELECT * FROM users WHERE username = '$username'")->fetch_assoc()){
-        if(($username === $existingUser['username'])&&($password === $existingUser['password'])){
-            $_SESSION['username'] = $username;
-            $_SESSION['passoword'] = $password;
-        } else alertError('Invalid Login','Username atau password salah','Ok');
-    } else alertError('Error','Tidak ada user dengan akun ini','Ok');
+    login('admin', $username, $password) === true ? header("Location: index.php?page=admin") : (login('users', $username, $password) === true ? header("Location: index.php?page=homepage") : alertError('Invalid Login', 'Username atau password salah!', 'Ok'));
 }
 
 ?>
