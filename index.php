@@ -2,8 +2,6 @@
 require 'dbconn.php';
 require 'functions.php';
 session_start();
-var_dump($_SESSION['admin']);
-var_dump($_SESSION['user']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,24 +40,18 @@ var_dump($_SESSION['user']);
     <?php 
     if (isset($_SESSION['admin'])) {
         $_GET['page'] === 'logout' ? include 'pages/logout.php' : include 'pages/admin.php';
-    } else {
+    } 
+    
+    else {
         if (isset($_GET['page'])) {
-            if ($_GET['page'] === 'login') {
-                include 'pages/login.php';
+            if ($_GET['page'] === 'login' || $_GET['page'] === 'logout') {
+                include 'pages/' . $_GET['page'] . '.php';
             } else {
-                if ($_GET['page'] === 'logout') {
-                    include 'pages/logout.php';
-                } else {
-                    include 'pages/components/html-navbar.php';
-                    include 'pages/' . $_GET['page'] . '.php';
-                    include 'pages/components/html-footer.php';
-                }
+                renderPage($_GET['page']);
             }
         }
         else {
-            include 'pages/components/html-navbar.php';
-            include 'pages/homepage.php';
-            include 'pages/components/html-footer.php';
+            renderPage();
         }
     }
 

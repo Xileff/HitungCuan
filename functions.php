@@ -1,5 +1,11 @@
 <?php 
 
+function renderPage($page = 'homepage'){    
+    include 'pages/components/html-navbar.php';
+    include 'pages/' . $page . '.php';
+    include 'pages/components/html-footer.php';
+}
+
 function alertError($heading, $message, $button){
     echo "
     <script>
