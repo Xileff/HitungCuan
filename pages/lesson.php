@@ -1,5 +1,4 @@
 <body>
-    <?php include 'pages/components/html-navbar.php'?>
     <div class="mt-5 pt-5">
         <div id="mySideNav" class="sidenav pt-5 h-100">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
@@ -55,7 +54,6 @@
         </div>
     </div>
 
-    <?php include 'pages/components/html-footer.php'?>
     <?php include 'pages/components/html-top.php'?>
     <!-- Other scripts -->
     <script src="js/sidenav.js"></script>

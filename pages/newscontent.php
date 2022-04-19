@@ -60,8 +60,6 @@
             </div>
         </div>
     </div>
-
-    <?php include 'pages/components/html-footer.php'?>
     <?php include 'pages/components/html-top.php'?>
 </body>
 </html>

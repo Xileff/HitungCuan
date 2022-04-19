@@ -1,5 +1,4 @@
 <body>
-    <?php include 'pages/components/html-navbar.php'?>
     <div class="container mt-5 pt-5">
         <h1 class="poppins text-center mb-5">Dev Profile</h1>
         <div class="row mb-5">

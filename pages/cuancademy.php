@@ -1,5 +1,4 @@
 <body>
-    <?php include 'pages/components/html-navbar.php'?>
     <div class="container p-5 mt-5">
         <div class="container-fluid" data-aos="fade-up">
             <a href="lesson.php" target="_blank" class="link-unstyled">
@@ -30,5 +29,4 @@
     </div>
 
     <?php include 'pages/components/html-top.php'?>
-    <?php include 'pages/components/html-footer.php'?>
 </body>

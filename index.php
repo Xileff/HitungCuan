@@ -3,7 +3,6 @@ require 'dbconn.php';
 require 'functions.php';
 
 session_start();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,12 +39,15 @@ session_start();
 </head>
 <body>
     <?php 
-    if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
+    if (isset($_SESSION['username']) && isset($_SESSION['password']) && !isset($_SESSION['admin'])) {
+        include 'pages/components/html-navbar.php';
         if (isset($_GET['page'])) {
             include 'pages/' . $_GET['page'] . '.php';
-        } else include 'pages/homepage.php';
-    } else include 'pages/login.php';
-    
+        } else {
+            include 'pages/homepage.php';
+        } 
+        include 'pages/components/html-footer.php';
+    } else isset($_SESSION['admin']) ? header("Location: index.php?page=logout") : include 'pages/login.php';
     ?>
 
     <!-- AOS -->

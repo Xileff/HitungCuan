@@ -1,6 +1,4 @@
 <body>
-    <?php include 'pages/components/html-navbar.php' ?>
-
     <div class="container mt-5 pt-5 px-5" data-aos="fade-up">
         <div class="row d-flex flex-row justify-content-center">
             <form class="col-sm-4 col-md-4 col-lg-4 w-100 p-2 d-flex flex-column justify-content-center" action="" method="" style="font-weight: bold;">

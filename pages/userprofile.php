@@ -81,7 +81,6 @@
     <script src="js/triggerClick.js"></script>
 
     <?php include 'pages/components/html-top.php'?>
-    <?php include 'pages/components/html-footer.php'?>
 </body>
 </html>
 

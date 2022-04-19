@@ -1,5 +1,4 @@
 <body>
-    <?php include 'pages/components/html-navbar.php'?>
     <div id="index-container" data-aos="fade-up">
         <div class="container mb-5">
             <div class="row" id="index-headline">
