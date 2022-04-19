@@ -43,16 +43,7 @@ session_start();
     } 
     
     else {
-        if (isset($_GET['page'])) {
-            if ($_GET['page'] === 'login' || $_GET['page'] === 'logout') {
-                include 'pages/' . $_GET['page'] . '.php';
-            } else {
-                renderPage($_GET['page']);
-            }
-        }
-        else {
-            renderPage();
-        }
+        isset($_GET['page']) ? renderPageOrHome($_GET['page']) : renderPageOrHome();
     }
 
     ?>
