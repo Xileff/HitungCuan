@@ -1,10 +1,28 @@
 <?php 
 
+if (isset($_SESSION['admin'])) {
+    header("Location: index.php?page=admin");
+} else if (isset($_SESSION['user'])) {
+    header("Location: index.php?page=homepage");
+}
+
 if(isset($_POST["login"])){
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    login('admin', $username, $password) === true ? header("Location: index.php?page=admin") : (login('users', $username, $password) === true ? header("Location: index.php?page=homepage") : alertError('Invalid Login', 'Username atau password salah!', 'Ok'));
+    if (login('admin', $username, $password)) {
+        $_SESSION['admin'] = true;
+        $_SESSION['username'] = $username;
+        $_SESSION['password'] = password_hash($password, PASSWORD_DEFAULT);
+        header("Location: index.php?page=admin");
+    } else if (login('users', $username, $password)) {
+        $_SESSION['user'] = true;
+        $_SESSION['username'] = $username;
+        $_SESSION['password'] = password_hash($password, PASSWORD_DEFAULT);
+        header("Location: index.php?page=homepage");
+    } else {
+        alertError('Invalid Login', 'Username atau password salah!', 'Ok');
+    }
 }
 
 ?>

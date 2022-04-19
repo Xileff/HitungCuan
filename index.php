@@ -39,6 +39,9 @@ session_start();
 </head>
 <body>
     <?php 
+
+    
+
     if (isset($_SESSION['username']) && isset($_SESSION['password']) && !isset($_SESSION['admin'])) {
         include 'pages/components/html-navbar.php';
         if (isset($_GET['page'])) {
