@@ -1,6 +1,6 @@
 <?php 
 
-function renderPage($page = 'homepage'){    
+function renderPage($page = 'homepage'){
     include 'pages/components/html-navbar.php';
     include 'pages/' . $page . '.php';
     include 'pages/components/html-footer.php';
