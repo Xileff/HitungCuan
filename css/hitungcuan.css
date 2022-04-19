@@ -225,6 +225,10 @@ footer i {
     color: #0072b1;
 }
 
+#linkInstagram:hover, #linkTwitter:hover, #linkYoutube:hover {
+    cursor: pointer;
+}
+
 .general-link:hover {
     color: rgb(117, 249, 145);
 }

@@ -1,8 +1,9 @@
 <?php 
 require 'dbconn.php';
 require 'functions.php';
-
 session_start();
+var_dump($_SESSION['admin']);
+var_dump($_SESSION['user']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,18 +40,29 @@ session_start();
 </head>
 <body>
     <?php 
-
-    
-
-    if (isset($_SESSION['username']) && isset($_SESSION['password']) && !isset($_SESSION['admin'])) {
-        include 'pages/components/html-navbar.php';
+    if (isset($_SESSION['admin'])) {
+        $_GET['page'] === 'logout' ? include 'pages/logout.php' : include 'pages/admin.php';
+    } else {
         if (isset($_GET['page'])) {
-            include 'pages/' . $_GET['page'] . '.php';
-        } else {
+            if ($_GET['page'] === 'login') {
+                include 'pages/login.php';
+            } else {
+                if ($_GET['page'] === 'logout') {
+                    include 'pages/logout.php';
+                } else {
+                    include 'pages/components/html-navbar.php';
+                    include 'pages/' . $_GET['page'] . '.php';
+                    include 'pages/components/html-footer.php';
+                }
+            }
+        }
+        else {
+            include 'pages/components/html-navbar.php';
             include 'pages/homepage.php';
-        } 
-        include 'pages/components/html-footer.php';
-    } else isset($_SESSION['admin']) ? header("Location: index.php?page=logout") : include 'pages/login.php';
+            include 'pages/components/html-footer.php';
+        }
+    }
+
     ?>
 
     <!-- AOS -->

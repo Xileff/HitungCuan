@@ -1,3 +1,9 @@
+<?php 
+if(!isset($_SESSION['admin'])){
+    header("Location: index.php");
+}
+?>
+
 <body>
     <nav class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-expand-xl fixed-top p-3 shadow-sm">
         <!-- Navbar intinya : Brand, button, konten -->
@@ -27,7 +33,7 @@
                 </li>
                 <?php if(!isset($_SESSION["login"])):?>
                 <li class="nav-item" id="nav-item-login">
-                    <a href="login.php" target="_blank" class="nav-link w-100" id="nav-link-login">Masuk</a>
+                    <a href="index.php?page=login" target="_blank" class="nav-link w-100" id="nav-link-login">Masuk</a>
                 </li>
                 <?php endif?>
                 <?php if(isset($_SESSION["login"]) && isset($_SESSION["admin"])):?>
