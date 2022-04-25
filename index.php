@@ -56,7 +56,30 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
 <body>
     <?php 
     if (isset($_SESSION['admin'])) {
-        $_GET['page'] === 'logout' ? include 'pages/logout.php' : include 'pages/admin/admin.php';
+        // $_GET['page'] === 'logout' ? include 'pages/logout.php' : include 'pages/admin/admin.php';
+        include 'pages/components/html-adminnavbar.php';
+
+        $page = $_GET['page'];
+        switch ($page) {
+            case null:
+                include 'pages/admin/news.php';
+                break;
+            case 'users':
+                include 'pages/admin/users.php';
+                break;
+            case 'feedback':
+                include 'pages/admin/feedback.php';
+                break;
+            case 'lessons':
+                include 'pages/admin/lessons.php';
+                break;
+            case 'news':
+                include 'pages/admin/news.php';
+                break;
+            case 'logout':
+                include 'pages/logout.php';
+                break;
+        }
     } 
     
     else {
