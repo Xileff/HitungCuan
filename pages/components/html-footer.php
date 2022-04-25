@@ -37,7 +37,7 @@
                 <div class="col p-2">
                     <h4>Tentang Kami</h4>
                     <ul class="list-unstyled montserrat fs-6 footer-submenu">
-                        <li><a href="index.php?page=aboutus">Developer</a></li>
+                        <li><a href="?page=aboutus">Developer</a></li>
                     </ul>
                 </div>
             </div>

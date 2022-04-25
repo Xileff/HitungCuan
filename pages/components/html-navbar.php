@@ -20,7 +20,7 @@
             </li>
             <?php if(!isset($_SESSION["user"])):?>
                 <li class="nav-item" id="nav-item-login">
-                    <a href="<?=$_SERVER['REQUEST_URI'] . "?page=login"?>" target="_blank" class="nav-link w-100" id="nav-link-login">Masuk</a>
+                    <a href="?page=login" target="_blank" class="nav-link w-100" id="nav-link-login">Masuk</a>
                 </li>
             <?php endif?>
             <?php if(isset($_SESSION["user"])):?>

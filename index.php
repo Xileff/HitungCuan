@@ -2,6 +2,23 @@
 require 'dbconn.php';
 require 'functions.php';
 session_start();
+
+// setcookie jika ketika login pilih rememberme dan belum ada cookie
+isset($_SESSION['remember']) && isset($_SESSION['user']) ? remember($_SESSION['username']) : '';
+
+// verifikasi remember setelah browser ditutup
+if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
+    global $conn;
+    $id = $_COOKIE['id'];
+
+    $remembered_user = $conn->query("SELECT id, username FROM users WHERE id = $id")->fetch_assoc();
+
+    if(hash('sha256', $remembered_user['username']) === $_COOKIE['key']) {
+        $_SESSION['user'] = true;
+        $_SESSION['username'] = $remembered_user['username'];
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +60,19 @@ session_start();
     } 
     
     else {
-        isset($_GET['page']) ? renderPageOrHome($_GET['page']) : renderPageOrHome();
+        if(isset($_GET['page']) && ($_GET['page'] === 'login')) {
+            include 'pages/login.php';
+        }
+        
+        else if (isset($_GET['page']) && $_GET['page'] !== '') {
+            renderPage($_GET['page']);
+        }
+
+        else {
+            include 'pages/components/html-navbar.php';
+            include 'pages/homepage.php';
+            include 'pages/components/html-navbar.php';
+        }
     }
 
     ?>

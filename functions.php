@@ -1,7 +1,14 @@
 <?php 
 
-function renderPageOrHome($page = 'homepage'){
-    if ($page === 'login' || $page === 'logout') {
+function remember($username) {
+    global $conn;
+    $user = $conn->query("SELECT id, username FROM users WHERE username = '$username'")->fetch_assoc();
+    setcookie('id', $user['id'], time() + 3600);
+    setcookie('key', hash('sha256', $user['username']), time() + 3600);
+}
+
+function renderPage($page){
+    if ($page === 'logout') {
         include 'pages/' . $page . '.php';    
     } else {
         include 'pages/components/html-navbar.php';

@@ -1,9 +1,9 @@
-<?php 
+<?php
 
-if (isset($_SESSION['admin'])) {
-    header("Location: index.php?page=admin");
-} else if (isset($_SESSION['user'])) {
-    header("Location: index.php?page=homepage");
+use function PHPSTORM_META\type;
+
+if (isset($_SESSION['admin']) || isset($_SESSION['user'])) {
+    header("Location: ./");
 }
 
 if(isset($_POST["login"])){
@@ -19,16 +19,21 @@ if(isset($_POST["login"])){
         $_SESSION['user'] = true;
         $_SESSION['username'] = $username;
         $_GET['page'] = 'homepage';
-        header("Location: index.php");
+
+        // cookies
+        if(isset($_POST['rememberme'])){
+            $_SESSION['remember'] = true;
+        }
+        header("Location: ./");
     } else {
         alertError('Invalid Login', 'Username atau password salah!', 'Ok');
     }
 }
 
 ?>
-
+<body>
 <body id="login-body"  style="z-index: 1;">
-    <?php include 'pages/components/html-simplenavbar.php'?>
+    <?php include 'components/html-simplenavbar.php'?>
     <div id="overlay"></div>
     <div id="login-container" class="container-fluid mb-5 mt-5 pt-5">
         <div class="row h-100">
@@ -57,7 +62,7 @@ if(isset($_POST["login"])){
                         ></input>
 
                         <div class="w-75 mt-1 mb-3 mx-auto d-flex flex-row justify-content-around">
-                            <a href="index.php?page=register" target="_blank" class="align-start montserrat login-links">Register Account</a>
+                            <a href="?page=register" target="_blank" class="align-start montserrat login-links">Register Account</a>
                             <a href="#" class="align-end montserrat login-links">Forgot Password</a>
                         </div>
 
@@ -80,4 +85,5 @@ if(isset($_POST["login"])){
             </div>
         </div>
     </div>
+</body>
 </body>
