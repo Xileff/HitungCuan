@@ -7,12 +7,12 @@ function remember($username) {
     setcookie('key', hash('sha256', $user['username']), time() + 3600);
 }
 
-function renderPage($page){
+function renderPage($page, $agent){
     if ($page === 'logout') {
-        include 'pages/' . $page . '.php';    
+        include 'pages/logout.php';
     } else {
         include 'pages/components/html-navbar.php';
-        include 'pages/' . $page . '.php';
+        include 'pages/' . $agent . '/' . $page . '.php';
         include 'pages/components/html-footer.php';   
     }
 }
