@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-expand-xl fixed-top p-3 shadow-sm">
     <!-- Navbar intinya : Brand, button, konten -->
     <!-- Brand -->
-    <a href="#" class="navbar-brand" id="navbar-title">Administrator</a>
+    <a href="?page=news" class="navbar-brand" id="navbar-title">Administrator</a>
 
     <!-- Tombol dropdown baru keliatan kalo layar kecil -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggleMobileMenu" aria-controls="toggleMobileMenu" aria-expanded="false">

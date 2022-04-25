@@ -60,24 +60,30 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
         include 'pages/components/html-adminnavbar.php';
 
         $page = $_GET['page'];
+        $action = $_GET['action'];
         switch ($page) {
-            case null:
-                include 'pages/admin/news.php';
-                break;
             case 'users':
                 include 'pages/admin/users.php';
                 break;
+
             case 'feedback':
                 include 'pages/admin/feedback.php';
                 break;
+
             case 'lessons':
                 include 'pages/admin/lessons.php';
                 break;
+
             case 'news':
-                include 'pages/admin/news.php';
+                $action === 'addnews' ? include 'pages/admin/crud/addnews.php' : ($action === 'editnews' ? include 'pages/admin/crud/editnews.php' : include 'pages/admin/news.php');
                 break;
+                
             case 'logout':
                 include 'pages/logout.php';
+                break;
+
+            default:
+                include 'pages/admin/news.php';
                 break;
         }
     } 
