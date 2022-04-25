@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-expand-xl fixed-top p-3 shadow-sm">
     <!-- Navbar intinya : Brand, button, konten -->
     <!-- Brand -->
-    <a href="index.php" class="navbar-brand" id="navbar-title">HitungCuan.</a>
+    <a href="./" class="navbar-brand" id="navbar-title">HitungCuan.</a>
 
     <!-- Tombol dropdown baru keliatan kalo layar kecil -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggleMobileMenu" aria-controls="toggleMobileMenu" aria-expanded="false">
@@ -13,17 +13,17 @@
         <ul class="navbar-nav ms-auto">
             <!-- Masing-masing item navbar -->
             <li class="nav-item px-2 pt-1">
-                <a href="index.php?page=simulasinabung" class="nav-link">Cek Kondisi Keuangan</a>
+                <a href="?page=simulasinabung" class="nav-link">Cek Kondisi Keuangan</a>
             </li>
             <li class="nav-item px-2 pt-1">
-                <a href="index.php?page=news" class="nav-link">Berita Cuan</a>
+                <a href="?page=news" class="nav-link">Berita Cuan</a>
             </li>
-            <?php if(!isset($_SESSION["login"])):?>
+            <?php if(!isset($_SESSION["user"])):?>
                 <li class="nav-item" id="nav-item-login">
-                    <a href="<?php echo "index.php?page=login"?>" target="_blank" class="nav-link w-100" id="nav-link-login">Masuk</a>
+                    <a href="<?=$_SERVER['REQUEST_URI'] . "?page=login"?>" target="_blank" class="nav-link w-100" id="nav-link-login">Masuk</a>
                 </li>
             <?php endif?>
-            <?php if(isset($_SESSION["login"])):?>
+            <?php if(isset($_SESSION["user"])):?>
                 <?php $currentUsername = $_SESSION["username"]?>
                 <li class="nav-item px-2 pb-1 pt-1">
                     <li class="nav-item dropdown">

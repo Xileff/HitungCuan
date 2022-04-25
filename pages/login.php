@@ -13,13 +13,13 @@ if(isset($_POST["login"])){
     if (login('admin', $username, $password)) {
         $_SESSION['admin'] = true;
         $_SESSION['username'] = $username;
-        $_SESSION['password'] = password_hash($password, PASSWORD_DEFAULT);
-        header("Location: index.php?page=admin");
+        $_GET['page'] = 'admin';
+        header("Location: index.php");
     } else if (login('users', $username, $password)) {
         $_SESSION['user'] = true;
         $_SESSION['username'] = $username;
-        $_SESSION['password'] = password_hash($password, PASSWORD_DEFAULT);
-        header("Location: index.php?page=homepage");
+        $_GET['page'] = 'homepage';
+        header("Location: index.php");
     } else {
         alertError('Invalid Login', 'Username atau password salah!', 'Ok');
     }
