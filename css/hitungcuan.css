@@ -497,6 +497,33 @@ footer a:hover {
     padding: 0;
 }
 
+#imgInputOverlay {
+    display: none;
+    opacity: 0;
+}
+
+#containerInputImage:hover #imgInputOverlay {
+    display: block;
+    opacity: 50%;
+    transition: all .3s ease-in-out;
+}
+
+#imgInputOverlay:hover > i {
+    transform: scale(1.3);
+    transition: all .3s ease-in-out;
+}
+
+#containerInputImage {
+    height: fit-content;
+    max-height: 400px;
+}
+
+.imgPreview {
+    width: 100%;
+    height: 400px;
+    object-fit: contain;
+}
+
 /* // X-Small devices (portrait phones, less than 576px)
 // No media query for `xs` since this is the default in Bootstrap */
 

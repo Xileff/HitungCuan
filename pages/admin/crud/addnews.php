@@ -1,12 +1,15 @@
 <div class="container pt-5 mt-5 montserrat">
     <h1>Add news</h1>
-    <form action="" method="POST" enctype="multipart/form-data" class="px-2">
+    <form action="" method="POST" enctype="multipart/form-data" class="px-2 d-flex flex-column">
         <div class="form-group mb-4">
-            <div id="containerInputImage">
-                <img src="" alt="newsimage" id="imgPreview">
+            <div id="containerInputImage" class="position-relative">
+                <div class="position-absolute w-100 h-100 bg-secondary d-flex flex-column justify-content-center align-items-center half-intangible" id="imgInputOverlay">
+                    <i class="fas fa-camera fs-1"></i>
+                </div>
+                <img src="images/news/cryptocurrency1.jpg" alt="newsimage" id="imgPreview" class="imgPreview">
             </div>
             <label class="fw-bold" for="foto">Foto</label>
-            <input type="file" name="foto" id="inputImg" class="form-control">
+            <input type="file" name="foto" id="inputImg" class="form-control d-none">
         </div>
         <div class="form-group mb-4">
             <label class="fw-bold" for="judul_berita">Judul Berita</label>
@@ -40,17 +43,22 @@
         </div>
         <div class="form-group mb-4">
             <label class="fw-bold" for="tanggal_rilis">Release Date</label>
-            <input type="date" name="tanggal_rilis" class="form-control">
+            <input type="date" name="tanggal_rilis" id="tanggal" class="form-control">
         </div>
         <div class="form-group mb-4">
             <label class="fw-bold" for="teks">Teks</label>
             <input type="text" name="teks" class="form-control">
         </div>
+        <button class="btn btn-success rounded-5 align-self-end">Save</button>
     </form>
 </div>
 <script>
     const chkNewAuthor = document.getElementById('chkNewAuthor');
     const authorInputField = [document.getElementById('selectAuthor'), document.getElementById('newAuthor')];
     chkNewAuthor.addEventListener('click', () => authorInputField.forEach(e => e.classList.toggle('intangible')));
+
+    // // cek value tanggal
+    // const tanggal = document.getElementById('tanggal');
+    // tanggal.addEventListener('change', function(){console.log(this.value)});
 </script>
 <script src="js/previewImage.js"></script>
