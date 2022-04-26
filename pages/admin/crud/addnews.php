@@ -2,9 +2,10 @@
     <h1>Add news</h1>
     <form action="" method="POST" enctype="multipart/form-data" class="px-2 d-flex flex-column">
         <div class="form-group mb-4">
-            <div id="containerInputImage" class="position-relative">
+            <div id="containerInputImage" class="position-relative" data-toggle="tooltip" data-placement="top" title="Reccomended Ratio 3:1, max size 1MB">
                 <div class="position-absolute w-100 h-100 bg-secondary d-flex flex-column justify-content-center align-items-center half-intangible" id="imgInputOverlay">
                     <i class="fas fa-camera fs-1"></i>
+                    <p>Reccomended ratio 3:1, max size 1MB</p>
                 </div>
                 <img src="images/news/cryptocurrency1.jpg" alt="newsimage" id="imgPreview" class="imgPreview">
             </div>

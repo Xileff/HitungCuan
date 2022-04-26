@@ -1,5 +1,10 @@
 <?php 
 
+function uploadImage($image, $dir){
+    $name = $image['name'];
+    $size = $image[''];
+}
+
 function remember($username) {
     global $conn;
     $user = $conn->query("SELECT id, username FROM users WHERE username = '$username'")->fetch_assoc();
