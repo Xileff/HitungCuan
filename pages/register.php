@@ -1,11 +1,11 @@
 <?php 
 
 if(isset($_POST['register'])){
-    $fullName = $_POST['nama'];
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $confirmPassword = $_POST['confirmPassword'];
+    $fullName = htmlspecialchars($_POST['nama']);
+    $username = htmlspecialchars($_POST['username']);
+    $email = htmlspecialchars($_POST['email']);
+    $password = htmlspecialchars($_POST['password']);
+    $confirmPassword = htmlspecialchars($_POST['confirmPassword']);
 
     // cek panjang password
     if (strlen($password) >= 8 && strlen($password) <= 17) {

@@ -1,8 +1,34 @@
 <?php 
-
 function uploadImage($image, $dir){
-    $name = $image['name'];
-    $size = $image[''];
+    $nameWithExtension = $image['name'];
+    $size = $image['size'];
+    $tmpName = $image['tmp_name'];
+    $result = false;
+
+    if($image['error'] === 4){
+        alertError('Error', 'Tidak ada gambar yang diupload', 'Ok');
+        return $result;
+    }
+
+    if($size > 1048576){
+        alertError('Error', 'Ukuran melebihi 1MB!', 'Ok');
+        return $result;
+    }
+
+    $extension = strtolower(end(explode(".",$nameWithExtension)));
+    $imageExtensions = ['jpg', 'png', 'jpeg'];
+
+    if(!in_array($extension, $imageExtensions)){
+        alertError('Error', 'File bukan gambar!', 'Ok');
+        return $result;
+    }
+
+    $name = uniqid() . "." . $extension;
+    if(move_uploaded_file($tmpName, $dir . $name)){
+        $result = $name;
+    }
+
+    return $result;
 }
 
 function remember($username) {
@@ -64,5 +90,13 @@ function login($table, $username, $password){
     $hash = $conn->query("SELECT password FROM $table WHERE username = '$username'")->fetch_assoc()['password'];
 
     return password_verify($password, $hash);
+}
+
+function refresh($delay = 0){
+    header("refresh:$delay; url=" . $_SERVER['REQUEST_URI']);
+}
+
+function delayedRedirect($url, $delay = 0){
+    header("refresh:$delay; url=$url");   
 }
 ?>

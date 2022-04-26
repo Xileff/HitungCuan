@@ -7,8 +7,8 @@ if (isset($_SESSION['admin']) || isset($_SESSION['user'])) {
 }
 
 if(isset($_POST["login"])){
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
 
     if (login('admin', $username, $password)) {
         $_SESSION['admin'] = true;
