@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
     $idAuthor;
     $releaseDate = htmlspecialchars($_POST['releaseDate']);
     $text = htmlspecialchars($_POST['text']);
-    $image = '';
+    $image = 'default.png';
 
     // set nilai id penulis
     if(isset($_POST['newAuthor'])){
@@ -41,7 +41,7 @@ if(isset($_POST['submit'])){
     } else $idAuthor = htmlspecialchars($_POST['idAuthor']);
 
     // cek gambar
-    if(isset($_FILES['gambar'])){
+    if(isset($_FILES['gambar']) && $_FILES['gambar']['error'] !== 4){
         $image = uploadImage($_FILES['gambar'], 'images/news/');
         if(!$image){
             if(isset($newIdAuthor)) $conn->query("DELETE FROM author WHERE id = $idAuthor");
@@ -56,6 +56,7 @@ if(isset($_POST['submit'])){
     if($conn->affected_rows === 1) {
         alertSuccess('Berhasil', 'Berita sudah terinput ke sistem', 'Ok');
     } else {
+        if(isset($newIdAuthor)) $conn->query("DELETE FROM author WHERE id = $idAuthor");
         alertError('Error', 'Gagal menginput data','Coba lagi');
     }
 }

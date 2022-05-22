@@ -5,6 +5,17 @@
 /* Poppins */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.8;
+}
+
 * {
     -webkit-font-smoothing: antialiased;
 }
@@ -440,43 +451,17 @@ footer a:hover {
     background-image: url("../images/CuanCademy/Subject-Containers/expenses.jpg");
 }
 
-.sidenav, #spanToggleMateri {
+#spanToggleMateri {
     background-color: #1f1f1f;
 }
 
-.sidenav {
-    width: 0%;
-    position: fixed;
-    z-index: 1031;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    transition: 0.4s;
-    /* padding-top: ; */
+.sidebar-hide {
+    opacity: 0;
+    transform: translateX(-100vw);
 }
 
-.sidenav a {
-    text-decoration: none;
-    font-size: 25px;
-    color: white;
+.hide {
     display: none;
-    transition: 1s;
-}
-
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
-
-.sidenav-lessons {
-    background-color: #e1e1e1;
-}
-
-.sidenav-lessons:hover {
-    background-color: #d0d0d0;
 }
 
 #main {
@@ -502,6 +487,14 @@ footer a:hover {
     opacity: 0;
 }
 
+#imgPreview:hover {
+    cursor: pointer;
+}
+
+#teshover:hover {
+    cursor: pointer;
+}
+
 #containerInputImage:hover #imgInputOverlay {
     display: block;
     opacity: 50%;
@@ -511,6 +504,11 @@ footer a:hover {
 #imgInputOverlay:hover > i {
     transform: scale(1.3);
     transition: all .3s ease-in-out;
+}
+
+.sidebar-lesson-link {
+    text-decoration: none;
+    color: rgb(8, 150, 39) !important;
 }
 
 /* // X-Small devices (portrait phones, less than 576px)
@@ -527,6 +525,10 @@ footer a:hover {
 }
 
 @media (max-width: 575px) {
+    #lesson-side-bar {
+        transition: all .5s ease-in-out;
+    }
+
     #nav-item-login {
         margin-top: 10px;
         margin-left: 6px;
@@ -613,6 +615,10 @@ footer a:hover {
         top: 50% !important;
     }
 
+    #lesson-side-bar {
+        width: 100% !important;
+    }
+
     .comment-author {
         font-size: 1rem;
     }
@@ -636,9 +642,10 @@ footer a:hover {
 /* // Small devices (landscape phones, 576px and up) */
 
 @media (min-width: 576px) {
-    /* #nav-item-login {
-        margin-top: 10px;
-    } */
+    #lesson-side-bar {
+        transition: all .5s ease-in-out;
+    }
+
     #nav-item-login {
         margin-left: 10px;
     }
@@ -753,12 +760,20 @@ footer a:hover {
         max-height: 500px;
         object-fit: cover;
     }
+
+    #lesson-side-bar {
+        width: 100%;
+    }
 }
 
 
 /* // Medium devices (tablets, 768px and up) */
 
 @media (min-width: 768px) {
+    #lesson-side-bar {
+        transition: all .8s ease-in-out;
+    }
+
     #nav-item-login {
         margin-top: 0px;
     }
@@ -800,6 +815,10 @@ footer a:hover {
 
     .developer-text {
         font-size: 0.9rem;
+    }
+
+    #lesson-side-bar {
+        width: 40% !important;
     }
 }
 

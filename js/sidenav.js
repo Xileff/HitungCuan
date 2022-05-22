@@ -1,42 +1,11 @@
-function openNav() {
-    const width = window.innerWidth;
-    const sideNav = document.getElementById("mySideNav");
-    const main = document.getElementById("main");
-    
-    const veryWide = "25%";
-    const wide = "250px";
-    const medium = "250px";
-    const full = "100%";
+const sidebar = document.getElementById('lesson-side-bar')
+const spanToggleMateri = document.getElementById('spanToggleMateri')
+const navbar = document.getElementsByTagName('nav')[0]
+const overlay = document.getElementsByClassName('overlay')[0]
 
-    if(width >= 992){
-        sideNav.style.width =  veryWide;
-        main.style.marginLeft =  veryWide;
-    }
-    else if(width >= 768) {
-        sideNav.style.width =  wide;
-        main.style.marginLeft =  wide;
-    }
-    else if(width >= 576) {
-        sideNav.style.width =  medium;
-        main.style.marginLeft =  medium;
-    }
-    else if(width < 576) {
-        sideNav.style.width =  full;
-    }
-
-    const lessons = sideNav.querySelectorAll("a");
-
-    let i = 0;
-    while(i < lessons.length){
-        lessons[i].style.display = "block";
-        i++;
-    }
-}
-
-function closeNav() {
-    const width = window.innerWidth;
-    const sideNav = document.getElementById("mySideNav");
-    const main = document.getElementById("main");
-    sideNav.style.width = "0";
-    main.style.marginLeft = "0";
+function showLessons(){
+    sidebar.classList.toggle('sidebar-hide');
+    spanToggleMateri.classList.toggle('hide');
+    navbar.classList.toggle('d-none');
+    overlay.classList.toggle('d-none');
 }

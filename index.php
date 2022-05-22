@@ -60,7 +60,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
         include 'pages/components/html-adminnavbar.php';
 
         $page = $_GET['page'];
-        $action = $_GET['action'];
+        if(isset($_GET['action'])) $action = $_GET['action'];
         switch ($page) {
             case 'users':
                 include 'pages/admin/users.php';
@@ -89,13 +89,9 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     } 
     
     else {
-        if(isset($_GET['page']) && ($_GET['page'] === 'login')) {
-            include 'pages/login.php';
-        }
+        if(isset($_GET['page']) && ($_GET['page'] === 'login')) include 'pages/login.php';
         
-        else if (isset($_GET['page']) && $_GET['page'] !== '') {
-            renderPage($_GET['page'], 'user');
-        }
+        else if (isset($_GET['page']) && $_GET['page'] !== '') renderPage($_GET['page'], 'user');
 
         else {
             include 'pages/components/html-navbar.php';

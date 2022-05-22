@@ -1,3 +1,4 @@
+<?php global $conn;?>
 <div class="container mt-5 pt-5 montserrat">
     <h1 class="fw-bold text-center">News</h1>
     <a href="?page=news&action=addnews">
@@ -10,24 +11,29 @@
                 <th>Judul</th>
                 <th>ID Author</th>
                 <th>Release Date</th>
-                <th>Action</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Cryptocurrency</td>
-                <td>2</td>
-                <td>20-03-2002</td>
-                <td class="p-2">
-                    <a href="?page=news&action=editnews">
-                        <button class="btn btn-warning rounded w-100 mx-auto mb-1 p-1 px-3 text-center">Edit</button>
-                    </a>
-                    <a href="#">
-                        <button class="btn btn-danger rounded w-100 mx-auto mb-1 p-1 px-3 text-center">Delete</button>
-                    </a>
-                </td>
-            </tr>
+            <?php $allNews = $conn->query("SELECT * FROM news")?>
+            <?php while($news = $allNews->fetch_assoc()):?>
+                <tr>
+                    <td><?=$news['id']?></td>
+                    <td><?=$news['judul_berita']?></td>
+                    <td>
+                        <?php $idAuthor = $news['id_author']; echo $conn->query("SELECT nama FROM author WHERE id = $idAuthor")->fetch_assoc()['nama'];?>
+                    </td>
+                    <td><?=$news['tanggal_rilis']?></td>
+                    <td class="p-2">
+                        <a href="?page=news&action=editnews&id=<?=$news['id']?>">
+                            <button class="btn btn-warning rounded w-100 mx-auto mb-1 p-1 px-3 text-center">Edit</button>
+                        </a>
+                        <a href="#">
+                            <button class="btn btn-danger rounded w-100 mx-auto mb-1 p-1 px-3 text-center">Delete</button>
+                        </a>
+                    </td>
+                </tr>
+            <?php endwhile;?>
         </tbody>
     </table>
 </div>

@@ -1,45 +1,46 @@
 <body>
-    <div class="mt-5 pt-5">
-        <div id="mySideNav" class="sidenav pt-5 h-100">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
-                <i class="far fa-times-circle"></i>
-            </a>
-            <h3 class="poppins text-center m-3">Subject Name</h1>
-            <a href="#" class="m-4">
-                <div class="row row-lessons w-100 mx-auto position-relative">
-                    <div class="bgLesson background-zoom w-100 h-100 m-0 p-0 position-absolute start-0 top-0"></div>
-                    <div class="blackOverlay w-100 h-100 m-0 p-0 position-absolute top-0 start-0"></div>
-                    <p class="text-center pt-2 pb-2 m-0 fs-4" style="z-index: 2;">Lesson</h1>
-                </div>
-            </a>
-            <a href="#" class="m-4">
-                <div class="row row-lessons w-100 mx-auto position-relative">
-                    <div class="bgLesson background-zoom w-100 h-100 m-0 p-0 position-absolute start-0 top-0"></div>
-                    <div class="blackOverlay w-100 h-100 m-0 p-0 position-absolute top-0 start-0"></div>
-                    <p class="text-center pt-2 pb-2 m-0 fs-4" style="z-index: 2;">Lesson</h1>
-                </div>
-            </a>
-            <a href="#" class="m-4">
-                <div class="row row-lessons w-100 mx-auto position-relative">
-                    <div class="bgLesson background-zoom w-100 h-100 m-0 p-0 position-absolute start-0 top-0"></div>
-                    <div class="blackOverlay w-100 h-100 m-0 p-0 position-absolute top-0 start-0"></div>
-                    <p class="text-center pt-2 pb-2 m-0 fs-4" style="z-index: 2;">Lesson</h1>
-                </div>
-            </a>
-            <a href="#" class="m-4">
-                <div class="row row-lessons w-100 mx-auto position-relative">
-                    <div class="bgLesson background-zoom w-100 h-100 m-0 p-0 position-absolute start-0 top-0"></div>
-                    <div class="blackOverlay w-100 h-100 m-0 p-0 position-absolute top-0 start-0"></div>
-                    <p class="text-center pt-2 pb-2 m-0 fs-4" style="z-index: 2;">Lesson</h1>
-                </div>
-            </a>
-        </div>
-        <div class="container-fluid px-0">
-            <div id="main" class="px-0">
-                <span id="spanToggleMateri" onclick="openNav();" style="border-top-right-radius: 1rem; border-bottom-right-radius: 1rem;" class="pt-3 pb-3 px-4 position-fixed">
-                    <i class="fas fa-play"></i>
-                </span>
+    <div class="mt-5 pt-5 position-relative">
+        <div class="overlay d-none"></div>
+        <!-- New sidebar -->
+        <div id="lesson-side-bar" class="bg-dark position-fixed h-100 top-0 left-0 bottom-0 sidebar-hide">
+            <button class="position-absolute" style="background: none; right: 0; border: none; color: white;" onclick="showLessons()"><span class="fw-bold montserrat">X</span></button>
+            <div class="w-75 mx-auto">
+                <h3 class="poppins text-center m-3">Subject Name</h1>
+                <a href="#" class="m-4 sidebar-lesson-link fw-bold">
+                    <div class="row row-lessons w-100 mx-auto position-relative">
+                        <div class="bgLesson background-zoom w-100 h-100 m-0 p-0 position-absolute start-0 top-0"></div>
+                        <div class="blackOverlay w-100 h-100 m-0 p-0 position-absolute top-0 start-0"></div>
+                        <p class="text-center pt-2 pb-2 m-0 fs-4" style="z-index: 2;">Lesson</h1>
+                    </div>
+                </a>
+                <a href="#" class="m-4 sidebar-lesson-link fw-bold">
+                    <div class="row row-lessons w-100 mx-auto position-relative">
+                        <div class="bgLesson background-zoom w-100 h-100 m-0 p-0 position-absolute start-0 top-0"></div>
+                        <div class="blackOverlay w-100 h-100 m-0 p-0 position-absolute top-0 start-0"></div>
+                        <p class="text-center pt-2 pb-2 m-0 fs-4" style="z-index: 2;">Lesson</h1>
+                    </div>
+                </a>
+                <a href="#" class="m-4 sidebar-lesson-link fw-bold">
+                    <div class="row row-lessons w-100 mx-auto position-relative">
+                        <div class="bgLesson background-zoom w-100 h-100 m-0 p-0 position-absolute start-0 top-0"></div>
+                        <div class="blackOverlay w-100 h-100 m-0 p-0 position-absolute top-0 start-0"></div>
+                        <p class="text-center pt-2 pb-2 m-0 fs-4" style="z-index: 2;">Lesson</h1>
+                    </div>
+                </a>
+                <a href="#" class="m-4 sidebar-lesson-link fw-bold">
+                    <div class="row row-lessons w-100 mx-auto position-relative">
+                        <div class="bgLesson background-zoom w-100 h-100 m-0 p-0 position-absolute start-0 top-0"></div>
+                        <div class="blackOverlay w-100 h-100 m-0 p-0 position-absolute top-0 start-0"></div>
+                        <p class="text-center pt-2 pb-2 m-0 fs-4" style="z-index: 2;">Lesson</h1>
+                    </div>
+                </a>
             </div>
+        </div>
+        <!-- New sidebar -->
+        <div class="container-fluid px-0">
+            <span id="spanToggleMateri" onclick="showLessons()" style="border-top-right-radius: 1rem; border-bottom-right-radius: 1rem;" class="pt-3 pb-3 px-4 position-fixed">
+                <i class="fas fa-list"></i>
+            </span>
             <div class="container pt-2">
                 <div class="row">
                     <h1 class="poppins">Introduction to Income Management</h1>
