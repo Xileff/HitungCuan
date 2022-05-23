@@ -2,7 +2,7 @@
     <div class="mt-5 pt-5 position-relative">
         <div class="overlay d-none"></div>
         <!-- New sidebar -->
-        <div id="lesson-side-bar" class="bg-dark position-fixed h-100 top-0 left-0 bottom-0 sidebar-hide">
+        <div id="lesson-side-bar" class="position-fixed h-100 top-0 left-0 bottom-0 sidebar-hide">
             <button class="position-absolute" style="background: none; right: 0; border: none; color: white;" onclick="showLessons()"><span class="fw-bold montserrat">X</span></button>
             <div class="w-75 mx-auto">
                 <h3 class="poppins text-center m-3">Subject Name</h1>
