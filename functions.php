@@ -56,6 +56,14 @@ function alertError($heading, $message, $button){
     return false;
 }
 
+function alertErrorRefresh($heading, $message, $button){
+    echo "
+    <script>
+        alertErrorRefresh('$heading', '$message', '$button');
+    </script>";
+    return false;
+}
+
 function alertSuccess($heading, $message, $button){
     echo "
     <script>
@@ -98,5 +106,25 @@ function refresh($delay = 0){
 
 function delayedRedirect($url, $delay = 0){
     header("refresh:$delay; url=$url");   
+}
+
+function tgl_indo($date){
+	$months = array (
+		1 =>   'Januari',
+		'Februari',
+		'Maret',
+		'April',
+		'Mei',
+		'Juni',
+		'Juli',
+		'Agustus',
+		'September',
+		'Oktober',
+		'November',
+		'Desember'
+	);
+	$dateParts = explode('-', $date);
+ 
+	return $dateParts[2] . ' ' . $months[(int)$dateParts[1]] . ' ' . $dateParts[0];
 }
 ?>

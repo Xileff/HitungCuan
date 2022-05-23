@@ -6,6 +6,6 @@ const overlay = document.getElementsByClassName('overlay')[0]
 function showLessons(){
     sidebar.classList.toggle('sidebar-hide');
     spanToggleMateri.classList.toggle('hide');
-    navbar.classList.toggle('d-none');
     overlay.classList.toggle('d-none');
+    navbar.classList.toggle('d-none');
 }

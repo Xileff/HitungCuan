@@ -7,7 +7,7 @@
         <!-- row row-cols-1 row-cols-sm-2 row-cols-md-4 -->
         <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-news">
             <div class="col p-2 mx-auto">
-                <a href="newscontent.html">
+                <a href="?page=newscontent&id=3">
                     <div class="card card-news h-100">
                         <img src="images/index/cryptocurrency-square.jpg" class="card-img-top" alt="cryptocurrency">
                         <div class="card-body card-news-body w-100">

@@ -71,7 +71,7 @@
                 </a>
             </div>
         </div>
-        <a href="news.php" style="text-decoration: none; color: white;"><p class="text-center general-link fs-6 hvr-underline-from-left">See more</p></a>
+        <a href="?page=news" style="text-decoration: none; color: white;"><p class="text-center general-link fs-6 hvr-underline-from-left">See more</p></a>
     </div>
 
     <!-- Target Belajar Ngatur Duit -->

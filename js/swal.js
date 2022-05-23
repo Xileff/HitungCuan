@@ -7,6 +7,17 @@ function alertError(title, text, confirmButtonText){
     })
 }
 
+function alertErrorRefresh(title, text, confirmButtonText){
+    Swal.fire({
+        title: title.toString(),
+        text: text.toString(),
+        icon: 'error',
+        confirmButtonText: confirmButtonText.toString().then(function(){
+            window.location.reload();
+        })
+    })
+}
+
 function alertSuccess(title, text, confirmButtonText){
     Swal.fire({
         title: title.toString(),

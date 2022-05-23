@@ -1,6 +1,6 @@
 <body>
-    <div class="mt-5 pt-5 position-relative">
-        <div class="overlay d-none"></div>
+    <div class="mt-5 pt-5">
+        <div class="overlay d-none" onclick="showLessons()"></div>
         <!-- New sidebar -->
         <div id="lesson-side-bar" class="position-fixed h-100 top-0 left-0 bottom-0 sidebar-hide">
             <button class="position-absolute" style="background: none; right: 0; border: none; color: white;" onclick="showLessons()"><span class="fw-bold montserrat">X</span></button>
