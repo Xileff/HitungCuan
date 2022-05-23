@@ -56,7 +56,6 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
 <body>
     <?php 
     if (isset($_SESSION['admin'])) {
-        // $_GET['page'] === 'logout' ? include 'pages/logout.php' : include 'pages/admin/admin.php';
         include 'pages/components/html-adminnavbar.php';
 
         $page = $_GET['page'];
@@ -90,6 +89,8 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     
     else {
         if(isset($_GET['page']) && ($_GET['page'] === 'login')) include 'pages/login.php';
+
+        else if(isset($_GET['page']) && ($_GET['page'] === 'register')) include 'pages/register.php';
         
         else if (isset($_GET['page']) && $_GET['page'] !== '') renderPage($_GET['page'], 'user');
 

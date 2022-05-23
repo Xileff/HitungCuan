@@ -88,7 +88,7 @@ function register($name, $username, $email, $password){
     $email = htmlspecialchars($email);
     $password = password_hash($password, PASSWORD_DEFAULT);
 
-    $conn->query("INSERT INTO users VALUES ('','$name','$username','$email','$password','','','','')");
+    $conn->query("INSERT INTO users VALUES ('','$name','$username','$email','$password','','','nophoto.jpg','" . date('Y-m-d') ."')");
 
     return $conn->affected_rows;
 }

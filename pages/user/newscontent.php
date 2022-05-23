@@ -44,22 +44,7 @@ if(isset($_POST['submit'])){
         </div>
         <p id="news-caption" class="fs-6" style="color: gray;">Ilustrasi: <?=$news['judul_berita']?></p>
         <div class="news-text">
-            <p class="fs-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda repudiandae nam tempora. Doloremque corrupti sed quo itaque ratione aliquid, expedita vitae fuga provident, aut atque recusandae neque aspernatur quaerat doloribus? Lorem ipsum
-                dolor sit amet consectetur adipisicing elit. Pariatur magni quod cupiditate ex animi eum sed quaerat delectus minima sunt, amet vel. Nisi cum vitae, perferendis iusto sint maiores dolores, deleniti doloremque, fuga excepturi porro et!
-                Possimus autem nobis laborum deserunt, error voluptas libero maxime nihil architecto eveniet nemo? Atque eligendi, repellendus iste cumque sit deserunt saepe unde voluptatibus et laudantium ipsum cupiditate modi. Sapiente fugit corrupti
-                in deserunt itaque. Esse neque at nostrum officia corporis eos distinctio pariatur magnam quo illum autem totam suscipit non fugiat consequuntur voluptatem labore necessitatibus fuga commodi, facilis ad ab. Animi enim consequatur impedit!</p>
-            <br>
-            <p class="fs-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci temporibus quam eveniet tempore, cum magnam corporis facere dolor recusandae odit rem sunt, quos earum quae iusto delectus culpa accusantium labore, quia est nisi nostrum. Dolore odit eligendi
-                doloribus officia ea rem fugit itaque aliquam, quam magnam obcaecati reprehenderit ad vitae deleniti aut reiciendis soluta officiis quia cupiditate corporis inventore distinctio esse labore? Autem corporis quis quam exercitationem nesciunt.
-                Odio, doloremque.
-            </p>
-            <br>
-            <p class="fs-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci temporibus quam eveniet tempore, cum magnam corporis facere dolor recusandae odit rem sunt, quos earum quae iusto delectus culpa accusantium labore, quia est nisi nostrum. Dolore odit eligendi
-                doloribus officia ea rem fugit itaque aliquam, quam magnam obcaecati reprehenderit ad vitae deleniti aut reiciendis soluta officiis quia cupiditate corporis inventore distinctio esse labore? Autem corporis quis quam exercitationem nesciunt.
-                Odio, doloremque.
-            </p>
+            <p class="fs-6"><?=$news['teks']?></p>
         </div>
     </div>
     <hr>

@@ -1,3 +1,5 @@
+<?php global $conn; ?>
+
 <nav class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-expand-xl fixed-top p-3 shadow-sm">
     <!-- Navbar intinya : Brand, button, konten -->
     <!-- Brand -->
@@ -24,18 +26,18 @@
                 </li>
             <?php endif?>
             <?php if(isset($_SESSION["user"])):?>
-                <?php $currentUsername = $_SESSION["username"]?>
+                <?php $user = $conn->query("SELECT username, foto FROM users WHERE username='" . $_SESSION["username"] . "'")->fetch_assoc()?>
                 <li class="nav-item px-2 pb-1 pt-1">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle d-flex flex-row align-items-center" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="ratio ratio-1x1 d-inline-block mx-2" style="width: 2.1rem;">
                                 <img 
-                                    src="images/users-profile/childe.png" 
+                                    src="images/users-profile/<?=$user['foto']?>" 
                                     alt="navbar-profile-image" 
                                     class="img-fluid article-img rounded-circle" 
                                     style="height: 2.1rem; object-fit:cover">
                             </div>
-                            <span class="montserrat text-center mx-1 mb-0 d-inline-block"><?php echo $_SESSION["username"]?></span>
+                            <span class="montserrat text-center mx-1 mb-0 d-inline-block"><?php echo $user["username"]?></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownDarkMenuLink">
                             <li><a class="dropdown-item navbar-dropdown-menu montserrat" href="index.php?page=userprofile">Profile</a></li>
