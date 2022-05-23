@@ -7,19 +7,15 @@ $author = $conn->query("SELECT nama FROM author WHERE id=" . $news['id_author'])
 if(isset($_POST['submit'])){
     // jika belum login, alertError(belom login)
     if(!isset($_SESSION['username'])){
-        alertError('Belum login', 'Anda harus login dulu untuk komentar', 'Ok');
-        return;
+        alertRedirect('Belum Login', 'Anda harus login dulu untuk komentar', '?page=login', 'Ok');
     }
+
+    else {
 
     // jika sudah login, boleh komentar
     $user = $conn->query("SELECT id, username, foto FROM users WHERE username='" . $_SESSION['username'] . "'")->fetch_assoc();
     $comment = $_POST['comment'];
 
-    if(strlen($comment) <= 0) {
-        alertError('Komentar kosong', 'Ketiklah sesuatu sebelum anda mengupload komentar ini','Ok');
-        refresh(2.5);
-        return;
-    }
 
     $conn->query("INSERT INTO news_comment VALUES('','" . $user['id'] . "','" . $_GET['id'] . "','" . $user['username'] . "', '" . date('Y-m-d') . "', '$comment')");
 
@@ -30,6 +26,7 @@ if(isset($_POST['submit'])){
     }
 
     alertSuccess('Berhasil komentar', 'Komentar anda telah terupload', 'Ok');
+    }
 }
 ?>
 
@@ -89,6 +86,11 @@ if(isset($_POST['submit'])){
     <?php include 'pages/components/html-top.php'?>
 </body>
 <script>
-    // document.getElementById('btnComment').addEventListener('click', e => e.preventDefault());
+    document.getElementById('btnComment').addEventListener('click', e => {
+        if(document.getElementById('txtComment').value.length < 1 /** kurang dari 1 huruf, maka preventdefault */) {
+            alertError('Komentar kosong', 'Ketiklah sesuatu sebelum anda mengupload komentar ini','Ok');
+            e.preventDefault();
+        }
+    });
 </script>
 </html>
