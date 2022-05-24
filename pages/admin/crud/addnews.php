@@ -114,7 +114,7 @@ if(isset($_POST['submit'])){
         </div>
         <div class="form-group mb-4">
             <label class="fw-bold" for="text">Teks</label>
-            <input type="text" name="text" class="form-control">
+            <textarea type="text" name="text" class="form-control" rows="10" cols="50"></textarea>
         </div>
         <button class="btn btn-success rounded-5 align-self-end" name="submit" type="submit">Save</button>
     </form>

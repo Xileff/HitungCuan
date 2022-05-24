@@ -20,6 +20,9 @@
             <li class="nav-item px-2 pt-1">
                 <a href="?page=news" class="nav-link">Berita Cuan</a>
             </li>
+            <li class="nav-item px-2 pt-1">
+                <a href="?page=cuancademy" class="nav-link">CuanCademy</a>
+            </li>
             <?php if(!isset($_SESSION["user"])):?>
                 <li class="nav-item" id="nav-item-login">
                     <a href="?page=login" target="_blank" class="nav-link w-100" id="nav-link-login">Masuk</a>

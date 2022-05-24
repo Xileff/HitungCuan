@@ -1,5 +1,9 @@
 /* Montserrat */
 
+html {
+    scroll-behavior: smooth;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 /* Poppins */
@@ -12,6 +16,7 @@
 
 #lessonContainer {
     transition: all .5s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .overlay {
@@ -1053,3 +1058,25 @@ footer a:hover {
 .swal2-confirm {
     font-family: 'Montserrat', 'sans-serif' !important;
 }
+
+/* Scrollbar */
+/* width */
+::-webkit-scrollbar {
+    width: 0.57rem;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgb(51, 50, 50);
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(117, 249, 145);
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(96, 207, 120);
+  }

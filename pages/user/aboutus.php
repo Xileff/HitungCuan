@@ -1,3 +1,27 @@
+<?php 
+global $conn;
+
+if(isset($_POST['submit'])){
+    if (!isset($_SESSION['username'])) {
+        alertRedirect('Anda belum login', 'Login terlebih dahulu sebelum memberikan saran dan masukan', '?page=login', 'Login');
+        return;
+    }
+
+    $user = $conn->query("SELECT id, username FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc();
+
+    $conn->query("INSERT INTO feedback VALUES('', '" . $user['id'] ."', '" . $user['username'] . "', '" . date('Y-m-d') . "', '" . $_POST['teksFeedback'] . "')");
+
+    if($conn->affected_rows !== 1){
+        alertError('Gagal', 'Feedback gagal diupload, silakan coba lagi', 'Ok');
+        return;
+    }
+
+    else {
+        alertSuccess('Berhasil', 'Feedback berhasil dikirim, terima kasih!', 'Ok');
+    }
+}
+?>
+
 <body>
     <div class="container mt-5 pt-5">
         <h1 class="poppins text-center mb-5">Dev Profile</h1>
@@ -57,3 +81,11 @@
         </form>
     </div>
 </body>
+<script>
+    document.getElementById('btnFeedback').addEventListener('click', (e) => {
+        if(document.getElementById('txtFeedback').value.length < 1){
+            alertError('Feedback Kosong', 'Anda tidak dapat mengirimkan saran dan masukan yang kosong', 'Ok');
+            e.preventDefault();
+        }
+    })
+</script>
