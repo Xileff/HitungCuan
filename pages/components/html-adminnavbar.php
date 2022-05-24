@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-expand-xl fixed-top p-3 shadow-sm">
     <!-- Navbar intinya : Brand, button, konten -->
     <!-- Brand -->
-    <a href="?page=news" class="navbar-brand" id="navbar-title">Administrator</a>
+    <a href="?page=news&action=none" class="navbar-brand" id="navbar-title">Administrator</a>
 
     <!-- Tombol dropdown baru keliatan kalo layar kecil -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggleMobileMenu" aria-controls="toggleMobileMenu" aria-expanded="false">
@@ -11,10 +11,6 @@
     <!-- Konten navbar -->
     <div class="collapse navbar-collapse" id="toggleMobileMenu">
         <ul class="navbar-nav ms-auto">
-            <!-- Masing-masing item navbar -->
-            <li class="nav-item px-2 pt-1">
-                <a href="?page=users" class="nav-link">Users</a>
-            </li>
             <li class="nav-item px-2 pt-1">
                 <a href="?page=feedback" class="nav-link">Feedback</a>
             </li>
@@ -22,7 +18,7 @@
                 <a href="?page=lessons" class="nav-link">Lessons</a>
             </li>
             <li class="nav-item px-2 pt-1">
-                <a href="?page=news" class="nav-link">News</a>
+                <a href="?page=news&action=none" class="nav-link">News</a>
             </li>
             <?php if(isset($_SESSION["admin"])):?>
             <li class="nav-item px-2 pb-1 pt-1 mx-2">

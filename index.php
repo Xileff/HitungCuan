@@ -74,7 +74,20 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
                 break;
 
             case 'news':
-                $action === 'addnews' ? include 'pages/admin/crud/addnews.php' : ($action === 'editnews' ? include 'pages/admin/crud/editnews.php' : include 'pages/admin/news.php');
+                switch($action){
+                    case 'none':
+                        include 'pages/admin/news.php';
+                        break;
+                    case 'addnews':
+                        include 'pages/admin/crud/addnews.php';
+                        break;
+                    case 'editnews':
+                        include 'pages/admin/crud/editnews.php';
+                        break;
+                    case 'deletenews':
+                        include 'pages/admin/crud/deletenews.php';
+                        break;
+                }
                 break;
                 
             case 'logout':

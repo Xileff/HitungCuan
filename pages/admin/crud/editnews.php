@@ -10,7 +10,7 @@ if(isset($_POST['submit'])){
     $gambar = $news['gambar'];
     $gambarLama = $news['gambar'];
     $idAuthor = $news['id_author'];
-    $tanggalRilis = $news['tgl_rilis'];
+    $tanggalRilis = $news['tanggal_rilis'];
     $teks = $news['teks'];
 
     // data baru
@@ -42,6 +42,10 @@ if(isset($_POST['submit'])){
 
         $newIdAuthor = $conn->query("SELECT * FROM author WHERE nama = '$firstName $lastName'")->fetch_assoc()['id'];
         $idAuthor = $newIdAuthor;
+    }
+
+    else {
+        $idAuthor = htmlspecialchars($_POST['idAuthor']);
     }
     
     // cek ada input gambar atau tidak
@@ -76,9 +80,8 @@ if(isset($_POST['submit'])){
         if($gambarLama !== 'cryptocurrency1.jpg' && $gambarTerupload){
             unlink('images/news/' . $gambarLama);
         }
-        alertSuccess('Berhasil', 'Berita sudah berhasil diupdate', 'Ok');
+        alertRedirect('Berhasil', 'Berita sudah terupdate','?page=news&action=none','Ok');
     }
-
 }
 ?>
 
@@ -147,10 +150,6 @@ if(isset($_POST['submit'])){
     const chkNewAuthor = document.getElementById('chkNewAuthor');
     const authorInputField = [document.getElementById('selectAuthor'), document.getElementById('newAuthor')];
     chkNewAuthor.addEventListener('click', () => authorInputField.forEach(e => e.classList.toggle('intangible')));
-
-    // // cek value tanggal
-    const tanggal = document.getElementById('date');
-    tanggal.valueAsDate = new Date();
 
     // cek input
     document.getElementById('btnSave').addEventListener('click', e => {

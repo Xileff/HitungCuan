@@ -6,7 +6,7 @@ if(isset($_POST['submit'])){
     $idAuthor;
     $releaseDate = htmlspecialchars($_POST['releaseDate']);
     $text = htmlspecialchars($_POST['text']);
-    $image = 'default.png';
+    $image = 'cryptocurrency1.jpg';
 
     // set nilai id penulis
     if(isset($_POST['newAuthor'])){
@@ -48,7 +48,7 @@ if(isset($_POST['submit'])){
     $conn->query("INSERT INTO news VALUES('', '$judul', '$image', '$idAuthor', '$releaseDate', '$text')");
 
     if($conn->affected_rows === 1) {
-        alertSuccess('Berhasil', 'Berita sudah terinput ke sistem', 'Ok');
+        alertRedirect('Berhasil', 'Berita sudah terinput ke sistem','?page=news&action=none','Ok');
     } else {
         if(isset($newIdAuthor)) $conn->query("DELETE FROM author WHERE id = $idAuthor");
         alertError('Error', 'Gagal menginput data','Coba lagi');

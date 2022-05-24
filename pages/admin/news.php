@@ -28,7 +28,7 @@
                         <a href="?page=news&action=editnews&id=<?=$news['id']?>">
                             <button class="btn btn-warning rounded w-100 mx-auto mb-1 p-1 px-3 text-center">Edit</button>
                         </a>
-                        <a href="#">
+                        <a href="?page=news&action=deletenews&id=<?=$news['id']?>">
                             <button class="btn btn-danger rounded w-100 mx-auto mb-1 p-1 px-3 text-center">Delete</button>
                         </a>
                     </td>
