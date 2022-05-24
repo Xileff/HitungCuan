@@ -1,17 +1,6 @@
 <?php 
 global $conn;
 if(isset($_POST['submit'])){
-    // Validasi input
-    if($_POST['judul'] === ''){
-        alertRedirect('Error', 'Judul berita kosong', '', 'Ok');
-        return;
-    }
-
-    if($_POST['text'] === ''){
-        alertRedirect('Error', 'Isi berita kosong', '', 'Ok');
-        return;
-    }
-
     // ambil nilai
     $judul = htmlspecialchars($_POST['judul']);
     $idAuthor;
@@ -23,6 +12,11 @@ if(isset($_POST['submit'])){
     if(isset($_POST['newAuthor'])){
         $firstName = ucfirst(strtolower(htmlspecialchars($_POST['firstName'])));
         $lastName = ucfirst(strtolower(htmlspecialchars($_POST['lastName'])));
+
+        if(strlen($firstName) < 1 || strlen($lastName) < 1){
+            alertRedirect('Nama penulis kosong', 'Nama penulis tidak boleh kosong','','Ok');
+            return;
+        }
 
         if($conn->query("SELECT * FROM author WHERE nama = '$firstName $lastName'")->num_rows > 0){
             alertRedirect('Error', 'Penulis sudah ada di sistem', '', 'Ok');
@@ -79,7 +73,7 @@ if(isset($_POST['submit'])){
         </div>
         <div class="form-group mb-4">
             <label class="fw-bold" for="judul">Judul Berita</label>
-            <input type="text" name="judul" class="form-control">
+            <input type="text" id="judul" name="judul" class="form-control">
         </div>
         <div class="form-group mb-4">
             <label class="fw-bold" for="idAuthor">Author</label>
@@ -114,9 +108,9 @@ if(isset($_POST['submit'])){
         </div>
         <div class="form-group mb-4">
             <label class="fw-bold" for="text">Teks</label>
-            <textarea type="text" name="text" class="form-control" rows="10" cols="50"></textarea>
+            <textarea id="text" type="text" name="text" class="form-control" rows="10" cols="50"></textarea>
         </div>
-        <button class="btn btn-success rounded-5 align-self-end" name="submit" type="submit">Save</button>
+        <button class="btn btn-success rounded-5 align-self-end" name="submit"  id="btnSave" type="submit">Save</button>
     </form>
 </div>
 <script>
@@ -127,5 +121,17 @@ if(isset($_POST['submit'])){
     // // cek value tanggal
     const tanggal = document.getElementById('date');
     tanggal.valueAsDate = new Date();
+
+    // cek input
+    document.getElementById('btnSave').addEventListener('click', e => {
+        const judul = document.getElementById('judul');
+        const text = document.getElementById('text');
+
+        if(judul.value.length < 1 || text.value.length < 1){
+            alertError('Data Tidak Lengkap', 'Tidak boleh ada data yang kosong', 'Ok');
+            e.preventDefault();
+            return;
+        }
+    });
 </script>
 <script src="js/previewImage.js"></script>

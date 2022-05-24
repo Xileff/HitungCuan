@@ -4,9 +4,81 @@ global $conn;
 $news = $conn->query("SELECT * FROM news WHERE id =" . $_GET['id'])->fetch_assoc();
 
 if(isset($_POST['submit'])){
-    // 
-    // jika gambar ada yg baru, maka hapus yg lama & upload yg baru. lalu update jg nilai kolom gambar di database. tapi kalo gmbrnya yg default, ya jgn dihapus
+    // data lama
+    $id = $news['id'];
+    $judul = $news['judul_berita'];
+    $gambar = $news['gambar'];
+    $gambarLama = $news['gambar'];
+    $idAuthor = $news['id_author'];
+    $tanggalRilis = $news['tgl_rilis'];
+    $teks = $news['teks'];
+
+    // data baru
+    $new_judul = htmlspecialchars($_POST['judul']);
+    $new_tanggal_rilis = htmlspecialchars($_POST['releaseDate']);
+    $new_teks = htmlspecialchars($_POST['text']);
+
     // jika author ada yg baru, maka buat dulu author itu, baru bisa update. klo authornya udh ada, gabisa buat author baru tsb.
+    if(isset($_POST['newAuthor'])){
+        $firstName = ucfirst(strtolower(htmlspecialchars($_POST['firstName'])));
+        $lastName = ucfirst(strtolower(htmlspecialchars($_POST['lastName'])));
+
+        if(strlen($firstName) < 1 || strlen($lastName) < 1){
+            alertRedirect('Nama penulis kosong', 'Nama penulis tidak boleh kosong','','Ok');
+            return;
+        }
+
+        if($conn->query("SELECT * FROM author WHERE nama = '$firstName $lastName'")->num_rows > 0){
+            alertRedirect('Error', 'Penulis sudah ada di sistem', '', 'Ok');
+            return;
+        }
+
+        $conn->query("INSERT INTO author VALUES ('', '$firstName $lastName')");
+
+        if($conn->affected_rows !== 1){
+            alertRedirect('Error', 'Gagal menginput penulis baru', '', 'Coba lagi');
+            return;
+        }
+
+        $newIdAuthor = $conn->query("SELECT * FROM author WHERE nama = '$firstName $lastName'")->fetch_assoc()['id'];
+        $idAuthor = $newIdAuthor;
+    }
+    
+    // cek ada input gambar atau tidak
+    if(isset($_FILES['gambar']) && $_FILES['gambar']['error'] !== 4){
+        $gambar = uploadImage($_FILES['gambar'], 'images/news/');
+        if(!$gambar){
+            if(isset($newIdAuthor)) $conn->query("DELETE FROM author WHERE id = $idAuthor");
+            alertRedirect('Error', 'Gagal memasukkan gambar', '', 'Coba lagi');
+            return;
+        }
+
+        else {
+            $gambarTerupload = true;
+        }
+    } 
+    
+    else {
+        $gambar = $gambarLama;
+    }
+
+    // query
+    $conn->query("UPDATE news SET 
+    judul_berita = '$new_judul',
+    gambar = '$gambar',
+    id_author = '$idAuthor',
+    tanggal_rilis = '$new_tanggal_rilis',
+    teks = '$new_teks'
+
+    WHERE id = $id");
+
+    if($conn->affected_rows === 1){
+        if($gambarLama !== 'cryptocurrency1.jpg' && $gambarTerupload){
+            unlink('images/news/' . $gambarLama);
+        }
+        alertSuccess('Berhasil', 'Berita sudah berhasil diupdate', 'Ok');
+    }
+
 }
 ?>
 
@@ -26,7 +98,7 @@ if(isset($_POST['submit'])){
         </div>
         <div class="form-group mb-4">
             <label class="fw-bold" for="judul">Judul Berita</label>
-            <input type="text" name="judul" class="form-control" value="<?=$news['judul_berita']?>">
+            <input type="text" id="judul" name="judul" class="form-control" value="<?=$news['judul_berita']?>">
         </div>
         <div class="form-group mb-4">
             <label class="fw-bold" for="idAuthor">Author</label>
@@ -66,9 +138,9 @@ if(isset($_POST['submit'])){
         </div>
         <div class="form-group mb-4">
             <label class="fw-bold" for="text">Teks</label>
-            <textarea type="text" name="text" class="form-control" rows="10" cols="50"><?=$news['teks']?></textarea>
+            <textarea type="text"  id="text" name="text" class="form-control" rows="10" cols="50"><?=$news['teks']?></textarea>
         </div>
-        <button class="btn btn-success rounded-5 align-self-end" name="submit" type="submit">Save</button>
+        <button class="btn btn-success rounded-5 align-self-end" name="submit" type="submit" id="btnSave">Save</button>
     </form>
 </div>
 <script>
@@ -79,5 +151,17 @@ if(isset($_POST['submit'])){
     // // cek value tanggal
     const tanggal = document.getElementById('date');
     tanggal.valueAsDate = new Date();
+
+    // cek input
+    document.getElementById('btnSave').addEventListener('click', e => {
+        const judul = document.getElementById('judul');
+        const text = document.getElementById('text');
+
+        if(judul.value.length < 1 || text.value.length < 1){
+            alertError('Data Tidak Lengkap', 'Tidak boleh ada data yang kosong', 'Ok');
+            e.preventDefault();
+            return;
+        }
+    });
 </script>
 <script src="js/previewImage.js"></script>
