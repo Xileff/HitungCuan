@@ -37,7 +37,7 @@ if(isset($_POST['submit'])){
         <p id="news-author" class="fs-6" style="color: gray;">Author: <?=$author?></p>
         <h1><?=$news['judul_berita']?></h1>
         <div class="news-image mt-3">
-            <img src="images/news/<?=$news['gambar'] ?>" alt="news_image" class="img-fluid">
+            <img src="images/news/<?=$news['gambar'] ?>" alt="news_image" class="w-100">
         </div>
         <p id="news-caption" class="fs-6" style="color: gray;">Ilustrasi: <?=$news['judul_berita']?></p>
         <div class="news-text">
@@ -62,26 +62,31 @@ if(isset($_POST['submit'])){
 
         <!-- List komentar -->
         <?php 
-        $comments = $conn->query("SELECT * FROM news_comment WHERE id_berita = '$id'")
+            $comments = $conn->query("SELECT * FROM news_comment WHERE id_berita = '$id'")
         ?>
-
-        <?php while($comment = $comments->fetch_assoc()):?>
-            <?php $user = $conn->query("SELECT username, foto FROM users WHERE id=" . $comment['id_user'])->fetch_assoc()?>
-            <div class="row posted-comment pt-4 px-2">
-                <div class="wrapper-comment">
-                    <div class="user-img">
-                        <img src="images/users-profile/<?=$user['foto']?>" alt="user" class="img-fluid" style="border-radius: 100%;">
-                    </div>
-                    <div class="px-3 pt-1 pb-1">
-                        <p class="comment-author mb-0"><?=$user['username']?></p>
-                        <p class="comment-date mb-2">At <?=$comment['tanggal']?></p>
-                        <p class="comment-text text-wrap">
-                            <?=$comment['teks']?>
-                        </p>
+        <?php if(mysqli_num_rows($comments) === 0):?>
+            <div class="pt-4 px-2">
+                <h3 style="color: gray;">There are no comments yet</h3>
+            </div>
+        <?php else:?>
+            <?php while($comment = $comments->fetch_assoc()):?>
+                <?php $user = $conn->query("SELECT username, foto FROM users WHERE id=" . $comment['id_user'])->fetch_assoc()?>
+                <div class="row posted-comment pt-4 px-2">
+                    <div class="wrapper-comment">
+                        <div class="user-img">
+                            <img src="images/users-profile/<?=$user['foto']?>" alt="user" class="img-fluid" style="border-radius: 100%;">
+                        </div>
+                        <div class="px-3 pt-1 pb-1">
+                            <p class="comment-author mb-0"><?=$user['username']?></p>
+                            <p class="comment-date mb-2">At <?=$comment['tanggal']?></p>
+                            <p class="comment-text text-wrap">
+                                <?=$comment['teks']?>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php endwhile?>
+            <?php endwhile?>
+        <?php endif?>
     </div>
     <?php include 'pages/components/html-top.php'?>
 </body>

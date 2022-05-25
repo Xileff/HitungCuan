@@ -7,5 +7,5 @@ function showLessons(){
     sidebar.classList.toggle('sidebar-hide');
     spanToggleMateri.classList.toggle('hide');
     overlay.classList.toggle('d-none');
-    navbar.classList.toggle('d-none');
+    navbar.classList.toggle('fadeup');
 }
