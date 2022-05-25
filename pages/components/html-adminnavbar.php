@@ -15,7 +15,7 @@
                 <a href="?page=feedback" class="nav-link">Feedback</a>
             </li>
             <li class="nav-item px-2 pt-1">
-                <a href="?page=lessons" class="nav-link">Lessons</a>
+                <a href="?page=lessons&action=none" class="nav-link">Lessons</a>
             </li>
             <li class="nav-item px-2 pt-1">
                 <a href="?page=news&action=none" class="nav-link">News</a>

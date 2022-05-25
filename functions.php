@@ -6,12 +6,12 @@ function uploadImage($image, $dir){
     $result = false;
 
     if($image['error'] === 4){
-        alertError('Error', 'Tidak ada gambar yang diupload', 'Ok');
+        alertRedirect('Error', 'Tidak ada gambar yang diupload','','Ok');
         return $result;
     }
 
     if($size > 1048576){
-        alertError('Error', 'Ukuran melebihi 1MB!', 'Ok');
+        alertRedirect('Error', 'Ukuran melebihi 1MB!', '', 'Ok');
         return $result;
     }
 
@@ -19,7 +19,7 @@ function uploadImage($image, $dir){
     $imageExtensions = ['jpg', 'png', 'jpeg'];
 
     if(!in_array($extension, $imageExtensions)){
-        alertError('Error', 'File bukan gambar!', 'Ok');
+        alertRedirect('Error', 'File bukan gambar!', '', 'Ok');
         return $result;
     }
 

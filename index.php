@@ -70,7 +70,20 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
                 break;
 
             case 'lessons':
-                include 'pages/admin/lessons.php';
+                switch($action){
+                    case 'none':
+                        include 'pages/admin/lessons.php';
+                        break;
+                    case 'addlessons':
+                        include 'pages/admin/crud/addlessons.php';
+                        break;
+                    case 'editlessons':
+                        include 'pages/admin/crud/editlessons.php';
+                        break;
+                    case 'deletelessons':
+                        include 'pages/admin/crud/deletelessons.php';
+                        break;
+                }
                 break;
 
             case 'news':
