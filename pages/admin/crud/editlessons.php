@@ -97,10 +97,6 @@ if(isset($_POST['submit'])){
     </form>
 </div>
 <script>
-    const chkNewAuthor = document.getElementById('chkNewAuthor');
-    const authorInputField = [document.getElementById('selectAuthor'), document.getElementById('newAuthor')];
-    chkNewAuthor.addEventListener('click', () => authorInputField.forEach(e => e.classList.toggle('intangible')));
-
     // cek input
     document.getElementById('btnSave').addEventListener('click', e => {
         const judul = document.getElementById('judul');
