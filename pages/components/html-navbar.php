@@ -25,7 +25,7 @@
             </li>
             <?php if(!isset($_SESSION["user"])):?>
                 <li class="nav-item" id="nav-item-login">
-                    <a href="?page=login" target="_blank" class="nav-link w-100" id="nav-link-login">Masuk</a>
+                    <a href="?page=login" target="_blank" class="nav-link w-100" id="nav-link-login">Log In</a>
                 </li>
             <?php endif?>
             <?php if(isset($_SESSION["user"])):?>
@@ -43,8 +43,8 @@
                             <span class="montserrat text-center mx-1 mb-0 d-inline-block"><?php echo $user["username"]?></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownDarkMenuLink">
-                            <li><a class="dropdown-item navbar-dropdown-menu montserrat" href="index.php?page=userprofile">Profile</a></li>
-                            <li><a class="dropdown-item navbar-dropdown-menu montserrat" href="index.php?page=logout">Log Out</a></li>
+                            <li><a class="dropdown-item navbar-dropdown-menu montserrat" href="?page=userprofile">Profile</a></li>
+                            <li><a class="dropdown-item navbar-dropdown-menu montserrat" href="?page=logout">Log Out</a></li>
                         </ul>
                     </li>
                 </li>

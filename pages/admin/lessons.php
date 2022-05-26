@@ -26,10 +26,10 @@ $lessons = $conn->query("SELECT * FROM lessons");
                     <td><?=$lesson["judul"]?></td>
                     <td><?=$lesson["tanggal"]?></td>
                     <td class="p-2">
-                        <a href="?page=news&action=editlessons&id=<?=$lesson["id"]?>">
+                        <a href="?page=lessons&action=editlessons&id=<?=$lesson["id"]?>">
                             <button class="btn btn-warning rounded w-100 mx-auto mb-1 p-1 px-3 text-center">Edit</button>
                         </a>
-                        <a href="?page=news&action=deletelessons&id=<?=$lesson["id"]?>">
+                        <a href="?page=lessons&action=deletelessons&id=<?=$lesson["id"]?>">
                             <button class="btn btn-danger rounded w-100 mx-auto mb-1 p-1 px-3 text-center">Delete</button>
                         </a>
                     </td>

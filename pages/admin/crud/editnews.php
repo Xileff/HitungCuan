@@ -82,6 +82,13 @@ if(isset($_POST['submit'])){
         }
         alertRedirect('Berhasil', 'Berita sudah terupdate','?page=news&action=none','Ok');
     }
+
+    else {
+        if($gambarTerupload){
+            unlink('images/news/' . $gambar);
+        }
+        alertRedirect('Kesalahan server', 'Silakan coba lagi setelah beberapa saat', '' ,'Ok');
+    }
 }
 ?>
 
