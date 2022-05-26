@@ -65,11 +65,7 @@ a:active {
     text-decoration: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
+h1, h2, h3, h4, h5 {
     font-family: 'Poppins', 'sans-serif';
 }
 
@@ -460,13 +456,17 @@ footer a:hover {
     z-index: 0;
 }
 
+.row-subjects {
+    border: 0.1px solid gray;
+}
+
 .row-subjects:hover .background-zoom, .row-lessons:hover .background-zoom {
     transform: scale(1.02);
     transition: all 200ms ease-in;
 }
 
 #bgSubjectIncome {
-    background-image: url("../images/CuanCademy/Subject-Containers/expenses.jpg");
+    background-image: url("../images/CuanCademy/Subject-Containers/income.jpg");
 }
 
 #bgSubjectExpenses {
@@ -474,16 +474,28 @@ footer a:hover {
 }
 
 #bgSubjectInvestment {
-    background-image: url("../images/CuanCademy/Subject-Containers/investment2.jpg");
+    background-image: url("../images/CuanCademy/Subject-Containers/investment.jpg");
+}
+
+.bgLesson {
+    filter: blur(2px) grayscale(100);
+}
+
+.row-lessons:hover .bgLesson{
+    background-position-y: 300px;
+    background-blend-mode: color-burn;
+    background-color: black;
+    transition: all .8s ease-in-out;
+}
+
+.row-lessons:hover p {
+    transform: scale(1.1);
+    transition: all .8s ease-in-out;
 }
 
 .subject-container {
     color: black;
     opacity: 0;
-}
-
-.bgLesson {
-    background-image: url("../images/CuanCademy/Subject-Containers/expenses.jpg");
 }
 
 #spanToggleMateri {

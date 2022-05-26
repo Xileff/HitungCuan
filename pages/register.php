@@ -131,5 +131,4 @@ if(isset($_POST['register'])){
             e.preventDefault();
         }
     })
-
 </script>

@@ -17,15 +17,21 @@ $thisLesson = $conn->query("SELECT * FROM lessons WHERE id = $idlesson AND id_su
             <button class="position-absolute" style="background: none; right: 0; border: none; color: white;" onclick="showLessons()"><span class="fw-bold montserrat">X</span></button>
             <div class="w-75 mx-auto">
                 <h3 class="poppins text-center m-3"><?=$subjectName?></h1>
-                <?php while($lesson = $lessonsList->fetch_assoc()):?>
-                    <a href="#" class="m-4 sidebar-lesson-link fw-bold">
-                        <div class="row row-lessons w-100 mx-auto position-relative">
-                            <div class="bgLesson background-zoom w-100 h-100 m-0 p-0 position-absolute start-0 top-0"></div>
-                            <div class="blackOverlay w-100 h-100 m-0 p-0 position-absolute top-0 start-0"></div>
-                            <p class="text-center pt-2 pb-2 m-0 fs-4" style="z-index: 2;"><?=$lesson['judul']?></h1>
-                        </div>
-                    </a>
-                <?php endwhile;?>
+                <div class="bg-light rounded-1">
+                    <input type="text" id="inputSubject" hidden value="<?=$_GET['subject']?>">
+                    <input type="text" class="form-control montserrat" id="searchLesson" placeholder="Search lessons here">
+                </div>
+                <div id="lessonList">
+                    <?php while($lesson = $lessonsList->fetch_assoc()):?>
+                        <a href="#" class="m-4 sidebar-lesson-link fw-bold">
+                            <div class="row row-lessons w-100 mx-auto position-relative">
+                                <div class="background-zoom bgLesson w-100 h-100 m-0 p-0 position-absolute start-0 top-0" style="background-image: url('images/CuanCademy/Subject-Containers/lessonbg.jpg')"></div>
+                                <div class="blackOverlay w-100 h-100 m-0 p-0 position-absolute top-0 start-0"></div>
+                                <p class="text-center pt-2 pb-2 m-0 fs-4" style="z-index: 2;"><?=$lesson['judul']?></h1>
+                            </div>
+                        </a>
+                    <?php endwhile;?>
+                </div>
             </div>
         </div>
         <!-- New sidebar -->
@@ -49,4 +55,21 @@ $thisLesson = $conn->query("SELECT * FROM lessons WHERE id = $idlesson AND id_su
     <?php include 'pages/components/html-top.php'?>
     <!-- Other scripts -->
     <script src="js/sidenav.js"></script>
+    <script>
+        const searchLesson = document.getElementById('searchLesson');
+        const inputSubject = document.getElementById('inputSubject');
+        const lessonList = document.getElementById('lessonList');
+
+        searchLesson.addEventListener('keyup', function(){
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(){
+                if(this.readyState === 4 && this.status === 200){
+                    lessonList.innerHTML = xhr.responseText;
+                }
+            }
+
+            xhr.open("GET", `./ajax/lessonList.php?lesson=${searchLesson.value}&idSubject=${inputSubject.value}`, true);
+            xhr.send();
+        })
+    </script>
 </body>
