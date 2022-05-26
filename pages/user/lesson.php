@@ -23,7 +23,7 @@ $thisLesson = $conn->query("SELECT * FROM lessons WHERE id = $idlesson AND id_su
                 </div>
                 <div id="lessonList">
                     <?php while($lesson = $lessonsList->fetch_assoc()):?>
-                        <a href="#" class="m-4 sidebar-lesson-link fw-bold">
+                        <a href="?page=lesson&subject=<?=$lesson['id_subject']?>&idlesson=<?=$lesson['id']?>" class="m-4 sidebar-lesson-link fw-bold">
                             <div class="row row-lessons w-100 mx-auto position-relative">
                                 <div class="background-zoom bgLesson w-100 h-100 m-0 p-0 position-absolute start-0 top-0" style="background-image: url('images/CuanCademy/Subject-Containers/lessonbg.jpg')"></div>
                                 <div class="blackOverlay w-100 h-100 m-0 p-0 position-absolute top-0 start-0"></div>

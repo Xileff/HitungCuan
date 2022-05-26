@@ -14,7 +14,7 @@ if ($lessonName === '') {
 
 <?php if(mysqli_num_rows($lessonList) > 0):?>
     <?php while($lesson = $lessonList->fetch_assoc()):?>
-        <a href="#" class="m-4 sidebar-lesson-link fw-bold">
+        <a href="?page=lesson&subject=<?=$lesson['id_subject']?>&idlesson=<?=$lesson['id']?>" class="m-4 sidebar-lesson-link fw-bold">
             <div class="row row-lessons w-100 mx-auto position-relative">
                 <div class="background-zoom bgLesson w-100 h-100 m-0 p-0 position-absolute start-0 top-0" style="background-image: url('images/CuanCademy/Subject-Containers/lessonbg.jpg')"></div>
                 <div class="blackOverlay w-100 h-100 m-0 p-0 position-absolute top-0 start-0"></div>
@@ -23,5 +23,7 @@ if ($lessonName === '') {
         </a>
     <?php endwhile;?>
 <?php else:?>
-    <p class="fs-3">No lessons with such name found</p>
+    <div class="p-5">
+        <p class="fs-3">No lessons with such name found</p>
+    </div>
 <?php endif?>
