@@ -10,7 +10,7 @@ if(isset($_POST['submit'])){
     $teks = htmlspecialchars($_POST['text']);
 
     if(isset($_FILES['gambar']) && $_FILES['gambar']['error'] !== 4){
-        $gambar = uploadImage($_FILES['gambar'], 'images/CuanCademy/lessons/');
+        $gambar = uploadImage($_FILES['gambar'], 'assets/images/CuanCademy/lessons/');
         if(!$gambar){
             refresh(2);
             return;
@@ -36,14 +36,14 @@ if(isset($_POST['submit'])){
 
     if($conn->affected_rows === 1){
         if($gambarLama !== 'cryptocurrency1.jpg' && $gambarTerupload) {
-            unlink('images/CuanCademy/lessons/' . $gambarLama);
+            unlink('assets/images/CuanCademy/lessons/' . $gambarLama);
         }
         alertRedirect('Berhasil update', 'Materi berhasil terupdate', '?page=lessons&action=none', 'Ok');
     }
 
     else {
         if($gambarTerupload){
-            unlink('images/CuanCademy/lessons/' . $gambar);
+            unlink('assets/images/CuanCademy/lessons/' . $gambar);
         }
         alertRedirect('Kesalahan server', 'Silakan coba beberapa saat lagi','','Ok');
         return;
@@ -60,7 +60,7 @@ if(isset($_POST['submit'])){
                     <i class="fas fa-camera fs-1"></i>
                     <p>Reccomended ratio 3:1, max size 1MB</p>
                 </div>
-                <img src="images/CuanCademy/lessons/<?=$lesson['gambar']?>" alt="lessonimage" id="imgPreview" class="imgPreview">
+                <img src="assets/images/CuanCademy/lessons/<?=$lesson['gambar']?>" alt="lessonimage" id="imgPreview" class="imgPreview">
             </div>
             <label class="fw-bold" for="gambar">Foto</label>
             <input type="file" accept="image/*" name="gambar" id="inputImg" class="form-control d-none">
@@ -109,4 +109,4 @@ if(isset($_POST['submit'])){
         }
     });
 </script>
-<script src="js/previewImage.js"></script>
+<script src="assets/js/previewImage.js"></script>

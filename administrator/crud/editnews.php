@@ -50,7 +50,7 @@ if(isset($_POST['submit'])){
     
     // cek ada input gambar atau tidak
     if(isset($_FILES['gambar']) && $_FILES['gambar']['error'] !== 4){
-        $gambar = uploadImage($_FILES['gambar'], 'images/news/');
+        $gambar = uploadImage($_FILES['gambar'], 'assets/images/news/');
         if(!$gambar){
             if(isset($newIdAuthor)) $conn->query("DELETE FROM author WHERE id = $idAuthor");
             alertRedirect('Error', 'Gagal memasukkan gambar', '', 'Coba lagi');
@@ -78,14 +78,14 @@ if(isset($_POST['submit'])){
 
     if($conn->affected_rows === 1){
         if($gambarLama !== 'cryptocurrency1.jpg' && $gambarTerupload){
-            unlink('images/news/' . $gambarLama);
+            unlink('assets/images/news/' . $gambarLama);
         }
         alertRedirect('Berhasil', 'Berita sudah terupdate','?page=news&action=none','Ok');
     }
 
     else {
         if($gambarTerupload){
-            unlink('images/news/' . $gambar);
+            unlink('assets/images/news/' . $gambar);
         }
         alertRedirect('Kesalahan server', 'Silakan coba lagi setelah beberapa saat', '' ,'Ok');
     }
@@ -101,7 +101,7 @@ if(isset($_POST['submit'])){
                     <i class="fas fa-camera fs-1"></i>
                     <p>Reccomended ratio 3:1, max size 1MB</p>
                 </div>
-                <img src="images/news/<?=$news['gambar']?>" alt="newsimage" id="imgPreview" class="imgPreview">
+                <img src="assets/images/news/<?=$news['gambar']?>" alt="newsimage" id="imgPreview" class="imgPreview">
             </div>
             <label class="fw-bold" for="gambar">Foto</label>
             <input type="file" accept="image/*" name="gambar" id="inputImg" class="form-control d-none">
@@ -170,4 +170,4 @@ if(isset($_POST['submit'])){
         }
     });
 </script>
-<script src="js/previewImage.js"></script>
+<script src="assets/js/previewImage.js"></script>

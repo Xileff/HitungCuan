@@ -3,8 +3,10 @@ require 'logic/dbconn.php';
 require 'logic/functions.php';
 session_start();
 
-// setcookie jika ketika login pilih rememberme dan belum ada cookie
-isset($_SESSION['remember']) && isset($_SESSION['user']) ? remember($_SESSION['username']) : '';
+// remember jika ketika login pilih rememberme
+if(isset($_SESSION['user']) && isset($_SESSION['remember'])){
+    remember($_SESSION['username']);
+}
 
 // verifikasi remember setelah browser ditutup
 if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
@@ -60,29 +62,29 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
         include 'components/html-adminnavbar.php';
 
         $page = $_GET['page'];
-        if(isset($_GET['action'])) $action = $_GET['action'];
+        $action = isset($_GET['action']) ? $_GET['action'] : 'none';
         switch ($page) {
             case 'users':
-                include 'admin/users.php';
+                include 'administrator/users.php';
                 break;
 
             case 'feedback':
-                include 'admin/feedback.php';
+                include 'administrator/feedback.php';
                 break;
 
             case 'lessons':
                 switch($action){
                     case 'none':
-                        include 'admin/lessons.php';
+                        include 'administrator/lessons.php';
                         break;
                     case 'addlessons':
-                        include 'admin/crud/addlessons.php';
+                        include 'administrator/crud/addlessons.php';
                         break;
                     case 'editlessons':
-                        include 'admin/crud/editlessons.php';
+                        include 'administrator/crud/editlessons.php';
                         break;
                     case 'deletelessons':
-                        include 'admin/crud/deletelessons.php';
+                        include 'administrator/crud/deletelessons.php';
                         break;
                 }
                 break;
@@ -90,16 +92,16 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
             case 'news':
                 switch($action){
                     case 'none':
-                        include 'admin/news.php';
+                        include 'administrator/news.php';
                         break;
                     case 'addnews':
-                        include 'admin/crud/addnews.php';
+                        include 'administrator/crud/addnews.php';
                         break;
                     case 'editnews':
-                        include 'admin/crud/editnews.php';
+                        include 'administrator/crud/editnews.php';
                         break;
                     case 'deletenews':
-                        include 'admin/crud/deletenews.php';
+                        include 'administrator/crud/deletenews.php';
                         break;
                 }
                 break;
@@ -109,7 +111,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
                 break;
 
             default:
-                include 'admin/news.php';
+                include 'administrator/news.php';
                 break;
         }
     } 

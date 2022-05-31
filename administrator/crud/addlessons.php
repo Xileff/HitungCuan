@@ -10,7 +10,7 @@ if(isset($_POST['submit'])) {
     $gambar = 'cryptocurrency1.jpg';
 
     if(isset($_FILES['gambar']) && $_FILES['gambar']['error'] !== 4){
-        $gambar = uploadImage($_FILES['gambar'], 'images/CuanCademy/lessons/');
+        $gambar = uploadImage($_FILES['gambar'], 'assets/images/CuanCademy/lessons/');
         if(!$gambar){
             refresh(2);
             return;
@@ -23,10 +23,9 @@ if(isset($_POST['submit'])) {
         alertRedirect('Berhasil', 'Materi sudah terinput ke sistem','?page=lessons&action=none','Ok');
     } else {
         if($gambar !== 'cryptocurrency1.jpg'){
-            unlink('images/CuanCademy/lessons/' . $gambar);
+            unlink('assets/images/CuanCademy/lessons/' . $gambar);
         }
         alertError('Gagal', 'Materi tidak terinput ke sistem', 'Ok');
-        echo "<script>alert('" . $conn->error ."')</script>";
     }
     
 }
@@ -42,7 +41,7 @@ if(isset($_POST['submit'])) {
                     <i class="fas fa-camera fs-1"></i>
                     <p>Reccomended ratio 3:1, max size 1MB</p>
                 </div>
-                <img src="images/news/cryptocurrency1.jpg" alt="lessonImage" id="imgPreview" class="imgPreview">
+                <img src="assets/images/news/cryptocurrency1.jpg" alt="lessonImage" id="imgPreview" class="imgPreview">
             </div>
             <label class="fw-bold" for="gambar">Foto</label>
             <input type="file" name="gambar" id="inputImg" class="form-control d-none">
@@ -90,4 +89,4 @@ if(isset($_POST['submit'])) {
         }
     });
 </script>
-<script src="js/previewImage.js"></script>
+<script src="assets/js/previewImage.js"></script>

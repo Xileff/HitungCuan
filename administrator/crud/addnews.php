@@ -36,7 +36,7 @@ if(isset($_POST['submit'])){
 
     // cek gambar
     if(isset($_FILES['gambar']) && $_FILES['gambar']['error'] !== 4){
-        $image = uploadImage($_FILES['gambar'], 'images/news/');
+        $image = uploadImage($_FILES['gambar'], 'assets/images/news/');
         if(!$image){
             if(isset($newIdAuthor)) $conn->query("DELETE FROM author WHERE id = $idAuthor");
             alertRedirect('Error', 'Gagal memasukkan gambar', '', 'Coba lagi');
@@ -66,7 +66,7 @@ if(isset($_POST['submit'])){
                     <i class="fas fa-camera fs-1"></i>
                     <p>Reccomended ratio 3:1, max size 1MB</p>
                 </div>
-                <img src="images/news/cryptocurrency1.jpg" alt="newsimage" id="imgPreview" class="imgPreview">
+                <img src="assets/images/news/cryptocurrency1.jpg" alt="newsimage" id="imgPreview" class="imgPreview">
             </div>
             <label class="fw-bold" for="gambar">Foto</label>
             <input type="file" name="gambar" id="inputImg" class="form-control d-none">
@@ -134,4 +134,4 @@ if(isset($_POST['submit'])){
         }
     });
 </script>
-<script src="js/previewImage.js"></script>
+<script src="assets/js/previewImage.js"></script>

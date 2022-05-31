@@ -8,7 +8,7 @@ if(isset($_POST['submit'])){
 
     if($conn->affected_rows === 1){
         if($gambar !== 'cryptocurrency1.jpg'){
-            unlink('images/CuanCademy/lessons/' . $gambar);
+            unlink('assets/images/CuanCademy/lessons/' . $gambar);
         }
 
         alertRedirect('Materi berhasil dihapus', 'Kembali ke halaman daftar materi', '?page=lessons&action=none', 'Ok');
@@ -29,7 +29,7 @@ if(isset($_POST['submit'])){
                     <i class="fas fa-camera fs-1"></i>
                     <p>Reccomended ratio 3:1, max size 1MB</p>
                 </div>
-                <img src="images/CuanCademy/lessons/<?=$lesson['gambar']?>" alt="lessonimage" id="imgPreview" class="imgPreview">
+                <img src="assets/images/CuanCademy/lessons/<?=$lesson['gambar']?>" alt="lessonimage" id="imgPreview" class="imgPreview">
             </div>
             <label class="fw-bold" for="gambar">Foto</label>
             <input disabled type="file" accept="image/*" name="gambar" id="inputImg" class="form-control d-none">
@@ -78,4 +78,4 @@ if(isset($_POST['submit'])){
         }
     });
 </script>
-<script src="js/previewImage.js"></script>
+<script src="assets/js/previewImage.js"></script>

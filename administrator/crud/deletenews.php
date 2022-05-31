@@ -12,7 +12,7 @@ if(isset($_POST['submit'])){
 
     if($conn->affected_rows === 1){
         if($gambar !== 'cryptocurrency1.jpg'){
-            unlink('images/news/' . $gambar);
+            unlink('assets/images/news/' . $gambar);
         }
         alertRedirect('Berhasil', 'Berita sudah terhapus','?page=news&action=none','Ok');
     }
@@ -33,7 +33,7 @@ if(isset($_POST['submit'])){
                     <i class="fas fa-camera fs-1"></i>
                     <p>Reccomended ratio 3:1, max size 1MB</p>
                 </div>
-                <img src="images/news/<?=$news['gambar']?>" alt="newsimage" id="imgPreview" class="imgPreview">
+                <img src="assets/images/news/<?=$news['gambar']?>" alt="newsimage" id="imgPreview" class="imgPreview">
             </div>
             <label class="fw-bold" for="gambar">Foto</label>
             <input type="file" accept="image/*" name="gambar" id="inputImg" class="form-control d-none" disabled>
@@ -85,4 +85,4 @@ if(isset($_POST['submit'])){
         <button class="btn btn-danger rounded-5 align-self-end" name="submit" type="submit" id="btnSave">Delete</button>
     </form>
 </div>
-<script src="js/previewImage.js"></script>
+<script src="assets/js/previewImage.js"></script>
