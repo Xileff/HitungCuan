@@ -86,4 +86,15 @@ if(isset($_POST["login"])){
         </div>
     </div>
 </body>
-</body>
+<script>
+    const loginTxtUser = document.getElementById('loginTxtUser');
+    const loginTxtPassword = document.getElementById('loginTxtPassword');
+    const btnLogin = document.getElementById('btnLogin');
+
+    btnLogin.addEventListener('click', e => {
+        if(loginTxtUser.value.length === 0 || loginTxtPassword.value.length === 0){
+            alertError('Error', 'Username atau password tidak boleh kosong', 'Ok');
+            e.preventDefault();
+        }
+    });
+</script>

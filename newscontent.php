@@ -16,7 +16,6 @@ if(isset($_POST['submit'])){
     $user = $conn->query("SELECT id, username, foto FROM users WHERE username='" . $_SESSION['username'] . "'")->fetch_assoc();
     $comment = $_POST['comment'];
 
-
     $conn->query("INSERT INTO news_comment VALUES('','" . $user['id'] . "','" . $_GET['id'] . "','" . $user['username'] . "', '" . date('Y-m-d') . "', '$comment')");
 
     if($conn->affected_rows !== 1){
@@ -31,13 +30,12 @@ if(isset($_POST['submit'])){
 ?>
 
 <body>
-    <?php include 'pages/components/html-navbar.php'?>
     <div class="container mt-5 pt-5">
         <p id="news-date" class="fs-6 mb-0" style="color: gray;"><?=tgl_indo($news['tanggal_rilis'])?></p>
         <p id="news-author" class="fs-6" style="color: gray;">Author: <?=$author?></p>
         <h1><?=$news['judul_berita']?></h1>
         <div class="news-image mt-3">
-            <img src="images/news/<?=$news['gambar'] ?>" alt="news_image" class="w-100">
+            <img src="assets/images/news/<?=$news['gambar'] ?>" alt="news_image" class="w-100">
         </div>
         <p id="news-caption" class="fs-6" style="color: gray;">Ilustrasi: <?=$news['judul_berita']?></p>
         <div class="news-text">
@@ -74,7 +72,7 @@ if(isset($_POST['submit'])){
                 <div class="row posted-comment pt-4 px-2">
                     <div class="wrapper-comment">
                         <div class="user-img">
-                            <img src="images/users-profile/<?=$user['foto']?>" alt="user" class="img-fluid" style="border-radius: 100%;">
+                            <img src="assets/images/users-profile/<?=$user['foto']?>" alt="user" class="img-fluid" style="border-radius: 100%;">
                         </div>
                         <div class="px-3 pt-1 pb-1">
                             <p class="comment-author mb-0"><?=$user['username']?></p>
@@ -88,7 +86,6 @@ if(isset($_POST['submit'])){
             <?php endwhile?>
         <?php endif?>
     </div>
-    <?php include 'pages/components/html-top.php'?>
 </body>
 <script>
     document.getElementById('btnComment').addEventListener('click', e => {

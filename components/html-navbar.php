@@ -25,7 +25,7 @@
             </li>
             <?php if(!isset($_SESSION["user"])):?>
                 <li class="nav-item" id="nav-item-login">
-                    <a href="?page=login" target="_blank" class="nav-link w-100" id="nav-link-login">Log In</a>
+                    <a href="?page=login" class="nav-link w-100" id="nav-link-login">Log In</a>
                 </li>
             <?php endif?>
             <?php if(isset($_SESSION["user"])):?>
@@ -35,7 +35,7 @@
                         <a class="nav-link dropdown-toggle d-flex flex-row align-items-center" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="ratio ratio-1x1 d-inline-block mx-2" style="width: 2.1rem;">
                                 <img 
-                                    src="images/users-profile/<?=$user['foto']?>" 
+                                    src="assets/images/users-profile/<?=$user['foto']?>" 
                                     alt="navbar-profile-image" 
                                     class="img-fluid article-img rounded-circle" 
                                     style="height: 2.1rem; object-fit:cover">

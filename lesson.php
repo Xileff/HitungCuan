@@ -25,7 +25,7 @@ $thisLesson = $conn->query("SELECT * FROM lessons WHERE id = $idlesson AND id_su
                     <?php while($lesson = $lessonsList->fetch_assoc()):?>
                         <a href="?page=lesson&subject=<?=$lesson['id_subject']?>&idlesson=<?=$lesson['id']?>" class="m-4 sidebar-lesson-link fw-bold">
                             <div class="row row-lessons w-100 mx-auto position-relative">
-                                <div class="background-zoom bgLesson w-100 h-100 m-0 p-0 position-absolute start-0 top-0" style="background-image: url('images/CuanCademy/Subject-Containers/lessonbg.jpg')"></div>
+                                <div class="background-zoom bgLesson w-100 h-100 m-0 p-0 position-absolute start-0 top-0" style="background-image: url('assets/images/CuanCademy/Subject-Containers/lessonbg.jpg')"></div>
                                 <div class="blackOverlay w-100 h-100 m-0 p-0 position-absolute top-0 start-0"></div>
                                 <p class="text-center pt-2 pb-2 m-0 fs-4" style="z-index: 2;"><?=$lesson['judul']?></h1>
                             </div>
@@ -44,7 +44,7 @@ $thisLesson = $conn->query("SELECT * FROM lessons WHERE id = $idlesson AND id_su
                     <h1 class="poppins"><?=$thisLesson['judul']?></h1>
                     <p class="fs-6 mb-0" style="color: gray;"><?=tgl_indo($thisLesson['tanggal'])?></p>
                     <div class="news-image mt-3 mb-4">
-                        <img src="images/CuanCademy/lessons/<?=$thisLesson['gambar']?>" alt="news_image" class="w-100">
+                        <img src="assets/images/CuanCademy/lessons/<?=$thisLesson['gambar']?>" alt="news_image" class="w-100">
                     </div>
                     <p class="montserrat fs-5" style="color: gray;"><?=$thisLesson['teks']?></p>
                 </div>
@@ -52,9 +52,8 @@ $thisLesson = $conn->query("SELECT * FROM lessons WHERE id = $idlesson AND id_su
         </div>
     </div>
 
-    <?php include 'pages/components/html-top.php'?>
     <!-- Other scripts -->
-    <script src="js/sidenav.js"></script>
+    <script src="assets/js/sidenav.js"></script>
     <script>
         const searchLesson = document.getElementById('searchLesson');
         const inputSubject = document.getElementById('inputSubject');
@@ -68,7 +67,7 @@ $thisLesson = $conn->query("SELECT * FROM lessons WHERE id = $idlesson AND id_su
                 }
             }
 
-            xhr.open("GET", `./ajax/lessonList.php?lesson=${searchLesson.value}&idSubject=${inputSubject.value}`, true);
+            xhr.open("GET", `logic/ajax/lessonList.php?lesson=${searchLesson.value}&idSubject=${inputSubject.value}`, true);
             xhr.send();
         })
     </script>

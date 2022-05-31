@@ -915,11 +915,6 @@ footer a:hover {
         padding-left: 2.3rem !important;
     }
 
-    /* .news-image {
-        width: 100%;
-        overflow: hidden;
-    } */
-
     .news-image {
         width: 100%;
         height: fit-content;

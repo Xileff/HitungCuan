@@ -1,13 +1,16 @@
+<?php 
+global $conn;
+$username = $_SESSION['username'];
+$user = $conn->query("SELECT * FROM users WHERE username = '$username'")->fetch_assoc();
+?>
 <body>
-    <?php include 'pages/components/html-navbar.php'?>
     <div class="container mt-5 pt-5 d-flex flex-column justify-content-center">
-        <h1 class="poppins text-center mt-5 mb-5">
-            User's Profile
-        </h1>
+        <h1 class="poppins text-center mt-5 mb-5">User's Profile</h1>
         <form class="row" action="" method="POST" enctype="multipart/form-data">
             <div class="col-sm-4 col-md-4 col-lg-4 p-5 d-flex flex-column justify-items-center">
                 <div class="ratio ratio-1x1 p-5">
-                    <input type="file" name="image" id="profileImage" onchange="displayImage(this)" style="opacity: 0;">
+                    <img src="assets/images/users-profile/<?=$user['foto']?>" alt="user_profile" class="w-100" style="border-radius: 50%; object-fit: cover" id="imgInput" />
+                    <input type="file" name="image" id="inputFile" style="opacity: 0; height: 0; width: 0;">
                 </div>
                 <p style="width: fit-content; color: rgb(117, 249, 145);" class="montserrat text-center hvr-underline-from-left mx-auto">Pencet gambar untuk mengubahnya</p>
             </div>
@@ -77,10 +80,26 @@
             </div>
         </form>
     </div>
+    <script>
+        const imgInput = document.getElementById('imgInput');
+        const inputFile = document.getElementById('inputFile');
+        
+        imgInput.addEventListener('click', () => {
+            inputFile.click();
+        });
 
-    <script src="js/triggerClick.js"></script>
+        inputFile.addEventListener('change', (evt) => {
+            const img = evt.target.files[0];
+            if(!img) {
+                alertError('Error', 'Gambar gagal diupload. silakan coba lagi', 'Ok');
+                return;
+            }
 
-    <?php include 'pages/components/html-top.php'?>
+            const reader = new FileReader();
+            reader.onload = (evt) => imgInput.setAttribute('src', evt.target.result);
+            reader.readAsDataURL(img);
+        });
+    </script>
 </body>
 </html>
 

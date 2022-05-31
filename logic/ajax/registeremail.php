@@ -1,5 +1,5 @@
 <?php 
-require '../dbconn.php';
+require '../../logic/dbconn.php';
 global $conn;
 
 $requestedemail = $_GET['email'];

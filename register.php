@@ -29,7 +29,7 @@ if(isset($_POST['register'])){
 
 <body id="login-body">
     <div id="overlay"></div>
-    <?php include 'pages/components/html-simplenavbar.php'?>
+    <?php include 'components/html-simplenavbar.php'?>
 
     <div id="login-container" class="container-fluid mb-5 mt-5 pt-5">
         <div class="row h-100">

@@ -31,7 +31,7 @@
                     <ul class="list-unstyled montserrat fs-6 footer-submenu">
                         <li><a href="#">Syarat & Ketentuan</a></li>
                         <li><a href="#">Kebijakan Privasi</a></li>
-                        <li><a href="#">Hubungi Kami</a></li>
+                        <li><a href="?page=aboutus">Hubungi Kami</a></li>
                     </ul>
                 </div>
                 <div class="col p-2">

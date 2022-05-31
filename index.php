@@ -1,6 +1,6 @@
 <?php 
-require 'dbconn.php';
-require 'functions.php';
+require 'logic/dbconn.php';
+require 'logic/functions.php';
 session_start();
 
 // setcookie jika ketika login pilih rememberme dan belum ada cookie
@@ -35,11 +35,11 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Swal custom -->
-    <script src="js/swal.js"></script>    
+    <script src="assets/js/swal.js"></script>    
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/hitungcuan.css">
-    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/hitungcuan.css">
+    <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="logo.png"/>
     <title>
@@ -55,33 +55,34 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
 </head>
 <body>
     <?php 
+    // Admin UI
     if (isset($_SESSION['admin'])) {
-        include 'pages/components/html-adminnavbar.php';
+        include 'components/html-adminnavbar.php';
 
         $page = $_GET['page'];
         if(isset($_GET['action'])) $action = $_GET['action'];
         switch ($page) {
             case 'users':
-                include 'pages/admin/users.php';
+                include 'admin/users.php';
                 break;
 
             case 'feedback':
-                include 'pages/admin/feedback.php';
+                include 'admin/feedback.php';
                 break;
 
             case 'lessons':
                 switch($action){
                     case 'none':
-                        include 'pages/admin/lessons.php';
+                        include 'admin/lessons.php';
                         break;
                     case 'addlessons':
-                        include 'pages/admin/crud/addlessons.php';
+                        include 'admin/crud/addlessons.php';
                         break;
                     case 'editlessons':
-                        include 'pages/admin/crud/editlessons.php';
+                        include 'admin/crud/editlessons.php';
                         break;
                     case 'deletelessons':
-                        include 'pages/admin/crud/deletelessons.php';
+                        include 'admin/crud/deletelessons.php';
                         break;
                 }
                 break;
@@ -89,45 +90,60 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
             case 'news':
                 switch($action){
                     case 'none':
-                        include 'pages/admin/news.php';
+                        include 'admin/news.php';
                         break;
                     case 'addnews':
-                        include 'pages/admin/crud/addnews.php';
+                        include 'admin/crud/addnews.php';
                         break;
                     case 'editnews':
-                        include 'pages/admin/crud/editnews.php';
+                        include 'admin/crud/editnews.php';
                         break;
                     case 'deletenews':
-                        include 'pages/admin/crud/deletenews.php';
+                        include 'admin/crud/deletenews.php';
                         break;
                 }
                 break;
                 
             case 'logout':
-                include 'pages/logout.php';
+                include 'logout.php';
                 break;
 
             default:
-                include 'pages/admin/news.php';
+                include 'admin/news.php';
                 break;
         }
     } 
     
+    // User UI
     else {
-        if(isset($_GET['page']) && ($_GET['page'] === 'login')) include 'pages/login.php';
-
-        else if(isset($_GET['page']) && ($_GET['page'] === 'register')) include 'pages/register.php';
-        
-        else if (isset($_GET['page']) && $_GET['page'] !== '') renderPage($_GET['page'], 'user');
+        if(isset($_GET['page'])){
+            $page = $_GET['page'];
+            switch($page){
+                case 'login':
+                    include 'login.php';
+                    break;
+                case 'logout':
+                    include 'logout.php';
+                    break;
+                case 'register':
+                    include 'register.php';
+                    break;
+                default:
+                    include 'components/html-navbar.php';
+                    include $page . '.php';
+                    include 'components/html-footer.php';
+            }
+        }
 
         else {
-            include 'pages/components/html-navbar.php';
-            include 'pages/homepage.php';
-            include 'pages/components/html-footer.php';
+            include 'components/html-navbar.php';
+            include 'homepage.php';
+            include 'components/html-footer.php';
         }
     }
-
     ?>
+
+    <?php include 'components/html-top.php'?>
 
     <!-- AOS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

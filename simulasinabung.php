@@ -67,9 +67,9 @@
         </div>
     </div>
 
-    <?php include 'pages/components/html-top.php'?>
+    <?php include 'components/html-top.php'?>
 
     <!-- Other scripts -->
-    <script src="js/autoNumeric.min.js"></script>
-    <script src="js/simulasinabung.js"></script>
+    <script src="assets/js/autoNumeric.min.js"></script>
+    <script src="assets/js/simulasinabung.js"></script>
 </body>

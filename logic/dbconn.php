@@ -3,8 +3,7 @@
 $servername = "localhost";
 $user = "root";
 $password = "";
-$db = "hitungcuan";
+$db = "20212_wp2_412020015";
 
 $conn = new mysqli($servername, $user, $password, $db);
-// checkpoint 1
 ?>
