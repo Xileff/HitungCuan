@@ -14,7 +14,7 @@ if(isset($_POST["login"])){
         $_SESSION['admin'] = true;
         $_SESSION['username'] = $username;
         $_GET['page'] = 'admin';
-        header("Location: index.php");
+        header("Location: ./?page=news&action=none");
     } else if (login('users', $username, $password)) {
         $_SESSION['user'] = true;
         $_SESSION['username'] = $username;

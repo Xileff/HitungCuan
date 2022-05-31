@@ -1,7 +1,7 @@
 <?php global $conn;?>
 <div class="container mt-5 pt-5 montserrat">
     <h1 class="fw-bold text-center">News</h1>
-    <a href="?page=news&action=addnews">
+    <a href="?page=news&action=add">
         <button class="btn btn-success m-1">Add New</button>
     </a>
     <table class="table table-hover table-dark text-center">
@@ -25,10 +25,10 @@
                     </td>
                     <td><?=$news['tanggal_rilis']?></td>
                     <td class="p-2">
-                        <a href="?page=news&action=editnews&id=<?=$news['id']?>">
+                        <a href="?page=news&action=edit&id=<?=$news['id']?>">
                             <button class="btn btn-warning rounded w-100 mx-auto mb-1 p-1 px-3 text-center">Edit</button>
                         </a>
-                        <a href="?page=news&action=deletenews&id=<?=$news['id']?>">
+                        <a href="?page=news&action=delete&id=<?=$news['id']?>">
                             <button class="btn btn-danger rounded w-100 mx-auto mb-1 p-1 px-3 text-center">Delete</button>
                         </a>
                     </td>

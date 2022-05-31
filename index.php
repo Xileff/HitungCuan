@@ -64,6 +64,11 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
         $page = $_GET['page'];
         $action = isset($_GET['action']) ? $_GET['action'] : 'none';
         switch ($page) {
+            // no crud
+            case 'logout':
+                include 'logout.php';
+                break;
+
             case 'users':
                 include 'administrator/users.php';
                 break;
@@ -72,47 +77,14 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
                 include 'administrator/feedback.php';
                 break;
 
-            case 'lessons':
-                switch($action){
-                    case 'none':
-                        include 'administrator/lessons.php';
-                        break;
-                    case 'addlessons':
-                        include 'administrator/crud/addlessons.php';
-                        break;
-                    case 'editlessons':
-                        include 'administrator/crud/editlessons.php';
-                        break;
-                    case 'deletelessons':
-                        include 'administrator/crud/deletelessons.php';
-                        break;
-                }
-                break;
-
-            case 'news':
-                switch($action){
-                    case 'none':
-                        include 'administrator/news.php';
-                        break;
-                    case 'addnews':
-                        include 'administrator/crud/addnews.php';
-                        break;
-                    case 'editnews':
-                        include 'administrator/crud/editnews.php';
-                        break;
-                    case 'deletenews':
-                        include 'administrator/crud/deletenews.php';
-                        break;
-                }
-                break;
-                
-            case 'logout':
-                include 'logout.php';
-                break;
-
+            // with crud
             default:
-                include 'administrator/news.php';
-                break;
+                if($action == 'none'){
+                    include 'administrator/' . $page . '.php';
+                }
+                else {
+                    include 'administrator/crud/' . $action . $page . '.php';
+                }
         }
     } 
     

@@ -5,7 +5,7 @@ $lessons = $conn->query("SELECT * FROM lessons");
 ?>
 <div class="container mt-5 pt-5 montserrat">
     <h1 class="fw-bold text-center">Lessons</h1>
-    <a href="?page=lessons&action=addlessons">
+    <a href="?page=lessons&action=add">
         <button class="btn btn-success m-1">Add New</button>
     </a>
     <table class="table table-hover table-dark text-center">
@@ -26,10 +26,10 @@ $lessons = $conn->query("SELECT * FROM lessons");
                     <td><?=$lesson["judul"]?></td>
                     <td><?=$lesson["tanggal"]?></td>
                     <td class="p-2">
-                        <a href="?page=lessons&action=editlessons&id=<?=$lesson["id"]?>">
+                        <a href="?page=lessons&action=edit&id=<?=$lesson["id"]?>">
                             <button class="btn btn-warning rounded w-100 mx-auto mb-1 p-1 px-3 text-center">Edit</button>
                         </a>
-                        <a href="?page=lessons&action=deletelessons&id=<?=$lesson["id"]?>">
+                        <a href="?page=lessons&action=delete&id=<?=$lesson["id"]?>">
                             <button class="btn btn-danger rounded w-100 mx-auto mb-1 p-1 px-3 text-center">Delete</button>
                         </a>
                     </td>
