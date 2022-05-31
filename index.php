@@ -44,47 +44,25 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="logo.png"/>
-    <title>
-        <?php
-            if(isset($_GET['page'])){
-                echo $_GET['page'];
-            }
-            else {
-                echo 'HitungCuan';
-            }
-        ?>
-    </title>
+    <title>HitungCuan</title>
 </head>
 <body>
     <?php 
     // Admin UI
     if (isset($_SESSION['admin'])) {
         include 'components/html-adminnavbar.php';
-
         $page = $_GET['page'];
+        $actions = ['add', 'edit', 'delete'];
         $action = isset($_GET['action']) ? $_GET['action'] : 'none';
-        switch ($page) {
-            // no crud
-            case 'logout':
-                include 'logout.php';
-                break;
+        if($action === 'none'){
+            include 'administrator/' . $page . '.php';
+        }
 
-            case 'users':
-                include 'administrator/users.php';
-                break;
-
-            case 'feedback':
-                include 'administrator/feedback.php';
-                break;
-
-            // with crud
-            default:
-                if($action == 'none'){
-                    include 'administrator/' . $page . '.php';
-                }
-                else {
-                    include 'administrator/crud/' . $action . $page . '.php';
-                }
+        else if (in_array($action, $actions)) {
+            include 'administrator/crud/' . $action . $page . '.php';
+        }
+        else {
+            alertRedirect('Error', 'Tidak ada halaman tersebut', '?page=feedback&action=none', 'Ok');
         }
     } 
     
@@ -92,20 +70,16 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     else {
         if(isset($_GET['page'])){
             $page = $_GET['page'];
-            switch($page){
-                case 'login':
-                    include 'login.php';
-                    break;
-                case 'logout':
-                    include 'logout.php';
-                    break;
-                case 'register':
-                    include 'register.php';
-                    break;
-                default:
-                    include 'components/html-navbar.php';
-                    include $page . '.php';
-                    include 'components/html-footer.php';
+            $accountMgmt = ['login', 'logout', 'register'];
+
+            if(in_array($page, $accountMgmt)){
+                include $page . '.php';
+            }
+            // tambahin in array buat else yg ini
+            else {
+                include 'components/html-navbar.php';
+                include $page . '.php';
+                include 'components/html-footer.php';
             }
         }
 
