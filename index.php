@@ -71,12 +71,13 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
         if(isset($_GET['page'])){
             $page = $_GET['page'];
             $accountMgmt = ['login', 'logout', 'register'];
+            $regularPages = ['aboutus', 'cuancademy', 'homepage', 'lesson', 'news', 'newscontent', 'simulasinabung', 'userprofile'];
 
             if(in_array($page, $accountMgmt)){
                 include $page . '.php';
             }
             // tambahin in array buat else yg ini
-            else {
+            else if(in_array($page, $regularPages)) {
                 include 'components/html-navbar.php';
                 include $page . '.php';
                 include 'components/html-footer.php';
