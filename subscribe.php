@@ -18,9 +18,11 @@ if(isset($_POST['submit'])){
         return;
     }
 
-    $userIdRawData = json_encode($conn->query("SELECT id FROM users WHERE username = '" . $_SESSION['username'] ."'")->fetch_assoc());
+    $paymentMethod = $_POST['paymentMethod'];
 
-    $userId = json_decode($userIdRawData)->id;
+    header("Location:?page=virtualaccount&idpacket=$packetId&payment=$paymentMethod");
+
+
 }
 
 ?>

@@ -71,7 +71,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
         if(isset($_GET['page'])){
             $page = $_GET['page'];
             $accountMgmt = ['login', 'logout', 'register'];
-            $regularPages = ['aboutus', 'cuancademy', 'homepage', 'lesson', 'news', 'newscontent', 'simulasinabung', 'userprofile', 'subscribe'];
+            $regularPages = ['aboutus', 'cuancademy', 'homepage', 'lesson', 'news', 'newscontent', 'simulasinabung', 'userprofile', 'subscribe', 'virtualaccount'];
 
             if(in_array($page, $accountMgmt)){
                 include $page . '.php';
