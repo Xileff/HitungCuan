@@ -1,4 +1,30 @@
-<style>
+<?php 
+global $conn;
+
+$packetId = $_GET['packetId'];
+
+if(!in_array($_GET['packetId'], [1,2,3])){
+    alertRedirect('Not found', 'Data tidak ditemukan', './', 'Ok');
+    return;
+}
+
+$rawData = json_encode($conn->query("SELECT * FROM packet WHERE id = $packetId")->fetch_assoc());
+$packet = json_decode($rawData);
+
+// user pencet beli
+if(isset($_POST['submit'])){
+    if(!isset($_SESSION['user'])){
+        alertRedirect('Anda belum login', 'Login terlebih dahulu untuk melakukan pembayaran', './', 'Ok');
+        return;
+    }
+
+    $userIdRawData = json_encode($conn->query("SELECT id FROM users WHERE username = '" . $_SESSION['username'] ."'")->fetch_assoc());
+
+    $userId = json_decode($userIdRawData)->id;
+}
+
+?>
+<style scoped>
     .selected-payment {
         border: 0.5rem solid rgb(117, 249, 145);
     }
@@ -6,22 +32,26 @@
 <div class="container mt-5 pt-5">
     <section class="border-hitungcuan border-radius-10 p-3">
         <p class="fs-3 fw-bold text-center poppins">Rincian pembayaran</p>
-        <table class="table fw-bold fs-4 montserrat">
+        <table class="table fs-4 montserrat">
             <tbody>
                 <tr class="border-none">
                     <td class="text-start text-light">Nama paket :</td>
-                    <td class="text-end font-green">12 Bulan</td>
+                    <td class="text-end font-green fw-bold"><?=$packet->nama?></td>
                 </tr>
                 <tr class="border-none">
                     <td class="text-start text-light">Total harga :</td>
-                    <td class="text-end font-green">Rp 600.000</td>
+                    <td class="text-end font-green fw-bold"><?=rupiah($packet->harga)?></td>
+                </tr>
+                <tr class="border-none">
+                    <td class="text-start text-light">Aktif hingga :</td>
+                    <td class="text-end font-green fw-bold"><?=tgl_indo(date('Y-m-d', strtotime('+' . $packet->durasi .'days')))?></td>
                 </tr>
             </tbody>
         </table>
         <section>
-            <p class="fs-4">Metode Pembayaran</p>
+            <p class="fs-4 text-center">Metode Pembayaran</p>
             <form class="p-3" method="post">
-                <div class="row" id="rowPayment">
+                <div class="row mb-4">
                     <div class="col form-check border-radius-10 col-payment hvr-float">
                         <input class="form-check-input d-none" type="radio" name="paymentMethod" id="bca" value="bca">
                         <label class="form-check-label p-1 h-100" for="bca">
@@ -41,7 +71,9 @@
                         </label>
                     </div>
                 </div>
-                <button type="submit" id="btnSubmit" class="index-headline-button">Bayar</button>
+                <div class="d-flex justify-content-around">
+                    <button type="submit" id="btnSubmit" name="submit" class="index-headline-button mx-auto pt-2 pb-2 px-5 w-50" style="background-color: rgb(117, 249, 145)">Bayar</button>
+                </div>
             </form>
         </section>
     </section>
@@ -59,11 +91,17 @@
     }
 
     const btnSubmit = document.getElementById('btnSubmit');
+
     btnSubmit.addEventListener('click', e => {
+        let chosen = false;
         radioValue.forEach(r => {
-            if(r.checked) alert(r.value);
+            if(r.checked) chosen = true;
         })
-        e.preventDefault();
+
+        if(!chosen) {
+            alertError('Error', 'Anda belum memilih pembayaran', 'Ok');
+            e.preventDefault();
+        }
     })
 
     function showSelectedPayment(){

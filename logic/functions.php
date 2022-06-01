@@ -46,6 +46,11 @@ function alertError($heading, $message, $button){
     return false;
 }
 
+function rupiah($angka){
+	$hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+	return $hasil_rupiah; 
+}
+
 function alertErrorRefresh($heading, $message, $button){
     echo "
     <script>
