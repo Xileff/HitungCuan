@@ -102,7 +102,7 @@
         <h2 id="h2Membership" class="text-center mb-3">Membership</h2>
         
         <div class="row d-flex flex-row justify-content-around row-cols-1 row-cols-sm-1 row-cols-md-3">
-            <div class="col p-2 mx-auto">
+            <a class="col p-2 mx-auto hvr-float text-decoration-none" href="?page=subscribe&packetId=1">
                 <div class="card p-0 card-packets" id="packet1">
                     <h3 class="text-center fs-2 italic">PALING CUAN!</h3>
                     <div class="card-body d-flex flex-column justify-content-center">
@@ -118,8 +118,8 @@
                         <button class="btnPaket p-2 montserrat fw-bold hvr-skew">Beli Membership</button>
                     </div>
                 </div>
-            </div>
-            <div class="col p-2 mx-auto">
+            </a>
+            <a class="col p-2 mx-auto hvr-float text-decoration-none" href="?page=subscribe&packetId=2">
                 <div class="card card-packets p-0">
                     <div class="card-body d-flex flex-column justify-content-center">
                         <div class="card-title pt-3 pb-3">
@@ -134,8 +134,8 @@
                         <button class="btnPaket p-2 montserrat fw-bold hvr-skew">Beli Membership</button>
                     </div>
                 </div>
-            </div>
-            <div class="col p-2 mx-auto">
+            </a>
+            <a class="col p-2 mx-auto hvr-float text-decoration-none" href="?page=subscribe&packetId=3">
                 <div class="card card-packets p-0">
                     <div class="card-body d-flex flex-column justify-content-center">
                         <div class="card-title pt-3 pb-3">
@@ -148,7 +148,7 @@
                         <button class="btnPaket p-2 montserrat fw-bold hvr-skew">Beli Membership</button>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 

@@ -71,7 +71,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
         if(isset($_GET['page'])){
             $page = $_GET['page'];
             $accountMgmt = ['login', 'logout', 'register'];
-            $regularPages = ['aboutus', 'cuancademy', 'homepage', 'lesson', 'news', 'newscontent', 'simulasinabung', 'userprofile'];
+            $regularPages = ['aboutus', 'cuancademy', 'homepage', 'lesson', 'news', 'newscontent', 'simulasinabung', 'userprofile', 'subscribe'];
 
             if(in_array($page, $accountMgmt)){
                 include $page . '.php';
@@ -81,6 +81,10 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
                 include 'components/html-navbar.php';
                 include $page . '.php';
                 include 'components/html-footer.php';
+            }
+
+            else {
+                alertRedirect('Error', 'Halaman tidak ditemukan', './', 'Ok');
             }
         }
 
