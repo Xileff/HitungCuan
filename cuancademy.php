@@ -1,3 +1,16 @@
+<?php 
+global $conn;
+if(!isset($_SESSION['username'])){
+    alertRedirect('Belum login', 'Anda harus login sebelum menggunakan fitur ini', '?page=login', 'Ok');
+    return;
+}
+
+$user = getLoggedUserData();
+if(!isPremiumUser($user['id'])){
+    alertRedirect('Anda bukan premium user', 'Fitur ini hanya tersedia untuk premium user', './', 'Ok');
+    return;
+}
+?>
 <body>
     <div class="container p-5 mt-5">
         <div class="container-fluid" data-aos="fade-up">

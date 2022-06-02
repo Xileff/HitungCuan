@@ -9,7 +9,7 @@ if(!in_array($_GET['packetId'], [1,2,3])){
 }
 
 $idUser = $conn->query("SELECT id FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
-if($conn->query("SELECT * FROM subscription WHERE id_user = $idUser")->num_rows !== 0){
+if(isPremiumUser($idUser)){
     alertRedirect('Error', 'Anda sudah menjadi premium member', './', 'Ok');
     return;
 }

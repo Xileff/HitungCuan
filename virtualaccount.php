@@ -86,9 +86,7 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'pay'){
         alertRedirect('Kesalahan server', 'Silakan coba lagi', $_SERVER['REQUEST_URI'] ,'Ok');
         return;
     }
-
-    alertSuccess('Berhasil', 'Anda sudah menjadi member, redirecting', 'Ok');
-    delayedRedirect("./", 2);
+    alertRedirect('Berhasil', 'Anda sudah menjadi member, redirecting', './','Ok');
 }
 else if(isset($_POST['submit']) && $_POST['submit'] === 'cancel') {
     $conn->query("DELETE FROM virtual_account WHERE id_user = $userId");

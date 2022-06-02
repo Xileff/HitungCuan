@@ -42,7 +42,7 @@ global $conn;
                                     class="img-fluid article-img rounded-circle" 
                                     style="height: 2.1rem; object-fit:cover">
                             </div>
-                            <span class="montserrat text-center mx-1 mb-0 d-inline-block" style="<?php if($conn->query("SELECT * FROM subscription WHERE id_user = " . $user['id'])->num_rows === 1) echo 'color: yellow'?>"><?php echo $user["username"]?></span>
+                            <span class="montserrat text-center mx-1 mb-0 d-inline-block" style="<?php if(isPremiumUser($user['id'])) echo 'color: yellow'?>"><?php echo $user["username"]?></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownDarkMenuLink">
                             <li><a class="dropdown-item navbar-dropdown-menu montserrat" href="?page=userprofile">Profile</a></li>

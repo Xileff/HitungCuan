@@ -1,4 +1,7 @@
 <?php 
+
+global $conn;
+
 function uploadImage($image, $dir){
     $nameWithExtension = $image['name'];
     $size = $image['size'];
@@ -123,9 +126,24 @@ function tgl_indo($date){
 	return $dateParts[2] . ' ' . $months[(int)$dateParts[1]] . ' ' . $dateParts[0];
 }
 
+function isPremiumUser($userId){
+    global $conn;
+    $subscriptionData = $conn->query("SELECT * FROM subscription WHERE id_user = $userId")->num_rows;
+
+    return $subscriptionData === 1 ? true : false;
+}
+
+function getLoggedUserData(){
+    global $conn;
+    if(isset($_SESSION['username'])){
+        return $conn->query("SELECT * FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc();
+    }
+
+    else return false;
+}
+
 function hideError(){
     error_reporting(E_ERROR | E_WARNING | E_PARSE); 
 }
-
 ?>
 ?>
