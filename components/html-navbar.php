@@ -1,4 +1,6 @@
-<?php global $conn; ?>
+<?php 
+global $conn;
+?>
 
 <nav class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-expand-xl fixed-top p-3 shadow-sm">
     <!-- Navbar intinya : Brand, button, konten -->
@@ -29,7 +31,7 @@
                 </li>
             <?php endif?>
             <?php if(isset($_SESSION["user"])):?>
-                <?php $user = $conn->query("SELECT username, foto FROM users WHERE username='" . $_SESSION["username"] . "'")->fetch_assoc()?>
+                <?php $user = $conn->query("SELECT * FROM users WHERE username='" . $_SESSION["username"] . "'")->fetch_assoc()?>
                 <li class="nav-item px-2 pb-1 pt-1">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle d-flex flex-row align-items-center" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -45,6 +47,19 @@
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownDarkMenuLink">
                             <li><a class="dropdown-item navbar-dropdown-menu montserrat" href="?page=userprofile">Profile</a></li>
                             <li><a class="dropdown-item navbar-dropdown-menu montserrat" href="?page=logout">Log Out</a></li>
+                            <!-- Transaksi -->
+                            <?php $va = $conn->query("SELECT * FROM virtual_account WHERE id_user = " . $user['id']);?>
+                            <?php if($va->num_rows === 1):?>
+                                <?php 
+                                    $va = $va->fetch_assoc();
+                                    $idPacket = $va['id_packet'];
+                                    $payment = $va['payment'];
+                                ?>
+                                <li><a href="<?="?page=virtualaccount&idpacket=$idPacket&payment=$payment"?>" class="dropdown-item navbar-dropdown-menu montserrat">
+                                Transaction
+                                <span class="badge rounded-pill bg-danger">Pending</span>
+                                </a></li>
+                            <?php endif?>
                         </ul>
                     </li>
                 </li>

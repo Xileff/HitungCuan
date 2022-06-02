@@ -20,7 +20,6 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
         $_SESSION['username'] = $remembered_user['username'];
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

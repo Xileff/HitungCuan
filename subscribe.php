@@ -13,8 +13,17 @@ $packet = json_decode($rawData);
 
 // user pencet beli
 if(isset($_POST['submit'])){
+    $idUser = $conn->query("SELECT id FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
     if(!isset($_SESSION['user'])){
-        alertRedirect('Anda belum login', 'Login terlebih dahulu untuk melakukan pembayaran', './', 'Ok');
+        alertRedirect('Anda belum login', 'Login terlebih dahulu untuk melakukan pembayaran', './?page=login', 'Ok');
+        return;
+    }
+
+    if($va = $conn->query("SELECT * FROM virtual_account WHERE id_user = $idUser")->fetch_assoc()){
+        // $va = $conn->query("SELECT * FROM virtual_account WHERE id_user = $idUser")->fetch_assoc();
+        $vaPacketId = $va['id_packet'];
+        $vaPayment = $va['payment'];
+        alertRedirect('Anda memiliki transaksi yang belum selesai', 'Memindahkan anda ke halaman pembayaran', "./?page=virtualaccount&idpacket=$vaPacketId&payment=$vaPayment", 'Ok');
         return;
     }
 

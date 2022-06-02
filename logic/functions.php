@@ -122,4 +122,10 @@ function tgl_indo($date){
  
 	return $dateParts[2] . ' ' . $months[(int)$dateParts[1]] . ' ' . $dateParts[0];
 }
+
+function hideError(){
+    error_reporting(E_ERROR | E_WARNING | E_PARSE); 
+}
+
+?>
 ?>

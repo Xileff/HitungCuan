@@ -29,9 +29,9 @@ if(isset($_POST["login"])){
         alertError('Invalid Login', 'Username atau password salah!', 'Ok');
     }
 }
-
 ?>
-<body>
+
+
 <body id="login-body"  style="z-index: 1;">
     <?php include 'components/html-simplenavbar.php'?>
     <div id="overlay"></div>
