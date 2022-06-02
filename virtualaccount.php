@@ -5,13 +5,15 @@ global $conn;
 
 $validPmtMethod = ['bca', 'bri', 'gopay'];
 if(!in_array($_GET['payment'], $validPmtMethod)){
-    alertRedirect('Error', 'Tidak ada metode pembayaran tersebut', './', 'Ok');
+    // alertRedirect('Error', 'Tidak ada metode pembayaran tersebut', './', 'Ok');
+    header("Location: ./");
     return;
 }
 
 $validPacket = [1,2,3];
 if(!in_array($_GET['idpacket'], $validPacket)){
-    alertRedirect('Error', 'Paket tidak ditemukan', './', 'Ok');
+    // alertRedirect('Error', 'Paket tidak ditemukan', './', 'Ok');
+    header("Location: ./");
     return;
 }
 
@@ -52,7 +54,41 @@ if(!$va) {
 
 
 if(isset($_POST['submit']) && $_POST['submit'] === 'pay'){
-    alertSuccess('pay', 'pay','pay');
+    // insert ke tabel subscription
+    $today = date('Y-m-d');
+    $expireDate;
+    switch($idPacket){
+        case 1:
+            $expireDate = date('Y-m-d', strtotime('+ 365 days'));
+            break;
+        case 2:
+            $expireDate = date('Y-m-d', strtotime('+ 180 days'));
+            break;
+        case 3:
+            $expireDate = date('Y-m-d', strtotime('+ 90 days'));
+            break;
+        }
+
+    $conn->query("DELETE FROM virtual_account WHERE id_user = $userId");
+    if($conn->affected_rows !== 1){
+        alertRedirect('Kesalahan server', 'Silakan coba lagi', $_SERVER['REQUEST_URI'] ,'Ok');
+        return;
+    }
+
+    $conn->query("INSERT INTO subscription VALUES('', $idPacket, $userId, '$expireDate')");
+    if($conn->affected_rows !== 1){
+        alertRedirect('Kesalahan server', 'Silakan coba lagi', $_SERVER['REQUEST_URI'] ,'Ok');
+        return;
+    }
+
+    $conn->query("INSERT INTO revenue VALUES('', $idPacket, '$today', " . $packet['harga'] .")");
+    if($conn->affected_rows !== 1){
+        alertRedirect('Kesalahan server', 'Silakan coba lagi', $_SERVER['REQUEST_URI'] ,'Ok');
+        return;
+    }
+
+    alertSuccess('Berhasil', 'Anda sudah menjadi member, redirecting', 'Ok');
+    delayedRedirect("./", 2);
 }
 else if(isset($_POST['submit']) && $_POST['submit'] === 'cancel') {
     $conn->query("DELETE FROM virtual_account WHERE id_user = $userId");
@@ -64,8 +100,6 @@ else if(isset($_POST['submit']) && $_POST['submit'] === 'cancel') {
         alertRedirect('Kesalahan server', 'Silakan coba lagi', './', 'Ok');
     }
 }
-
-
 ?>
 
 <div class="container mt-5 pt-5 mb-5">

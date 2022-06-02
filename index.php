@@ -67,6 +67,19 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     
     // User UI
     else {
+        // cek subscription user, sebelum render halaman
+        if(isset($_SESSION['username'])){
+            $userId = $conn->query("SELECT id FROM users WHERE username = '" . $_SESSION['username'] ."'")->fetch_assoc()['id'];
+            
+            // Jika ada subscription, cek apakah masanya habis
+            $subsExpireDate = $conn->query("SELECT expire_date FROM subscription WHERE id_user = $userId")->fetch_assoc()['expire_date'];
+
+            if($subsExpireDate === date('Y-m-d')){
+                $conn->query("DELETE FROM subscription WHERE id_user = $userId");
+            }
+        }
+
+        // render halaman
         if(isset($_GET['page'])){
             $page = $_GET['page'];
             $accountMgmt = ['login', 'logout', 'register'];
