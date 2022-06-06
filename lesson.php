@@ -18,6 +18,25 @@ $idlesson = $_GET['idlesson'];
 $subjectName = $conn->query("SELECT nama_subject FROM subject WHERE id = $idsubject")->fetch_assoc()['nama_subject'];
 $lessonsList = $conn->query("SELECT * FROM lessons WHERE id_subject = $idsubject");
 $thisLesson = $conn->query("SELECT * FROM lessons WHERE id = $idlesson AND id_subject = $idsubject")->fetch_assoc();
+
+// input pertanyaan
+if(isset($_POST['submit'])){
+    $inputQuestion = htmlspecialchars($_POST['question']);
+    $userId = $user['id'];
+    $date = date('Y-m-d');
+
+    $conn->query("INSERT INTO lessons_question VALUES('', $userId, $idlesson, '$date', '$inputQuestion', 0)");
+
+    if($conn->affected_rows === 1) {
+        alertSuccess('Berhasil', 'Pertanyaan anda sudah terupload', 'Ok');
+    }
+
+    else {
+        alertRedirect('Kesalahan server', 'Pertanyaan anda tidak terupload, silakan coba lagi', '', 'Ok');
+        echo $conn->error;
+        return;
+    }
+}
 ?>
 
 <body>
@@ -63,23 +82,81 @@ $thisLesson = $conn->query("SELECT * FROM lessons WHERE id = $idlesson AND id_su
         </div>
     </div>
 
-    <!-- Other scripts -->
-    <script src="assets/js/sidenav.js"></script>
-    <script>
-        const searchLesson = document.getElementById('searchLesson');
-        const inputSubject = document.getElementById('inputSubject');
-        const lessonList = document.getElementById('lessonList');
+    <div class="container container-comment">
+        <!-- Input komentar -->
+        <form action="" method="POST">
+            <div class="row new-comment pt-1 pb-2">
+                <div class="col-sm col-md-10 col-lg-10">
+                    <input class="form-control montserrat w-100" id="txtComment" placeholder="Write Comment Here" name="question"></input>
+                </div>
+                <div class="col-sm col-md-2 col-lg-2">
+                    <button type="submit" name="submit" id="btnComment" class="w-100 h-100 montserrat btn-sm btn-lg">Tanya</button>
+                </div>
+            </div>
+        </form>
 
-        searchLesson.addEventListener('keyup', function(){
-            const xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function(){
-                if(this.readyState === 4 && this.status === 200){
-                    lessonList.innerHTML = xhr.responseText;
-                }
-            }
-
-            xhr.open("GET", `logic/ajax/lessonList.php?lesson=${searchLesson.value}&idSubject=${inputSubject.value}`, true);
-            xhr.send();
-        })
-    </script>
+        <!-- List komentar -->
+        <?php 
+            $questions = $conn->query("SELECT * FROM lessons_question WHERE id_lesson = '$idlesson'")
+        ?>
+        <?php if(mysqli_num_rows($questions) === 0):?>
+            <div class="pt-4 px-2">
+                <h3 style="color: gray;">There are no questions yet</h3>
+            </div>
+        <?php else:?>
+            <?php while($question = $questions->fetch_assoc()):?>
+                <?php $user = $conn->query("SELECT username, foto FROM users WHERE id=" . $question['id_user'])->fetch_assoc()?>
+                <div class="row posted-comment pt-4 px-2">
+                    <div class="wrapper-comment">
+                        <div class="user-img">
+                            <img src="assets/images/users-profile/<?=$user['foto']?>" alt="user" class="img-fluid" style="border-radius: 100%;">
+                        </div>
+                        <div class="px-3 pt-1 pb-1">
+                            <p class="comment-author mb-0"><?=$user['username']?></p>
+                            <p class="comment-date mb-2">At <?=$question['tanggal']?></p>
+                            <p class="comment-text text-wrap">
+                                <?=$question['teks']?>
+                            </p>
+                        </div>
+                    </div>
+                    <?php if($question['answered']):?>
+                        <div class="row lesson-answer border-hitungcuan rounded-3 p-2" style="background-color: #1f1f1e;">
+                            <p class="fs-6 mb-0">Admin felix's answer</p>
+                            <p class="fs-6">At ...</p>
+                            <p class="fs-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, et! Sunt ratione, animi itaque asperiores mollitia illum nobis autem distinctio natus quis expedita iure quos suscipit aliquid consequuntur sapiente voluptatibus?</p>
+                        </div>
+                    <?php endif?>
+                </div>
+            <?php endwhile?>
+        <?php endif?>
+    </div>
 </body>
+<!-- Ajax script for side nav lesson list -->
+<script src="assets/js/sidenav.js"></script>
+<script>
+    const searchLesson = document.getElementById('searchLesson');
+    const inputSubject = document.getElementById('inputSubject');
+    const lessonList = document.getElementById('lessonList');
+
+    searchLesson.addEventListener('keyup', function(){
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(){
+            if(this.readyState === 4 && this.status === 200){
+                lessonList.innerHTML = xhr.responseText;
+            }
+        }
+
+        xhr.open("GET", `logic/ajax/lessonList.php?lesson=${searchLesson.value}&idSubject=${inputSubject.value}`, true);
+        xhr.send();
+    })
+</script>
+
+<!-- Script for asking question -->
+<script>
+    document.getElementById('btnComment').addEventListener('click', e => {
+        if(document.getElementById('txtComment').value.length < 1 /** kurang dari 1 huruf, maka preventdefault */) {
+            alertError('Pertanyaan kosong', 'Ketiklah sesuatu sebelum anda mengupload pertanyaan ini','Ok');
+            e.preventDefault();
+        }
+    });
+</script>

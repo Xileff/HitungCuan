@@ -42,7 +42,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     <link rel="stylesheet" href="assets/css/hitungcuan.css">
     <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="logo.png"/>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
     <title>HitungCuan</title>
 </head>
 <body>
