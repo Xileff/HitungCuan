@@ -119,11 +119,21 @@ if(isset($_POST['submit'])){
                             </p>
                         </div>
                     </div>
-                    <?php if($question['answered']):?>
+                    <?php if($question['answered']):
+                        $jsonAnswer = json_encode($conn->query("SELECT * FROM lessons_question_answer WHERE id_question = " . $question['id'])->fetch_assoc());
+                        echo $question['id'];
+                        $a = json_decode($jsonAnswer);
+                        ?>
                         <div class="row lesson-answer border-hitungcuan rounded-3 p-2" style="background-color: #1f1f1e;">
-                            <p class="fs-6 mb-0">Admin felix's answer</p>
-                            <p class="fs-6">At ...</p>
-                            <p class="fs-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, et! Sunt ratione, animi itaque asperiores mollitia illum nobis autem distinctio natus quis expedita iure quos suscipit aliquid consequuntur sapiente voluptatibus?</p>
+                            <p class="fs-6 mb-0">Admin 
+                                <?php 
+                                $jsonAdmin = json_encode($conn->query("SELECT username FROM admin WHERE id = " . $a->id_admin)->fetch_assoc());
+                                
+                                echo json_decode($jsonAdmin)->username;
+                                ?>'s answer
+                            </p>
+                            <p class="fs-6">At <?=tgl_indo($a->tanggal)?></p>
+                            <p class="fs-6"><?=$a->teks?></p>
                         </div>
                     <?php endif?>
                 </div>
