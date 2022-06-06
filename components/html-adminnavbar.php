@@ -18,6 +18,9 @@
                 <a href="?page=lessons&action=none" class="nav-link">Lessons</a>
             </li>
             <li class="nav-item px-2 pt-1">
+                <a href="?page=questions&action=none" class="nav-link">Questions</a>
+            </li>
+            <li class="nav-item px-2 pt-1">
                 <a href="?page=news&action=none" class="nav-link">News</a>
             </li>
             <?php if(isset($_SESSION["admin"])):?>
