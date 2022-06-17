@@ -1,9 +1,29 @@
 <?php
+if (isset($_SESSION['admin']) || isset($_SESSION['user'])) {
+    header("Location: ./");
+}
 
-use function PHPSTORM_META\type;
+if (isset($_POST["login"])) {
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
+
+    if (login('admin', $username, $password)) {
+        $_SESSION['admin'] = true;
+        $_SESSION['username'] = $username;
+        header("Location: ./?page=news&action=none");
+    } else if (login('users', $username, $password)) {
+        $_SESSION['user'] = true;
+        $_SESSION['username'] = $username;
+        if (isset($_POST['rememberme'])) {
+            $_SESSION['remember'] = true;
+        }
+        header("Location: ./?page=homepage");
+
+    } else {
+        alertError('Gagal login', 'Data salah', 'Ok');
+    }
+}
 ?>
-
-<script src="httprequest/request/postLogin.js"></script>
 
 <body id="login-body" style="z-index: 1;">
     <?php include 'components/html-simplenavbar.php' ?>

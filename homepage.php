@@ -23,7 +23,7 @@
         <!-- row row-cols-1 row-cols-sm-2 row-cols-md-4 -->
         <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-news">
             <div class="col p-2 mx-auto">
-                <a href="newscontent.php">
+                <a href="#">
                     <div class="card card-news h-100">
                         <img src="assets/images/index/cryptocurrency-square.jpg" class="card-img-top" alt="cryptocurrency">
                         <div class="card-body card-news-body w-100">
@@ -71,7 +71,9 @@
                 </a>
             </div>
         </div>
-        <a href="?page=news" style="text-decoration: none; color: white;"><p class="text-center general-link fs-6 hvr-underline-from-left">See more</p></a>
+        <a href="?page=news" style="text-decoration: none; color: white;">
+            <p class="text-center general-link fs-6 hvr-underline-from-left">See more</p>
+        </a>
     </div>
 
     <!-- Target Belajar Ngatur Duit -->
@@ -100,7 +102,7 @@
     <!-- Membership -->
     <div class="container pt-5 mb-5">
         <h2 id="h2Membership" class="text-center mb-3">Membership</h2>
-        
+
         <div class="row d-flex flex-row justify-content-around row-cols-1 row-cols-sm-1 row-cols-md-3">
             <a class="col p-2 mx-auto hvr-float text-decoration-none" href="?page=subscribe&packetId=1">
                 <div class="card p-0 card-packets" id="packet1">
@@ -158,7 +160,7 @@
             <div class="row d-flex flex-row align-items-center">
                 <div class="col-sm-6 col-md-auto col-lg-6 pt-3" style="padding-right: 3rem;">
                     <p class="montserrat fs-3">"If you don't learn how to make money while you sleep, you will work forever."</p>
-                    <p class="montserrat fs-2 fw-bold" style="color: rgb(117, 249, 145);">- Warren Buffet</p>                  
+                    <p class="montserrat fs-2 fw-bold" style="color: rgb(117, 249, 145);">- Warren Buffet</p>
                 </div>
                 <div class="col-sm-6 col-md-auto col-lg-6">
                     <img src="assets/images/index/warrenbuffet.png" alt="warrenbuffet" class="img-fluid">
