@@ -1,10 +1,10 @@
-<?php
+<?php 
 require 'logic/dbconn.php';
 require 'logic/functions.php';
 session_start();
 
 // remember jika ketika login pilih rememberme
-if (isset($_SESSION['user']) && isset($_SESSION['remember'])) {
+if(isset($_SESSION['user']) && isset($_SESSION['remember'])){
     remember($_SESSION['username']);
 }
 
@@ -15,7 +15,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
 
     $remembered_user = $conn->query("SELECT id, username FROM users WHERE id = $id")->fetch_assoc();
 
-    if (hash('sha256', $remembered_user['username']) === $_COOKIE['key']) {
+    if(hash('sha256', $remembered_user['username']) === $_COOKIE['key']) {
         $_SESSION['user'] = true;
         $_SESSION['username'] = $remembered_user['username'];
     }
@@ -23,7 +23,6 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,73 +31,76 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
     <!-- Swal -->
     <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-material-ui@4/material-ui.css" rel="stylesheet">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Swal custom -->
-    <script src="assets/js/swal.js"></script>
+    <script src="assets/js/swal.js"></script>    
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="assets/css/hitungcuan.css">
     <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
     <title>HitungCuan</title>
 </head>
-
 <body>
-    <?php
+    <?php 
     // Admin UI
     if (isset($_SESSION['admin'])) {
         include 'components/html-adminnavbar.php';
         $page = $_GET['page'];
         $actions = ['add', 'edit', 'delete'];
         $action = isset($_GET['action']) ? $_GET['action'] : 'none';
-        if ($action === 'none') {
+        if($action === 'none'){
             include 'administrator/' . $page . '.php';
-        } else if (in_array($action, $actions)) {
+        }
+
+        else if (in_array($action, $actions)) {
             include 'administrator/crud/' . $action . $page . '.php';
-        } else {
+        }
+        else {
             alertRedirect('Error', 'Tidak ada halaman tersebut', '?page=feedback&action=none', 'Ok');
         }
-    }
-
+    } 
+    
     // User UI
     else {
         // cek subscription user, sebelum render halaman
-        if (isset($_SESSION['username'])) {
-            $userId = $conn->query("SELECT id FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
-
+        if(isset($_SESSION['username'])){
+            $userId = $conn->query("SELECT id FROM users WHERE username = '" . $_SESSION['username'] ."'")->fetch_assoc()['id'];
+            
             // Jika ada subscription, cek apakah masanya habis
             $subsExpireDate = $conn->query("SELECT expire_date FROM subscription WHERE id_user = $userId")->fetch_assoc()['expire_date'];
 
-            if ($subsExpireDate === date('Y-m-d')) {
+            if($subsExpireDate === date('Y-m-d')){
                 $conn->query("DELETE FROM subscription WHERE id_user = $userId");
             }
         }
 
         // render halaman
-        if (isset($_GET['page'])) {
+        if(isset($_GET['page'])){
             $page = $_GET['page'];
             $accountMgmt = ['login', 'logout', 'register'];
             $regularPages = ['aboutus', 'cuancademy', 'homepage', 'lesson', 'news', 'newscontent', 'simulasinabung', 'userprofile', 'subscribe', 'virtualaccount'];
 
-            if (in_array($page, $accountMgmt)) {
+            if(in_array($page, $accountMgmt)){
                 include $page . '.php';
             }
             // tambahin in array buat else yg ini
-            else if (in_array($page, $regularPages)) {
+            else if(in_array($page, $regularPages)) {
                 include 'components/html-navbar.php';
                 include $page . '.php';
                 include 'components/html-footer.php';
-            } else {
+            }
+
+            else {
                 alertRedirect('Error', 'Halaman tidak ditemukan', './', 'Ok');
             }
-        } else {
+        }
+
+        else {
             include 'components/html-navbar.php';
             include 'homepage.php';
             include 'components/html-footer.php';
@@ -106,7 +108,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     }
     ?>
 
-    <?php include 'components/html-top.php' ?>
+    <?php include 'components/html-top.php'?>
 
     <!-- AOS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -117,5 +119,4 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
-
 </html>
