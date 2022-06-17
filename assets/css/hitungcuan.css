@@ -961,8 +961,9 @@ footer a:hover {
   }
 
   .news-image img {
-    height: 550px;
-    object-fit: cover;
+    /* Coba */
+    height: 730px;
+    object-fit: contain;
     /* object-fit: contain; */
   }
 

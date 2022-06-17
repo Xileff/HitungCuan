@@ -1,36 +1,58 @@
-$(document).ready(function () {
-  loadNews();
-  $("#inputNews").keyup(function () {
+$(document).ready(function() {
+  loadNews()
+  $("#inputNews").keyup(function() {
     const keyword = $(this).val();
-    console.log(keyword);
+    console.log(keyword)
     loadNews(keyword);
-  });
+  })
 
-  function loadNews(keyword = "*") {
+  function loadNews(keyword) {
     $.ajax({
       type: "GET",
       url: "httprequest/response/getNews.php",
-      data: { val: keyword },
+      data: { val: (keyword == null ? '*' : keyword) },
+      dataType: 'JSON',
       success: function (response) {
-        $("#newsmaincontainer").html(response);
+        result = ``;
+        let rowNums = Math.ceil(response.length / 4);
+        // store response.length in rowNums, as the value will decrease with each iteration because of response.shift()
+        for(let row = 0; row < rowNums; row++){
+            result += `
+            <section class="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-news justify-content-start w-100">
+            ${
+                (function(){
+                    let cols = ``;
+                    // store response.length in colNum, as the value will decrease with each iteration because of response.shift()
+                    let colNum = response.length;
+                    for(let col = 0; col < (colNum >= 4 ? 4 : colNum); col++){
+                        const newsData = response.shift()   
+                        // shift() will decrease array length
+                        cols += `
+                        <div class="col p-2">
+                            <a href="?page=newscontent&id=${newsData.id}">
+                                <div class="card card-news h-100">
+                                    <img src="assets/images/news/${newsData.gambar}" class="card-img-top" alt="${newsData.gambar}">
+                                    <div class="card-body card-news-body w-100">
+                                        <h5 class="card-title news-title general-link hvr-underline-from-left">${newsData.judul_berita}</h5>
+                                        <p class="card-text news-date">${newsData.tanggal_rilis}</p>
+                                    </div>
+                                    <span class="card-news-author montserrat align-bottom px-3 pb-2">Author : ${newsData.id_author}</span>
+                                </div>
+                            </a>
+                        </div>
+                        `
+                    }
+                    return cols;
+                })()
+            }
+            </section>
+            `
+
+            $('#newsList').html(result);
+        }
       },
-    });
+    })
   }
-});
-
-// loadNews('*');
-
-// function loadNews(keyword = '*'){
-//     const ajax = new XMLHttpRequest();
-//     ajax.onreadystatechange = function () {
-//         if(this.status === 200 && this.readyState === 4) {
-//             const result = this.responseText;
-
-//             const container = document.getElementById('newsmaincontainer');
-//             container.innerHTML = result;
-//         }
-//     }
-
-//     ajax.open("GET", "httprequest/response/getNews.php", true)
-//     ajax.send()
-// }
+})
+// $.each(response, (i, r) => console.log(r));
+// response.shift()

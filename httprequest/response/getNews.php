@@ -12,10 +12,8 @@ if ($val === '*') {
     $keyword = $val;
     $news = $conn->query("SELECT * FROM news WHERE judul_berita LIKE '%$keyword%'");
 }
-
 while ($n = $news->fetch_assoc()) {
     $result[] = $n;
 }
 
 echo json_encode($result);
-?>
