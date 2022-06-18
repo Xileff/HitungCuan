@@ -76,10 +76,13 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
             $userId = $conn->query("SELECT id FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
 
             // Jika ada subscription, cek apakah masanya habis
-            $subsExpireDate = $conn->query("SELECT expire_date FROM subscription WHERE id_user = $userId")->fetch_assoc()['expire_date'];
+            $subscription = $conn->query("SELECT * FROM subscription WHERE id_user = $userId");
+            if ($subscription->num_rows === 1) {
+                $subsExpireDate = $conn->query("SELECT expire_date FROM subscription WHERE id_user = $userId")->fetch_assoc()['expire_date'];
 
-            if ($subsExpireDate === date('Y-m-d')) {
-                $conn->query("DELETE FROM subscription WHERE id_user = $userId");
+                if ($subsExpireDate === date('Y-m-d')) {
+                    $conn->query("DELETE FROM subscription WHERE id_user = $userId");
+                }
             }
         }
 
