@@ -2,7 +2,6 @@ $(document).ready(function() {
   loadNews()
   $("#inputNews").keyup(function() {
     const keyword = $(this).val();
-    console.log(keyword)
     loadNews(keyword);
   })
 
@@ -54,5 +53,3 @@ $(document).ready(function() {
     })
   }
 })
-// $.each(response, (i, r) => console.log(r));
-// response.shift()

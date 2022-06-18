@@ -2,27 +2,6 @@
 if (isset($_SESSION['admin']) || isset($_SESSION['user'])) {
     header("Location: ./");
 }
-
-if (isset($_POST["login"])) {
-    $username = htmlspecialchars($_POST['username']);
-    $password = htmlspecialchars($_POST['password']);
-
-    if (login('admin', $username, $password)) {
-        $_SESSION['admin'] = true;
-        $_SESSION['username'] = $username;
-        header("Location: ./?page=news&action=none");
-    } else if (login('users', $username, $password)) {
-        $_SESSION['user'] = true;
-        $_SESSION['username'] = $username;
-        if (isset($_POST['rememberme'])) {
-            $_SESSION['remember'] = true;
-        }
-        header("Location: ./?page=homepage");
-
-    } else {
-        alertError('Gagal login', 'Data salah', 'Ok');
-    }
-}
 ?>
 
 <body id="login-body" style="z-index: 1;">
@@ -45,7 +24,7 @@ if (isset($_POST["login"])) {
                             <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="rememberme">
                             <p class="mx-1">Remember Me</p>
                         </div>
-                        <button id="btnLogin" class="w-75 bg-dark align-center mt-0 p-2 mx-auto montserrat" type="submit" name="login">Log In</button>
+                        <button id="btnLogin" class="w-75 bg-dark align-center mt-0 p-2 mx-auto montserrat" type="submit" name="submit">Log In</button>
                     </form>
                 </div>
             </div>
@@ -64,3 +43,4 @@ if (isset($_POST["login"])) {
         }
     });
 </script>
+<script src="httprequest/request/postLogin.js"></script>

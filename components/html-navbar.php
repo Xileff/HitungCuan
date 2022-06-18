@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-expand-xl fixed-top p-3 shadow-sm">
     <!-- Navbar intinya : Brand, button, konten -->
     <!-- Brand -->
@@ -23,12 +22,12 @@
             <li class="nav-item px-2 pt-1">
                 <a href="?page=cuancademy" class="nav-link">CuanCademy</a>
             </li>
-            <?php if (!isset($_SESSION["user"])):?>
+            <?php if (!isset($_SESSION["user"])) : ?>
                 <li class="nav-item" id="nav-item-login">
                     <a href="?page=login" class="nav-link w-100" id="nav-link-login">Log In</a>
                 </li>
             <?php endif ?>
-            <?php if (isset($_SESSION["user"])):?>
+            <?php if (isset($_SESSION["user"])) : ?>
                 <?php $user = $conn->query("SELECT * FROM users WHERE username='" . $_SESSION["username"] . "'")->fetch_assoc() ?>
                 <li class="nav-item px-2 pb-1 pt-1">
                 <li class="nav-item dropdown">

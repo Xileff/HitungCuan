@@ -55,7 +55,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
 <body>
     <?php
     // Admin UI
-    if (isset($_SESSION['admin'])) {
+    if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
         include 'components/html-adminnavbar.php';
         $page = $_GET['page'];
         $actions = ['add', 'edit', 'delete'];
