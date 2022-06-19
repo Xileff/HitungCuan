@@ -130,9 +130,3 @@ if (isset($_POST['submit'])) {
         }
     }
 </script>
-
-<!-- 
-Mysql time format 
-DATETIME - format: YYYY-MM-DD HH:MI:SS.
-php : date("Y-m-d H:i:s")
- -->

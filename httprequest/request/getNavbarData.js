@@ -12,7 +12,6 @@ $(document).ready(function(){
                 </li>`
             }
             else {
-                console.log(response)
                 result = `
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle d-flex flex-row align-items-center" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
