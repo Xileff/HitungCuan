@@ -89,9 +89,9 @@ function register($name, $username, $email, $password)
 {
     global $conn;
 
-    $name = htmlspecialchars($name);
-    $username = htmlspecialchars($username);
-    $email = htmlspecialchars($email);
+    $name = filter_var(htmlspecialchars(stripslashes($name)), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $username = filter_var(htmlspecialchars(stripslashes($username)), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $email = filter_var(htmlspecialchars(stripslashes($email)), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     $conn->query("INSERT INTO users VALUES ('','$name','$username','$email','$password','','','nophoto.jpg','" . date('Y-m-d') . "')");

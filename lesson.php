@@ -135,23 +135,6 @@ if (isset($_POST['submit'])) {
 </body>
 <!-- Ajax script for side nav lesson list -->
 <script src="assets/js/sidenav.js"></script>
-<script>
-    // const searchLesson = document.getElementById('searchLesson');
-    // const inputSubject = document.getElementById('inputSubject');
-    // const lessonList = document.getElementById('lessonList');
-
-    // searchLesson.addEventListener('keyup', function(){
-    //     const xhr = new XMLHttpRequest();
-    //     xhr.onreadystatechange = function(){
-    //         if(this.readyState === 4 && this.status === 200){
-    //             lessonList.innerHTML = xhr.responseText;
-    //         }
-    //     }
-
-    //     xhr.open("GET", `logic/ajax/lessonList.php?lesson=${searchLesson.value}&idSubject=${inputSubject.value}`, true);
-    //     xhr.send();
-    // })
-</script>
 
 <!-- Script for asking question -->
 <script>

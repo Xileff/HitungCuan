@@ -1,11 +1,11 @@
 <?php
 
 if (isset($_POST['register'])) {
-    $fullName = stripslashes(htmlspecialchars($_POST['nama']));
-    $username = stripslashes(htmlspecialchars($_POST['username']));
-    $email = stripslashes(htmlspecialchars($_POST['email']));
-    $password = stripslashes(htmlspecialchars($_POST['password']));
-    $confirmPassword = stripslashes(htmlspecialchars($_POST['confirmPassword']));
+    $fullName = filter_var(stripslashes(htmlspecialchars($_POST['nama'])), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $username = filter_var(stripslashes(htmlspecialchars($_POST['username'])), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $email = filter_var(stripslashes(htmlspecialchars($_POST['email'])), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $password = filter_var(stripslashes(htmlspecialchars($_POST['password'])), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $confirmPassword = filter_var(stripslashes(htmlspecialchars($_POST['confirmPassword'])), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
     // cek panjang password
     if (strlen($password) >= 8 && strlen($password) <= 17) {
@@ -34,7 +34,7 @@ if (isset($_POST['register'])) {
                 <div class="login-box mx-auto pt-4 pb-4 px-2 mt-5" style="width: 100%; max-width: 500px;">
                     <h1 style="color: black;" class="montserrat fw-bold text-center">Hello there.</h1>
                     <hr style="color: black;">
-                    <form class="pt-1 pb-3 d-flex flex-column justify-content-center" style="color: black;" action="" method="POST">
+                    <form class="pt-1 pb-3 d-flex flex-column justify-content-center" style="color: black;" action="" method="POST" id="formRegister">
                         <h3 class="montserrat text-center">Pendaftaran Akun Baru</h3>
                         <input class="form-control montserrat w-75 mt-3 mb-2 mx-auto" id="loginTxtNama" placeholder="Nama Lengkap" name="nama" autocomplete="off" />
                         <p id="txtUsedUsername" class="smoothTransition invisible faderight noheight mt-3 mb-0 mx-auto w-75 text-danger"></p>
