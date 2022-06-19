@@ -140,9 +140,12 @@ function tgl_indo($date)
 function isPremiumUser($userId)
 {
     global $conn;
-    $subscriptionData = $conn->query("SELECT * FROM subscription WHERE id_user = $userId")->num_rows;
-
-    return $subscriptionData === 1 ? true : false;
+    $subscriptionData = $conn->query("SELECT * FROM subscription WHERE id_user = $userId");
+    $result = ['premium' => false];
+    if ($subscriptionData->num_rows === 1) {
+        $result['premium'] = true;
+    }
+    return $result;
 }
 
 function getLoggedUserData()
@@ -150,19 +153,12 @@ function getLoggedUserData()
     global $conn;
     if (isset($_SESSION['username'])) {
         $user = $conn->query("SELECT email, foto, id, jenis_kelamin, nama, tgl_gabung, tgl_lahir, username FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc();
+        $premium = isPremiumUser($user['id']);
+        $user = array_merge($user, $premium);
         $va = $conn->query("SELECT id_packet, payment FROM virtual_account WHERE id_user = '" . $user['id'] . "'");
 
-        $result = $va->num_rows === 1 ? array_merge($user, $va->fetch_assoc()) : $user;
-        return $result;
+        return $va->num_rows === 1 ? array_merge($user, $va->fetch_assoc()) : $user;
     }
-}
-
-function getVa()
-{
-    global $conn;
-    if (isset($_SESSION['username'])) {
-        return $conn->query("SELECT * FROM virtual_account WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc();
-    } else return false;
 }
 
 function hideError()

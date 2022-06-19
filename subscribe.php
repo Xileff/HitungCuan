@@ -1,15 +1,15 @@
-<?php 
+<?php
 global $conn;
 
 $packetId = $_GET['packetId'];
 
-if(!in_array($_GET['packetId'], [1,2,3])){
+if (!in_array($_GET['packetId'], [1, 2, 3])) {
     alertRedirect('Not found', 'Data tidak ditemukan', './', 'Ok');
     return;
 }
 
 $idUser = $conn->query("SELECT id FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
-if(isPremiumUser($idUser)){
+if (isPremiumUser($idUser)['premium'] == true) {
     alertRedirect('Error', 'Anda sudah menjadi premium member', './', 'Ok');
     return;
 }
@@ -18,14 +18,14 @@ $rawData = json_encode($conn->query("SELECT * FROM packet WHERE id = $packetId")
 $packet = json_decode($rawData);
 
 // user pencet beli
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     $idUser = $conn->query("SELECT id FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
-    if(!isset($_SESSION['user'])){
+    if (!isset($_SESSION['user'])) {
         alertRedirect('Anda belum login', 'Login terlebih dahulu untuk melakukan pembayaran', './?page=login', 'Ok');
         return;
     }
 
-    if($va = $conn->query("SELECT * FROM virtual_account WHERE id_user = $idUser")->fetch_assoc()){
+    if ($va = $conn->query("SELECT * FROM virtual_account WHERE id_user = $idUser")->fetch_assoc()) {
         // $va = $conn->query("SELECT * FROM virtual_account WHERE id_user = $idUser")->fetch_assoc();
         $vaPacketId = $va['id_packet'];
         $vaPayment = $va['payment'];
@@ -36,8 +36,6 @@ if(isset($_POST['submit'])){
     $paymentMethod = $_POST['paymentMethod'];
 
     header("Location:?page=virtualaccount&idpacket=$packetId&payment=$paymentMethod");
-
-
 }
 
 ?>
@@ -53,15 +51,15 @@ if(isset($_POST['submit'])){
             <tbody>
                 <tr class="border-none">
                     <td class="text-start text-light">Nama paket :</td>
-                    <td class="text-end font-green fw-bold"><?=$packet->nama?></td>
+                    <td class="text-end font-green fw-bold"><?= $packet->nama ?></td>
                 </tr>
                 <tr class="border-none">
                     <td class="text-start text-light">Total harga :</td>
-                    <td class="text-end font-green fw-bold"><?=rupiah($packet->harga)?></td>
+                    <td class="text-end font-green fw-bold"><?= rupiah($packet->harga) ?></td>
                 </tr>
                 <tr class="border-none">
                     <td class="text-start text-light">Aktif hingga :</td>
-                    <td class="text-end font-green fw-bold"><?=tgl_indo(date('Y-m-d', strtotime('+' . $packet->durasi .'days')))?></td>
+                    <td class="text-end font-green fw-bold"><?= tgl_indo(date('Y-m-d', strtotime('+' . $packet->durasi . 'days'))) ?></td>
                 </tr>
             </tbody>
         </table>
@@ -76,13 +74,13 @@ if(isset($_POST['submit'])){
                         </label>
                     </div>
                     <div class="col form-check border-radius-10 col-payment hvr-float">
-                        <input class="form-check-input d-none" type="radio"  name="paymentMethod" id="bri" value="bri">
+                        <input class="form-check-input d-none" type="radio" name="paymentMethod" id="bri" value="bri">
                         <label class="form-check-label p-1 h-100" for="bri">
                             <img src="assets/images/subscription/bri.jpg" alt="bri" class="img-fluid  border-radius-10 h-100">
                         </label>
                     </div>
                     <div class="col form-check border-radius-10 col-payment hvr-float">
-                        <input class="form-check-input d-none" type="radio"  name="paymentMethod" id="gopay" value="gopay">
+                        <input class="form-check-input d-none" type="radio" name="paymentMethod" id="gopay" value="gopay">
                         <label class="form-check-label p-1 h-100" for="gopay">
                             <img src="assets/images/subscription/gopay.jpg" alt="gopay" class="img-fluid  border-radius-10 h-100">
                         </label>
@@ -100,7 +98,7 @@ if(isset($_POST['submit'])){
     const radioValue = document.getElementsByName('paymentMethod');
     for (const colPayment of colPayments) {
         colPayment.addEventListener('click', e => {
-            if(e.target.tagName === 'IMG') {
+            if (e.target.tagName === 'IMG') {
                 e.target.parentNode.click();
                 showSelectedPayment();
             }
@@ -112,22 +110,21 @@ if(isset($_POST['submit'])){
     btnSubmit.addEventListener('click', e => {
         let chosen = false;
         radioValue.forEach(r => {
-            if(r.checked) chosen = true;
+            if (r.checked) chosen = true;
         })
 
-        if(!chosen) {
+        if (!chosen) {
             alertError('Error', 'Anda belum memilih pembayaran', 'Ok');
             e.preventDefault();
         }
     })
 
-    function showSelectedPayment(){
+    function showSelectedPayment() {
         const radioValue = document.getElementsByName('paymentMethod');
         for (const radioBtn of radioValue) {
-            if(radioBtn.checked){
+            if (radioBtn.checked) {
                 radioBtn.nextElementSibling.firstElementChild.classList.add('selected-payment');
-            }
-            else {
+            } else {
                 radioBtn.nextElementSibling.firstElementChild.classList.remove('selected-payment');
             }
         }
