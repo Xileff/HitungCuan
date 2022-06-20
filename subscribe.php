@@ -1,49 +1,49 @@
 <?php
-global $conn;
+// global $conn;
+// $packetId = $_GET['packetId'];
 
-$packetId = $_GET['packetId'];
+// if (!in_array($_GET['packetId'], [1, 2, 3])) {
+//     alertRedirect('Not found', 'Data tidak ditemukan', './', 'Ok');
+//     return;
+// }
 
-if (!in_array($_GET['packetId'], [1, 2, 3])) {
-    alertRedirect('Not found', 'Data tidak ditemukan', './', 'Ok');
-    return;
-}
+// $idUser = $conn->query("SELECT id FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
+// if (isPremiumUser($idUser)['premium'] == true) {
+//     alertRedirect('Error', 'Anda sudah menjadi premium member', './', 'Ok');
+//     return;
+// }
 
-$idUser = $conn->query("SELECT id FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
-if (isPremiumUser($idUser)['premium'] == true) {
-    alertRedirect('Error', 'Anda sudah menjadi premium member', './', 'Ok');
-    return;
-}
+// $rawData = json_encode($conn->query("SELECT * FROM packet WHERE id = $packetId")->fetch_assoc());
+// $packet = json_decode($rawData);
 
-$rawData = json_encode($conn->query("SELECT * FROM packet WHERE id = $packetId")->fetch_assoc());
-$packet = json_decode($rawData);
+// // user pencet beli
+// if (isset($_POST['submit'])) {
+//     $idUser = $conn->query("SELECT id FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
+//     if (!isset($_SESSION['user'])) {
+//         alertRedirect('Anda belum login', 'Login terlebih dahulu untuk melakukan pembayaran', './?page=login', 'Ok');
+//         return;
+//     }
 
-// user pencet beli
-if (isset($_POST['submit'])) {
-    $idUser = $conn->query("SELECT id FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
-    if (!isset($_SESSION['user'])) {
-        alertRedirect('Anda belum login', 'Login terlebih dahulu untuk melakukan pembayaran', './?page=login', 'Ok');
-        return;
-    }
+//     if ($va = $conn->query("SELECT * FROM virtual_account WHERE id_user = $idUser")->fetch_assoc()) {
+//         $vaPacketId = $va['id_packet'];
+//         $vaPayment = $va['payment'];
+//         alertRedirect('Anda memiliki transaksi yang belum selesai', 'Memindahkan anda ke halaman pembayaran', "./?page=virtualaccount&idpacket=$vaPacketId&payment=$vaPayment", 'Ok');
+//         return;
+//     }
 
-    if ($va = $conn->query("SELECT * FROM virtual_account WHERE id_user = $idUser")->fetch_assoc()) {
-        // $va = $conn->query("SELECT * FROM virtual_account WHERE id_user = $idUser")->fetch_assoc();
-        $vaPacketId = $va['id_packet'];
-        $vaPayment = $va['payment'];
-        alertRedirect('Anda memiliki transaksi yang belum selesai', 'Memindahkan anda ke halaman pembayaran', "./?page=virtualaccount&idpacket=$vaPacketId&payment=$vaPayment", 'Ok');
-        return;
-    }
+//     $paymentMethod = $_POST['paymentMethod'];
 
-    $paymentMethod = $_POST['paymentMethod'];
-
-    header("Location:?page=virtualaccount&idpacket=$packetId&payment=$paymentMethod");
-}
+//     header("Location:?page=virtualaccount&idpacket=$packetId&payment=$paymentMethod");
+// }
 
 ?>
+
 <style scoped>
     .selected-payment {
         border: 0.5rem solid rgb(117, 249, 145);
     }
 </style>
+<script src="httprequest/request/getPacket.js" type="module"></script>
 <div class="container mt-5 pt-5">
     <section class="border-hitungcuan border-radius-10 p-3">
         <p class="fs-3 fw-bold text-center poppins">Rincian pembayaran</p>

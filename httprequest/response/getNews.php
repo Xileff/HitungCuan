@@ -3,17 +3,19 @@ require '../../logic/dbconn.php';
 require '../../logic/functions.php';
 
 $val = $_GET['val'];
-$news = [];
+$newsList = [];
 $result = [];
 
 if ($val === '*') {
-    $news = $conn->query("SELECT * FROM news");
+    $newsList = $conn->query("SELECT * FROM news");
 } else {
     $keyword = $val;
-    $news = $conn->query("SELECT * FROM news WHERE judul_berita LIKE '%$keyword%'");
+    $newsList = $conn->query("SELECT * FROM news WHERE judul_berita LIKE '%$keyword%'");
 }
-while ($n = $news->fetch_assoc()) {
-    $result[] = $n;
+while ($news = $newsList->fetch_assoc()) {
+    $author = $conn->query("SELECT nama FROM author WHERE id = " . $news['id_author'])->fetch_assoc()['nama'];
+    $news['author'] = $author;
+    $result[] = $news;
 }
 
 echo json_encode($result);

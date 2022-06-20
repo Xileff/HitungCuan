@@ -4,15 +4,8 @@ $(document).ready(function(){
         url: 'httprequest/response/postUserData.php',
         dataType: 'JSON',
         success: function(response) {
-            result = ``
-            if(!response){
-                result = `
-                <li class="nav-item" id="nav-item-login">
-                    <a href="?page=login" class="nav-link w-100" id="nav-link-login">Log In</a>
-                </li>`
-            }
-            else {
-                result = `
+            if(response){
+                $('#ajaxNavbar').html(`
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle d-flex flex-row align-items-center" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="ratio ratio-1x1 d-inline-block mx-2" style="width: 2.1rem;">
@@ -40,11 +33,14 @@ $(document).ready(function(){
                             }
                         </ul>
                     </li>
+                `)
+            } else {
+                $('#ajaxNavbar').html(`
+                <li class="nav-item" id="nav-item-login">
+                    <a href="?page=login" class="nav-link w-100" id="nav-link-login">Log In</a>
                 </li>
-                `
+                `)
             }
-
-            $('#ajaxNavbar').html(result)
         }
     })
 })

@@ -1,6 +1,6 @@
-<script src="httprequest/request/getLessonDetail.js"></script>
-<script src="httprequest/request/getLessonList.js"></script>
-<script src="httprequest/request/postAskQuestion.js"></script>
+<script src="httprequest/request/getLessonDetail.js" type="module"></script>
+<script src="httprequest/request/getLessonList.js" type="module"></script>
+<script src="httprequest/request/postAskQuestion.js" type="module"></script>
 
 <body>
     <div id="lessonContainerAll">

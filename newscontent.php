@@ -1,4 +1,4 @@
-<script src="httprequest/request/getNewsContent.js"></script>
+<script src="httprequest/request/getNewsContent.js" type="module"></script>
 
 <body>
     <div class="container mt-5 pt-5" id="newsContainer">
@@ -18,7 +18,7 @@
             </div>
         </form>
 
-        <script src="httprequest/request/getNewsComment.js"></script>
+        <script src="httprequest/request/getNewsComment.js" type="module"></script>
         <!-- List komentar -->
         <section id="listComment">
         </section>

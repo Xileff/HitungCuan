@@ -1,3 +1,5 @@
+import { getUrlParameter } from './mixins.js'
+
 $(document).ready(function(){
     let url_idsubject = getUrlParameter('subject')
     loadLessons()
@@ -14,7 +16,7 @@ $(document).ready(function(){
             dataType: 'JSON',
             success: function(response){
                 $('#subjectName').html(response.lessonName)
-                lessons = ``
+                let lessons = ``
 
                 if(response.success == true){
                     $.each(response.lessons, (i, r) => {
@@ -36,21 +38,5 @@ $(document).ready(function(){
                 $('#lessonList').html(lessons)
             }
         })
-    }
-
-    function getUrlParameter(sParam) {
-        let sPageURL = window.location.search.substring(1),
-            sURLVariables = sPageURL.split('&'),
-            sParameterName,
-            i;
-    
-        for (i = 0; i < sURLVariables.length; i++) {
-            sParameterName = sURLVariables[i].split('=');
-    
-            if (sParameterName[0] === sParam) {
-                return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-            }
-        }
-        return false;
     }
 })
