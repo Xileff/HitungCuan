@@ -1,4 +1,4 @@
-<footer class="footer mt-5 pt-5" style="background-color: rgb(19, 21, 23);">
+<footer class="footer mt-5 pt-5" style="background-color: rgb(19, 21, 23);" id="footer">
     <div class="container-fluid">
         <div class="container">
             <div class="row cols row-cols-1 row-cols-sm-2 row-cols-md-4 d-flex flex-row align-items-start">
