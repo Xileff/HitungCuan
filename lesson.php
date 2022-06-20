@@ -15,10 +15,6 @@ if (!isPremiumUser($user['id'])) {
 $idsubject = $_GET['subject'];
 $idlesson = $_GET['idlesson'];
 
-// $subjectName = $conn->query("SELECT nama_subject FROM subject WHERE id = $idsubject")->fetch_assoc()['nama_subject'];
-// $lessonsList = $conn->query("SELECT * FROM lessons WHERE id_subject = $idsubject");
-// $thisLesson = $conn->query("SELECT * FROM lessons WHERE id = $idlesson AND id_subject = $idsubject")->fetch_assoc();
-
 // input pertanyaan
 if (isset($_POST['submit'])) {
     $inputQuestion = htmlspecialchars($_POST['question']);
