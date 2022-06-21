@@ -16,7 +16,21 @@ $(document).ready(function(){
                     $('#containerCuancademy').html(`<h1 class="p-5">Hanya untuk user premium<h1>`)
                     errorRedirect('Oops', 'Fitur ini hanya tersedia untuk akun premium', 'Ok', '?page=homepage')
                     break
+                case 2:
+                    getNewestLessons().then((response) => {
+                        $('#containerSubjectIncome').attr('href', `?page=lesson&subject=1&idlesson=${response.s1NewestLesson}`)
+                        $('#containerSubjectExpenses').attr('href', `?page=lesson&subject=2&idlesson=${response.s2NewestLesson}`)
+                        $('#containerSubjectInvestment').attr('href', `?page=lesson&subject=3&idlesson=${response.s3NewestLesson}`)
+                    })
             }
         }
     })
+
+    function getNewestLessons(){
+        return $.ajax({
+            type: 'POST',
+            url: 'httprequest/response/getNewestLesson.php',
+            dataType: 'JSON'
+        })
+    }
 })
