@@ -7,12 +7,14 @@ $(document).ready(function(){
             const code = response.code
             switch(code){
                 case 0:
+                    $('#footer').hide()
                     $('#containerCuancademy').html(`<h1 class="p-5">Belum login<h1>`)
-                    alertRedirect('Belum Login', 'Anda harus login terlebih dahulu', '?page=login', 'Ok')
+                    errorRedirect('Oops', 'Anda harus login terlebih dahulu', 'Ok', '?page=login', )
                     break
                 case 1:
+                    $('#footer').hide()
                     $('#containerCuancademy').html(`<h1 class="p-5">Hanya untuk user premium<h1>`)
-                    alertRedirect('Maaf', 'Fitur ini hanya tersedia untuk akun premium', 'Ok')
+                    errorRedirect('Oops', 'Fitur ini hanya tersedia untuk akun premium', 'Ok', '?page=homepage')
                     break
             }
         }

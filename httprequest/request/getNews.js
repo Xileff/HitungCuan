@@ -33,7 +33,7 @@ $(document).ready(function() {
                                     <img src="assets/images/news/${newsData.gambar}" class="card-img-top" alt="${newsData.gambar}">
                                     <div class="card-body card-news-body w-100">
                                         <h5 class="card-title news-title general-link">${newsData.judul_berita}</h5>
-                                        <p class="card-text news-date">${newsData.tanggal_rilis}</p>
+                                        <p class="card-text news-date fs-6">${newsData.tanggal_rilis}</p>
                                     </div>
                                     <span class="card-news-author montserrat align-bottom px-3 pb-2">Author : ${newsData.author}</span>
                                 </div>

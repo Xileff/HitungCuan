@@ -11,7 +11,7 @@ $(document).ready(function(){
                 const code = response.code
                 switch(code){
                     case 0:
-                        alertRedirect('Anda belum login', 'Login terlebih dahulu sebelum memberikan saran dan masukan', '?page=login', 'Login');
+                        errorRedirect('Anda belum login', 'Login terlebih dahulu sebelum memberikan saran dan masukan', 'Login', '?page=login');
                         break;
                     case 1:
                         alertError('Gagal', 'Feedback gagal diupload, silakan coba lagi', 'Ok');

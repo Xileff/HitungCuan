@@ -15,6 +15,7 @@ if ($val === '*') {
 while ($news = $newsList->fetch_assoc()) {
     $author = $conn->query("SELECT nama FROM author WHERE id = " . $news['id_author'])->fetch_assoc()['nama'];
     $news['author'] = $author;
+    $news['tanggal_rilis'] = tgl_indo($news['tanggal_rilis']);
     $result[] = $news;
 }
 
