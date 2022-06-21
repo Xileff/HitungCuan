@@ -20,7 +20,8 @@ $(document).ready(function(){
                     url: 'httprequest/response/getGenerateVA.php',
                     data: {
                         payment: url_payment,
-                        packetId: url_packetId
+                        packetId: url_packetId,
+                        new: true
                     },
                     dataType: 'JSON',
                     success: function(response){
@@ -33,13 +34,29 @@ $(document).ready(function(){
                             $('#txtVaExpire').html(va.expire)
                         }
                         else {
-                            errorRedirect('Error', 'Kesalahan server, silakan coba lagi', 'Ok', `?page=virtualaccount&packetId=${url_packetId}&paymentId=${url_payment}`)
+                            switch(response.error){
+                                case 0:
+                                    errorRedirect('Error', 'Pembayaran tidak valid', 'Ok', `?page=homepage`)
+                                    break
+                                case 1:
+                                    errorRedirect('Error', 'Paket tidak valid', 'Ok', `?page=homepage`)
+                                    break
+                                case 2:
+                                    errorRedirect('Error', 'Kesalahan server', 'Ok', `?page=homepage`)
+                                    break
+                                case 3:
+                                    errorRedirect('Error', 'Invalid access', 'Ok', `?page=homepage`)
+                                    break
+                            }
                         }
                     }
                 })
                 break
             case 2:
                 errorRedirect('Oops', 'Anda sudah menjadi user premium', 'Ok', '?page=homepage')
+                break
+            case 3:
+                errorRedirect('Error', 'Invalid access', 'Ok', '?page=homepage')
                 break
         }
     })

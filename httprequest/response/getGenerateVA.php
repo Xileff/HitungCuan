@@ -6,6 +6,7 @@ require '../../logic/functions.php';
 // 0. Pembayaran tidak valid => redirect ke subscribe.php
 // 1. Paket tidak valid => redirect ke subscribe.php
 // 2. Kesalahan server => refresh
+// 3. Invalid access
 
 $result = ['success' => false];
 
@@ -20,7 +21,6 @@ $validPacket = [1, 2, 3];
 if (!in_array($_GET['packetId'], $validPacket)) {
     $result['error'] = 1;
     echo json_encode($result);
-    header("Location: ./");
     return;
 }
 
@@ -56,8 +56,14 @@ if ($va->num_rows === 1) {
     }
 }
 
-// jika tidak ada/sudah expire, generate yg baru
+// jika tidak ada/sudah expire, kemudian di GET direquest new, maka generate yg baru.
 else if ($va->num_rows !== 1 || !$va) {
+    $new = $_GET['new'];
+    if ($new !== true) {
+        $result['error'] = 3;
+        echo json_encode($result);
+        return;
+    }
     $generatedVa = "8" . strval(hexdec(uniqid()));
     $conn->query("INSERT INTO virtual_account VALUES('$generatedVa', $userId, $packetId, '$payment', " . $packet['harga'] . ", '" . date("Y-m-d", strtotime("+1 days")) . "')");
 
