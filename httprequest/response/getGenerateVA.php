@@ -58,8 +58,8 @@ if ($va->num_rows === 1) {
 
 // jika tidak ada/sudah expire, kemudian di GET direquest new, maka generate yg baru.
 else if ($va->num_rows !== 1 || !$va) {
-    $new = $_GET['new'];
-    if ($new !== true) {
+    $new = (int) $_GET['new'];
+    if ($new !== 1) {
         $result['error'] = 3;
         echo json_encode($result);
         return;

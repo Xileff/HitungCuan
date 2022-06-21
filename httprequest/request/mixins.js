@@ -45,7 +45,7 @@ function loadQuestions(url_idlesson){
 
                             ${(function(){
                                 if(q.answered == 1){
-                                    answerData = q.answerData
+                                    const answerData = q.answerData
                                     return `
                                     <div class="row lesson-answer border-hitungcuan rounded-3 p-2" style="background-color: #1f1f1e;">
                                         <p class="fs-6 mb-0">Admin ${answerData.username}'s answer</p>

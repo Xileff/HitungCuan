@@ -21,13 +21,12 @@ $(document).ready(function(){
                     data: {
                         payment: url_payment,
                         packetId: url_packetId,
-                        new: true
+                        new: 1
                     },
                     dataType: 'JSON',
                     success: function(response){
                         if(response.success){
                             const va = response.va
-                            console.log(va)
                             $('#formVirtualAccount').show()
                             $('#txtVaId').html(va.id)
                             $('#imgPayment').attr('src', `assets/images/subscription/${va.payment}.jpg`)
