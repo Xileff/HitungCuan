@@ -76,4 +76,12 @@ function loadQuestions(url_idlesson){
     })
 }
 
-export { getUrlParameter, loadQuestions }
+function checkLoginStatus(){
+    return $.ajax({
+        type: 'POST',
+        url: 'httprequest/response/checkAccount.php',
+        dataType: 'JSON'
+    })
+}
+
+export { getUrlParameter, loadQuestions, checkLoginStatus }

@@ -13,17 +13,18 @@ $(document).ready(function(){
             dataType: 'JSON',
             success: function(response){
                 if(response.error === undefined){
-                    successRedirect('Generate VA', 'Silakan lanjutkan pembayaran anda', 'Ok', `${response.redirect}`);
+                    const redirect = response.redirect
+                    successRedirect('Generate VA', 'Silakan lanjutkan pembayaran anda', 'Ok', `?page=virtualaccount&packetId=${redirect.packetId}&payment=${redirect.payment}`);
                 }
                 else {
-                    error = response.error
+                    let error = response.error
                     switch(error){
                         case 0:
                             errorRedirect('Belum login', 'Silakan login terlebih dahulu', 'Ok', '?page=login')
                             break
                         case 1:
-                            existingVa = response.existing_va
-                            errorRedirect('Error', 'Anda memiliki transaksi yang belum selesai', 'Ok', `./?page=virtualaccount&idpacket=${existingVa.id}&payment=${existingVa.paymentMethod}`);
+                            let existingVa = response.existing_va
+                            errorRedirect('Error', 'Anda memiliki transaksi yang belum selesai', 'Ok', `./?page=virtualaccount&packetId=${existingVa.id}&payment=${existingVa.paymentMethod}`);
                             break
                     }
                 }
