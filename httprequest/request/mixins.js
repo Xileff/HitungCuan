@@ -84,4 +84,12 @@ function checkLoginStatus(){
     })
 }
 
-export { getUrlParameter, loadQuestions, checkLoginStatus }
+function getUserData(){
+    return $.ajax({
+        type: 'POST',
+        url: 'httprequest/response/postUserData.php',
+        dataType: 'JSON'
+    })
+}
+
+export { getUrlParameter, loadQuestions, checkLoginStatus, getUserData }

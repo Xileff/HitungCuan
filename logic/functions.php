@@ -7,15 +7,17 @@ function uploadImage($image, $dir)
     $nameWithExtension = $image['name'];
     $size = $image['size'];
     $tmpName = $image['tmp_name'];
-    $result = false;
+    $result['success'] = false;
 
     if ($image['error'] === 4) {
-        alertRedirect('Error', 'Tidak ada gambar yang diupload', '', 'Ok');
+        // alertRedirect('Error', 'Tidak ada gambar yang diupload', '', 'Ok');
+        $result['error'] = 4;
         return $result;
     }
 
     if ($size > 1048576) {
-        alertRedirect('Error', 'Ukuran melebihi 1MB!', '', 'Ok');
+        $result['error'] = 3;
+        // alertRedirect('Error', 'Ukuran melebihi 1MB!', '', 'Ok');
         return $result;
     }
 
@@ -26,13 +28,15 @@ function uploadImage($image, $dir)
     $imageExtensions = ['jpg', 'png', 'jpeg'];
 
     if (!in_array($extension, $imageExtensions)) {
-        alertRedirect('Error', 'File bukan gambar!', '', 'Ok');
+        $result['error'] = 2;
+        // alertRedirect('Error', 'File bukan gambar!', '', 'Ok');
         return $result;
     }
 
     $name = uniqid() . "." . $extension;
     if (move_uploaded_file($tmpName, $dir . $name)) {
-        $result = $name;
+        $result['success'] = true;
+        $result['fileName'] = $name;
     }
 
     return $result;
