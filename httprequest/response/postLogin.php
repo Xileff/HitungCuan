@@ -11,7 +11,7 @@ if (login('tbl_admin', $username, $password)) {
     $_SESSION['admin'] = true;
     $_SESSION['username'] = $username;
     $result["success"] = true;
-    $result["url"] = "?page=news&action=none";
+    $result["url"] = "?page=news";
 } else if (login('tbl_users', $username, $password)) {
     $_SESSION['user'] = true;
     $_SESSION['username'] = $username;

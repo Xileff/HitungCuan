@@ -50,46 +50,10 @@ function remember($username)
     setcookie('key', hash('sha256', $user['username']), time() + 3600);
 }
 
-function alertError($heading, $message, $button)
-{
-    echo "
-    <script>
-        alertError('$heading', '$message', '$button');
-    </script>";
-    return false;
-}
-
 function rupiah($angka)
 {
     $hasil_rupiah = "Rp " . number_format($angka, 2, ',', '.');
     return $hasil_rupiah;
-}
-
-function alertErrorRefresh($heading, $message, $button)
-{
-    echo "
-    <script>
-        alertErrorRefresh('$heading', '$message', '$button');
-    </script>";
-    return false;
-}
-
-function alertSuccess($heading, $message, $button)
-{
-    echo "
-    <script>
-        alertSuccess('$heading', '$message', '$button');
-    </script>";
-    return false;
-}
-
-function alertRedirect($title, $text, $link, $confirmButtonText)
-{
-    echo "
-    <script>
-        alertRedirect('$title', '$text', '$link', '$confirmButtonText');
-    </script>
-    ";
 }
 
 function register($name, $username, $email, $password)

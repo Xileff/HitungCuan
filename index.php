@@ -58,14 +58,10 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
         include 'components/html-adminnavbar.php';
         $page = $_GET['page'];
-        $actions = ['add', 'edit', 'delete'];
-        $action = isset($_GET['action']) ? $_GET['action'] : 'none';
-        if ($action === 'none') {
+        if (in_array($page, ['feedback', 'lessons', 'logout', 'news', 'questions', 'users'])) {
             include 'administrator/' . $page . '.php';
-        } else if (in_array($action, $actions)) {
-            include 'administrator/crud/' . $action . $page . '.php';
         } else {
-            alertRedirect('Error', 'Tidak ada halaman tersebut', '?page=feedback&action=none', 'Ok');
+            header("Location: ./");
         }
     }
 

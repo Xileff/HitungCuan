@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 global $conn;
-$lessons = $conn->query("SELECT * FROM lessons");
+$lessons = $conn->query("SELECT * FROM tbl_lessons");
 ?>
 <div class="container mt-5 pt-5 montserrat">
     <h1 class="fw-bold text-center">Lessons</h1>
@@ -19,22 +19,22 @@ $lessons = $conn->query("SELECT * FROM lessons");
             </tr>
         </thead>
         <tbody>
-            <?php while($lesson = $lessons->fetch_assoc()):?>
+            <?php while ($lesson = $lessons->fetch_assoc()) : ?>
                 <tr>
-                    <td><?=$lesson["id"]?></td>
-                    <td><?=$lesson["id_subject"]?></td>
-                    <td><?=$lesson["judul"]?></td>
-                    <td><?=$lesson["tanggal"]?></td>
+                    <td><?= $lesson["id"] ?></td>
+                    <td><?= $lesson["id_subject"] ?></td>
+                    <td><?= $lesson["judul"] ?></td>
+                    <td><?= $lesson["tanggal"] ?></td>
                     <td class="p-2">
-                        <a href="?page=lessons&action=edit&id=<?=$lesson["id"]?>">
+                        <a href="?page=lessons&action=edit&id=<?= $lesson["id"] ?>">
                             <button class="btn btn-warning rounded w-100 mx-auto mb-1 p-1 px-3 text-center">Edit</button>
                         </a>
-                        <a href="?page=lessons&action=delete&id=<?=$lesson["id"]?>">
+                        <a href="?page=lessons&action=delete&id=<?= $lesson["id"] ?>">
                             <button class="btn btn-danger rounded w-100 mx-auto mb-1 p-1 px-3 text-center">Delete</button>
                         </a>
                     </td>
                 </tr>
-            <?php endwhile;?>
+            <?php endwhile; ?>
         </tbody>
     </table>
 </div>
