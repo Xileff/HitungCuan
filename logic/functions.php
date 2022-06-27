@@ -45,7 +45,7 @@ function uploadImage($image, $dir)
 function remember($username)
 {
     global $conn;
-    $user = $conn->query("SELECT id, username FROM users WHERE username = '$username'")->fetch_assoc();
+    $user = $conn->query("SELECT id, username FROM tbl_users WHERE username = '$username'")->fetch_assoc();
     setcookie('id', $user['id'], time() + 3600);
     setcookie('key', hash('sha256', $user['username']), time() + 3600);
 }
@@ -101,7 +101,7 @@ function register($name, $username, $email, $password)
     $email = filter_var(htmlspecialchars(stripslashes($email)), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $password = password_hash($password, PASSWORD_DEFAULT);
 
-    $conn->query("INSERT INTO users VALUES ('','$name','$username','$email','$password','','','nophoto.jpg','" . date('Y-m-d') . "')");
+    $conn->query("INSERT INTO tbl_users VALUES ('','$name','$username','$email','$password','','','nophoto.jpg','" . date('Y-m-d') . "')");
 
     return $conn->affected_rows;
 }
@@ -147,7 +147,7 @@ function tgl_indo($date)
 function isPremiumUser($userId)
 {
     global $conn;
-    $subscriptionData = $conn->query("SELECT * FROM subscription WHERE id_user = $userId");
+    $subscriptionData = $conn->query("SELECT * FROM tbl_subscription WHERE id_user = $userId");
     $result = ['premium' => false];
     if ($subscriptionData->num_rows === 1) {
         $result['premium'] = true;
@@ -159,10 +159,10 @@ function getLoggedUserData()
 {
     global $conn;
     if (isset($_SESSION['username'])) {
-        $user = $conn->query("SELECT email, foto, id, jenis_kelamin, nama, tgl_gabung, tgl_lahir, username FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc();
+        $user = $conn->query("SELECT email, foto, id, jenis_kelamin, nama, tgl_gabung, tgl_lahir, username FROM tbl_users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc();
         $premium = isPremiumUser($user['id']);
         $user = array_merge($user, $premium);
-        $va = $conn->query("SELECT id_packet, payment FROM virtual_account WHERE id_user = '" . $user['id'] . "'");
+        $va = $conn->query("SELECT id_packet, payment FROM tbl_virtual_account WHERE id_user = '" . $user['id'] . "'");
 
         return $va->num_rows === 1 ? array_merge($user, $va->fetch_assoc()) : $user;
     }

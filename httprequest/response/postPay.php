@@ -12,7 +12,7 @@ require '../../logic/functions.php';
 $result = [
     'success' => false
 ];
-$userId = $conn->query("SELECT id FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
+$userId = $conn->query("SELECT id FROM tbl_users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
 
 $packetId = $_POST['packetId'];
 
@@ -32,14 +32,14 @@ if ($_POST['operation'] === 'pay') {
             break;
     }
 
-    $conn->query("DELETE FROM virtual_account WHERE id_user = $userId");
+    $conn->query("DELETE FROM tbl_virtual_account WHERE id_user = $userId");
     if ($conn->affected_rows !== 1) {
         $result['code'] = 1;
         echo json_encode($result);
         return;
     }
 
-    $conn->query("INSERT INTO subscription VALUES('', $packetId, $userId, '$expireDate')");
+    $conn->query("INSERT INTO tbl_subscription VALUES('', $packetId, $userId, '$expireDate')");
     if ($conn->affected_rows !== 1) {
         $result['success'] = false;
         $result['code'] = 1;
@@ -47,10 +47,10 @@ if ($_POST['operation'] === 'pay') {
         return;
     }
 
-    $packet = $conn->query("SELECT harga FROM packet WHERE id = $packetId")->fetch_assoc();
-    $conn->query("INSERT INTO revenue VALUES('', $packetId, '$today', " . $packet['harga'] . ")");
+    $packet = $conn->query("SELECT harga FROM tbl_packet WHERE id = $packetId")->fetch_assoc();
+    $conn->query("INSERT INTO tbl_revenue VALUES('', $packetId, '$today', " . $packet['harga'] . ")");
     if ($conn->affected_rows !== 1) {
-        $conn->query("DELETE FROM subscription WHERE id_user = $userId");
+        $conn->query("DELETE FROM tbl_subscription WHERE id_user = $userId");
         $result['code'] = 1;
         echo json_encode($result);
         return;
@@ -66,7 +66,7 @@ if ($_POST['operation'] === 'pay') {
 
 // Operasi cancel
 else if ($_POST['operation'] === 'cancel') {
-    $conn->query("DELETE FROM virtual_account WHERE id_user = $userId");
+    $conn->query("DELETE FROM tbl_virtual_account WHERE id_user = $userId");
     if ($conn->affected_rows === 1) {
         $result['success'] = true;
         $result['code'] = 2;

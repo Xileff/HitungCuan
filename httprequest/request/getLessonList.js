@@ -8,6 +8,8 @@ $(document).ready(function(){
         loadLessons(keyword)
      })
 
+    //  $(this).on("keyup", "#searchLesson")
+
     function loadLessons(keyword = '*'){
         $.ajax({
             type: 'GET',

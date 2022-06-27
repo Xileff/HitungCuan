@@ -13,9 +13,9 @@ if (!isset($_SESSION['username'])) {
     $result['status'] = 0;
 } else {
     // jika sudah login, boleh komentar
-    $user = $conn->query("SELECT id, username, foto FROM users WHERE username='" . $_SESSION['username'] . "'")->fetch_assoc();
+    $user = $conn->query("SELECT id, username, foto FROM tbl_users WHERE username='" . $_SESSION['username'] . "'")->fetch_assoc();
 
-    $conn->query("INSERT INTO news_comment VALUES('','" . $user['id'] . "','" . $idNews . "','" . $user['username'] . "', '" . date('Y-m-d') . "', '$comment')");
+    $conn->query("INSERT INTO tbl_news_comment VALUES('','" . $user['id'] . "','" . $idNews . "','" . $user['username'] . "', '" . date('Y-m-d') . "', '$comment')");
 
     if ($conn->affected_rows !== 1) {
         $result['status'] = 1;

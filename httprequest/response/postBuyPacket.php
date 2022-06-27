@@ -12,10 +12,10 @@ if (!isset($_SESSION['username'])) {
     return;
 }
 
-$userId = $conn->query("SELECT id FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
+$userId = $conn->query("SELECT id FROM tbl_users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
 
 // Error 1
-if ($va = $conn->query("SELECT * FROM virtual_account WHERE id_user = $userId")->fetch_assoc()) {
+if ($va = $conn->query("SELECT * FROM tbl_virtual_account WHERE id_user = $userId")->fetch_assoc()) {
     $vaPacketId = $va['id_packet'];
     $vaPayment = $va['payment'];
     $result['error'] = 1;

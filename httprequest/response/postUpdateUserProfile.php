@@ -4,7 +4,7 @@ require '../../logic/dbconn.php';
 require '../../logic/functions.php';
 
 $result['success'] = false;
-$user = $conn->query("SELECT id, foto FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc();
+$user = $conn->query("SELECT id, foto FROM tbl_users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc();
 
 // Prepare sql
 $stmt = $conn->prepare("UPDATE users SET 
@@ -23,6 +23,11 @@ $gender = htmlspecialchars(stripslashes(trim($_POST['radioGender'])));
 $tanggalLahir = htmlspecialchars(stripslashes(trim($_POST['tanggalLahir'])));
 $gambar = "";
 $gambarLama = $user['foto'];
+
+if (!preg_match('/^[a-z ]+$/i', $nama)) {
+    echo json_encode($result);
+    return;
+}
 
 // Proses foto
 if ($_FILES['gambar']['error'] == 4) {

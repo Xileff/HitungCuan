@@ -15,7 +15,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     global $conn;
     $id = $_COOKIE['id'];
 
-    $remembered_user = $conn->query("SELECT id, username FROM users WHERE id = $id")->fetch_assoc();
+    $remembered_user = $conn->query("SELECT id, username FROM tbl_users WHERE id = $id")->fetch_assoc();
 
     if (hash('sha256', $remembered_user['username']) === $_COOKIE['key']) {
         $_SESSION['user'] = true;
@@ -73,15 +73,15 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     else {
         // cek subscription user, sebelum render halaman
         if (isset($_SESSION['username'])) {
-            $userId = $conn->query("SELECT id FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
+            $userId = $conn->query("SELECT id FROM tbl_users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
 
             // Jika ada subscription, cek apakah masanya habis
-            $subscription = $conn->query("SELECT * FROM subscription WHERE id_user = $userId");
+            $subscription = $conn->query("SELECT * FROM tbl_subscription WHERE id_user = $userId");
             if ($subscription->num_rows === 1) {
-                $subsExpireDate = $conn->query("SELECT expire_date FROM subscription WHERE id_user = $userId")->fetch_assoc()['expire_date'];
+                $subsExpireDate = $conn->query("SELECT expire_date FROM tbl_subscription WHERE id_user = $userId")->fetch_assoc()['expire_date'];
 
                 if ($subsExpireDate === date('Y-m-d')) {
-                    $conn->query("DELETE FROM subscription WHERE id_user = $userId");
+                    $conn->query("DELETE FROM tbl_subscription WHERE id_user = $userId");
                 }
             }
         }

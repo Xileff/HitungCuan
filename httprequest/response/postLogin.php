@@ -7,12 +7,12 @@ $result = ["success" => false];
 $username = stripslashes(htmlspecialchars($_POST['username']));
 $password = stripslashes(htmlspecialchars($_POST['password']));
 
-if (login('admin', $username, $password)) {
+if (login('tbl_admin', $username, $password)) {
     $_SESSION['admin'] = true;
     $_SESSION['username'] = $username;
     $result["success"] = true;
     $result["url"] = "?page=news&action=none";
-} else if (login('users', $username, $password)) {
+} else if (login('tbl_users', $username, $password)) {
     $_SESSION['user'] = true;
     $_SESSION['username'] = $username;
     if (isset($_POST['rememberme'])) {

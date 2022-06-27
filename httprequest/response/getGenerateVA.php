@@ -25,18 +25,18 @@ if (!in_array($_GET['packetId'], $validPacket)) {
 }
 
 $packetId = $_GET['packetId'];
-$packet = $conn->query("SELECT durasi, harga FROM packet WHERE id = $packetId")->fetch_assoc();
+$packet = $conn->query("SELECT durasi, harga FROM tbl_packet WHERE id = $packetId")->fetch_assoc();
 $payment = $_GET['payment'];
 
-$userId = $conn->query("SELECT id FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
+$userId = $conn->query("SELECT id FROM tbl_users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
 
 // cek apakah sudah ada va dgn user_id ini
-$va = $conn->query("SELECT * FROM virtual_account WHERE id_user = $userId");
+$va = $conn->query("SELECT * FROM tbl_virtual_account WHERE id_user = $userId");
 if ($va->num_rows === 1) {
     $va = $va->fetch_assoc();
     // cek apakah sudah expire
     if (date('Y-m-d') == $va['expire']) {
-        $conn->query("DELETE FROM virtual_account WHERE id_user = $userId");
+        $conn->query("DELETE FROM tbl_virtual_account WHERE id_user = $userId");
         if ($conn->affected_rows !== 1) {
             $result['error'] = 2;
             echo json_encode($result);
@@ -65,10 +65,10 @@ else if ($va->num_rows !== 1 || !$va) {
         return;
     }
     $generatedVa = "8" . strval(hexdec(uniqid()));
-    $conn->query("INSERT INTO virtual_account VALUES('$generatedVa', $userId, $packetId, '$payment', " . $packet['harga'] . ", '" . date("Y-m-d", strtotime("+1 days")) . "')");
+    $conn->query("INSERT INTO tbl_virtual_account VALUES('$generatedVa', $userId, $packetId, '$payment', " . $packet['harga'] . ", '" . date("Y-m-d", strtotime("+1 days")) . "')");
 
     if (mysqli_affected_rows($conn) === 1) {
-        $va = $conn->query("SELECT * FROM virtual_account WHERE id_user = $userId")->fetch_assoc();
+        $va = $conn->query("SELECT * FROM tbl_virtual_account WHERE id_user = $userId")->fetch_assoc();
         $va['expire'] = tgl_indo($va['expire']);
         $result = ['success' => true];
         $result['va'] = $va;
