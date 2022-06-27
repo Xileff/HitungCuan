@@ -95,6 +95,7 @@ function getUserData(){
 function disableForm(){
     $('form input').attr('disabled', 'disabled')
     $('form textarea').attr('disabled', 'disabled')
+    $('form select').attr('disabled', 'disabled')
 }
 
 function enableForm(){

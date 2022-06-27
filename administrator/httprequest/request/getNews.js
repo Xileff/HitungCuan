@@ -8,6 +8,7 @@ $(this).ready(function(){
 
     // Ubah komponen modal
     const btnSubmit = $('.modal-footer .btn')
+    const form = $('#form')
     $(this).on("click", ".btn-add", function(){
         $('.modal-title').html('Tambah berita baru')
         btnSubmit.addClass('btn-success')
@@ -41,12 +42,12 @@ $(this).ready(function(){
         btnSubmit.html('Hapus')
         btnSubmit.attr('id', 'confirmDelete')
         populateForm(newsId)
+        $(form).data('newsid', newsId)
         disableForm()
     })
 
     // tombol submit
     $(this).on("click", "#confirmAdd", function(){
-        alert('add')
         const formData = new FormData(document.getElementById('form'))
         let gambar = $('#inputImg').files
         if(gambar != undefined){
@@ -61,14 +62,32 @@ $(this).ready(function(){
             processData: false,
             dataType: 'json',
             success: response => {
-                console.log(response)
                 if(response.success){
                     alertSuccess('Berhasil', 'Berita Terupload', 'Ok')
                 }
                 else {
-                    alertError('Gagal', 'Berita tidak terupload', 'Ok')
+                    let msg = ''
+                    switch(response.error){
+                        case 1:
+                            msg = "Penulis kosong"
+                            break
+                        case 2:
+                            msg = "Konten tidak valid"
+                            break
+                        case 3:
+                            msg = "Nama penulis sudah pernah disimpan"
+                            break
+                        case 4:
+                            msg = "File mungkin bukan gambar, atau ukuran file melebihi 1MB"
+                            break
+                        default:
+                            msg = "Kesalahan server"
+                            break
+                    }
+                    alertError('Gagal', msg, 'Ok')
                 }
                 loadNews()
+                $('.btn-close').click()
             }
         })
     })
@@ -77,8 +96,23 @@ $(this).ready(function(){
         $('.btn-close').click()
     })
     $(this).on("click", "#confirmDelete", function(){
-        alert('delete')
-        $('.btn-close').click()
+        $.ajax({
+            type: 'GET',
+            url: 'administrator/httprequest/response/getDeleteNews.php',
+            data: { id: form.data('newsid') },
+            dataType: 'json',
+            success: response => {
+                if(response.success){
+                    alertSuccess('Berhasil', 'Berita terhapus', 'Ok')
+                    $()
+                }
+                else {
+                    alertError('Gagal', 'Kesalahan server', 'Ok')
+                }
+                loadNews()
+                $('.btn-close').click()
+            }
+        })
     })
 
     // functions
@@ -144,6 +178,12 @@ $(this).ready(function(){
         $('form input').val('')
         $('form img').attr('src', 'assets/images/news/cryptocurrency1.jpg')
         $('form textarea').val('')
+
+        const now = new Date();
+        const day = ("0" + now.getDate()).slice(-2);
+        const month = ("0" + (now.getMonth() + 1)).slice(-2);
+        const today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+        $('input#date').val(today)
         $.ajax({
             type: 'GET',
             url: 'administrator/httprequest/response/getNewsAuthor.php',
