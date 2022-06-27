@@ -15,7 +15,7 @@
             </div>
             <!-- Search Bar -->
 
-            <section id="newsList">
+            <section id="newsList" class="w-100">
 
             </section>
         </div>

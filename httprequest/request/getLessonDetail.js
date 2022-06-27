@@ -36,7 +36,7 @@ $(document).ready(function(){
                         <div class="news-image mt-3 mb-4">
                             <img src="assets/images/CuanCademy/lessons/${lesson.gambar}" alt="news_image" class="w-100">
                         </div>
-                        <p class="montserrat fs-5" style="color: gray;">${lesson.teks.replaceAll('\b', '<br>').replaceAll('\n','<br><br>')}</p>
+                        <p class="montserrat fs-5" style="color: gray;">${lesson.teks.replaceAll('\b', '<br>').replaceAll('\n','<br>')}</p>
                 </div>`)
 
                 $('input#idlesson').val(lesson.id)

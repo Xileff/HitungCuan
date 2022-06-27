@@ -19,7 +19,10 @@ function uploadImage($image, $dir)
         return $result;
     }
 
-    $extension = strtolower(end(explode(".", $nameWithExtension)));
+
+    $nameWithExtension = explode(".", $nameWithExtension);
+    $nameWithExtension = end($nameWithExtension);
+    $extension = strtolower($nameWithExtension);
     $imageExtensions = ['jpg', 'png', 'jpeg'];
 
     if (!in_array($extension, $imageExtensions)) {
