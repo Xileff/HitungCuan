@@ -10,11 +10,12 @@ $res['success'] = false;
 // 5. Kesalahan server
 
 // ambil nilai
+$newsId = mysqli_real_escape_string($conn, htmlspecialchars($_POST['id']));
 $judul = htmlspecialchars($_POST['judul']);
 $idAuthor;
 $releaseDate = htmlspecialchars($_POST['releaseDate']);
 $text = htmlspecialchars($_POST['text']);
-$image = 'cryptocurrency1.jpg';
+$oldImage = $conn->query("SELECT gambar FROM tbl_news WHERE id = $newsId")->fetch_assoc()['gambar'];
 
 $regexAlpha = '/^[A-Za-z]+$/i';
 $regexAlphaNum = '/^[a-zA-Z0-9 ]+$/i';
@@ -64,6 +65,7 @@ if (isset($_POST['newAuthor'])) {
 // Works sampe author baru
 
 // cek gambar
+$image = "";
 if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] !== 4) {
     $image = uploadImage($_FILES['gambar'], '../../../assets/images/news/');
     if (!$image['success']) {
@@ -74,6 +76,9 @@ if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] !== 4) {
         return;
     }
     $image = $image['fileName'];
+    unlink('../../../assets/images/news/' . $oldImage);
+} else {
+    $image = $oldImage;
 }
 
 // // Insert data ke tabel news
@@ -82,8 +87,15 @@ $image = mysqli_real_escape_string($conn, $image);
 $idAuthor = mysqli_real_escape_string($conn, $idAuthor);
 $releaseDate = mysqli_real_escape_string($conn, $releaseDate);
 $text = mysqli_real_escape_string($conn, $text);
-$stmtInsertNews = $conn->prepare("INSERT INTO tbl_news VALUES('', ?, ?, ?, ?, ?)");
-$stmtInsertNews->bind_param('ssiss', $judul, $image, $idAuthor, $releaseDate, $text);
+$stmtInsertNews = $conn->prepare("UPDATE tbl_news SET 
+                                    judul_berita = ?, 
+                                    gambar = ?, 
+                                    id_author = ?, 
+                                    tanggal_rilis = ?, 
+                                    teks = ?
+                                    WHERE id = ?
+                                    ");
+$stmtInsertNews->bind_param('ssissi', $judul, $image, $idAuthor, $releaseDate, $text, $newsId);
 $stmtInsertNews->execute();
 
 if ($conn->affected_rows === 1) {

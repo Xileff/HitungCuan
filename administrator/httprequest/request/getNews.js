@@ -29,6 +29,7 @@ $(this).ready(function(){
         btnSubmit.html('Simpan perubahan')
         btnSubmit.attr('id', 'confirmEdit')
         
+        form.data('newsid', newsId)
         populateForm(newsId)
         enableForm()
     })
@@ -91,9 +92,64 @@ $(this).ready(function(){
             }
         })
     })
+
+    // hanya panggil script php jika ada perubahan di input 
+    let changed = false
+    $('input, select, textarea').on("change", () => {
+        changed = true
+    })
     $(this).on("click", "#confirmEdit", function(){
-        alert('edit')
-        $('.btn-close').click()
+        if(!changed){
+            alertError('Tidak ada perubahan', 'Anda tidak mengubah data apa pun pada berita ini', 'Ok')
+            return
+        }
+        // reset
+        changed = false
+
+        const formData = new FormData(document.getElementById('form'))
+        formData.append('id', form.data('newsid'))
+        let gambar = $('#inputImg').files
+        if(gambar != undefined){
+            gambar = gambar[0]
+            formData.append('gambar', gambar)
+        }
+        
+        $.ajax({
+            type: 'POST',
+            url: 'administrator/httprequest/response/postEditNews.php',
+            data: formData,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            success: response => {
+                if(response.success){
+                    alertSuccess('Berhasil', 'Berita Terupdate', 'Ok')
+                }
+                else {
+                    let msg = ''
+                    switch(response.error){
+                        case 1:
+                            msg = "Penulis kosong"
+                            break
+                        case 2:
+                            msg = "Konten tidak valid"
+                            break
+                        case 3:
+                            msg = "Nama penulis sudah pernah disimpan"
+                            break
+                        case 4:
+                            msg = "File mungkin bukan gambar, atau ukuran file melebihi 1MB"
+                            break
+                        default:
+                            msg = "Kesalahan server"
+                            break
+                    }
+                    alertError('Gagal', msg, 'Ok')
+                }
+                loadNews()
+                $('.btn-close').click()
+            }
+        })
     })
     $(this).on("click", "#confirmDelete", function(){
         $.ajax({
