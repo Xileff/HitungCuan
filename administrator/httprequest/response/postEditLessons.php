@@ -33,9 +33,11 @@ if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] !== 4) {
         echo json_encode($res);
         return;
     }
+
     if ($oldGambar !== 'cryptocurrency1.jpg') {
         unlink('../../../assets/images/CuanCademy/lessons/' . $oldGambar);
     }
+
     $gambar = $gambar['fileName'];
 } else {
     $gambar = $oldGambar;

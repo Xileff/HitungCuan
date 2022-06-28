@@ -145,6 +145,27 @@ $(this).ready(function(){
         })
     })
 
+    $(this).on("click", "#confirmDelete", function(){
+        const lessonId = form.data('lessonid')
+        $.ajax({
+            type: 'GET',
+            url: 'administrator/httprequest/response/getDeleteLesson.php',
+            data: { id: lessonId },
+            dataType: 'json',
+            success: response => {
+                if(response.success){
+                    alertSuccess('Berhasil', 'Materi terhapus', 'Ok')
+                    $()
+                }
+                else {
+                    alertError('Gagal', 'Kesalahan server', 'Ok')
+                }
+                loadLessons()
+                $('.btn-close').click()
+            }
+        })
+    })
+
     // functions
     function populateForm(lessonId){
         $.ajax({

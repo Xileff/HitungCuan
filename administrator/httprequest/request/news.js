@@ -63,6 +63,7 @@ $(this).ready(function(){
             processData: false,
             dataType: 'json',
             success: response => {
+                // console.log(response)
                 if(response.success){
                     alertSuccess('Berhasil', 'Berita Terupload', 'Ok')
                 }
