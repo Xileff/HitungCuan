@@ -19,7 +19,6 @@ $(this).ready(function(){
         resetForm()
         enableForm()
     })
-
     $(this).on("click", ".btn-edit", function(){
         const lessonId = $(this).data('lessonid')
         $('.modal-title').html(`Edit materi ${lessonId}`)
@@ -64,7 +63,63 @@ $(this).ready(function(){
             dataType: 'json',
             success: response => {
                 if(response.success){
-                    alertSuccess('Berhasil', 'Berita Terupload', 'Ok')
+                    alertSuccess('Berhasil', 'Materi Terupload', 'Ok')
+                }
+                else {
+                    let msg = ''
+                    switch(response.error){
+                        case 1:
+                            msg = "Judul atau teks tidak boleh kosong"
+                            break
+                        case 2:
+                            msg = "Konten tidak valid"
+                            break
+                        case 3:
+                            msg = "File mungkin bukan gambar, atau ukuran file melebihi 1MB"
+                            break
+                        default:
+                            msg = "Kesalahan server"
+                            break
+                    }
+                    alertError('Gagal', msg, 'Ok')
+                }
+                loadLessons()
+                $('.btn-close').click()
+            }
+        })
+    })
+
+    let changed = false
+    $('input, select, textarea').on("change", () => {
+        changed = true
+    })
+    $(this).on("click", "#confirmEdit", function(){
+        const formData = new FormData(document.getElementById('form'))
+        let gambar = $('#inputImg').files
+        if(!changed){
+            alertError('Tidak ada perubahan', '', 'Ok')
+            $('.btn-close').click()
+            return;
+        }
+        changed = false
+
+        if(gambar != undefined){
+            gambar = gambar[0]
+            formData.append('gambar', gambar)
+        }
+
+        formData.append('id', form.data('lessonid'))
+
+        $.ajax({
+            type: 'POST',
+            url: 'administrator/httprequest/response/postEditLessons.php',
+            data: formData,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            success: response => {
+                if(response.success){
+                    alertSuccess('Berhasil', 'Materi Terupdate', 'Ok')
                 }
                 else {
                     let msg = ''

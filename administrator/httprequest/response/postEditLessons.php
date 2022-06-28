@@ -4,11 +4,12 @@ require '../../../logic/functions.php';
 
 $res['success'] = false;
 
+$id = htmlspecialchars($_POST['id']);
 $judul = htmlspecialchars($_POST['judul']);
 $idSubject = htmlspecialchars($_POST['idSubject']);
 $tanggal = htmlspecialchars($_POST['tanggal']);
 $teks = htmlspecialchars($_POST['text']);
-$gambar = 'cryptocurrency1.jpg';
+$oldGambar = $conn->query("SELECT gambar FROM tbl_lessons WHERE id = $id")->fetch_assoc()['gambar'];
 
 // cek teks
 if (strlen($judul) < 1 || strlen($teks) < 1) {
@@ -32,17 +33,32 @@ if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] !== 4) {
         echo json_encode($res);
         return;
     }
+    if ($oldGambar !== 'cryptocurrency1.jpg') {
+        unlink('../../../assets/images/CuanCademy/lessons/' . $oldGambar);
+    }
     $gambar = $gambar['fileName'];
+} else {
+    $gambar = $oldGambar;
 }
 
+$id = mysqli_real_escape_string($conn, $id);
 $judul = mysqli_real_escape_string($conn, $judul);
 $idSubject = mysqli_real_escape_string($conn, $idSubject);
 $tanggal = mysqli_real_escape_string($conn, $tanggal);
 $teks = mysqli_real_escape_string($conn, $teks);
 $gambar = mysqli_real_escape_string($conn, $gambar);
 
-$stmtInsert = $conn->prepare("INSERT INTO tbl_lessons VALUES ('', ?, ?, ?, ?, ?)");
-$stmtInsert->bind_param('issss', $idSubject, $judul, $tanggal, $gambar, $teks);
+$stmtInsert = $conn->prepare(
+    "UPDATE tbl_lessons SET 
+    judul = ?, 
+    id_subject = ?,
+    tanggal = ?, 
+    gambar = ?, 
+    teks = ?
+
+    WHERE id = ?"
+);
+$stmtInsert->bind_param('sisssi', $judul, $idSubject, $tanggal, $gambar, $teks, $id);
 $stmtInsert->execute();
 
 // cek apakah insert berhasil, jika gagal maka hapus gambar yang baru saja terupload
