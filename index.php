@@ -52,7 +52,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
-<body>
+<body class="100vh">
     <?php
     // Admin UI
     if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {

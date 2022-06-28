@@ -14,7 +14,7 @@ if (login('tbl_admin', $username, $password)) {
     $result["url"] = "?page=news";
 } else if (login('tbl_users', $username, $password)) {
     $_SESSION['user'] = true;
-    $_SESSION['user_username'] = $username;
+    $_SESSION['username'] = $username;
     if (isset($_POST['rememberme'])) {
         $_SESSION['remember'] = true;
     }
