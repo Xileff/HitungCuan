@@ -1,4 +1,4 @@
-<script src="administrator/httprequest/request/getNews.js" type="module"></script>
+<script src="administrator/httprequest/request/news.js" type="module"></script>
 <div class="container mt-5 pt-5 montserrat">
     <h1 class="fw-bold text-center">News</h1>
     <!-- Button trigger modal -->

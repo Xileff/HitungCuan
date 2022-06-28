@@ -18,7 +18,7 @@ $text = htmlspecialchars($_POST['text']);
 $oldImage = $conn->query("SELECT gambar FROM tbl_news WHERE id = $newsId")->fetch_assoc()['gambar'];
 
 $regexAlpha = '/^[A-Za-z]+$/i';
-$regexAlphaNum = '/^[a-zA-Z0-9 ]+$/i';
+$regexAlphaNum = '/^[a-zA-Z0-9!@#$%&*()-=+,.?\/<> ]+$/i';
 if (!preg_match($regexAlphaNum, $judul)) {
     $res['error'] = 2;
     echo json_encode($res);
@@ -76,7 +76,10 @@ if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] !== 4) {
         return;
     }
     $image = $image['fileName'];
-    unlink('../../../assets/images/news/' . $oldImage);
+
+    if ($oldImage !== 'cryptocurrency1.jpg') {
+        unlink('../../../assets/images/news/' . $oldImage);
+    }
 } else {
     $image = $oldImage;
 }

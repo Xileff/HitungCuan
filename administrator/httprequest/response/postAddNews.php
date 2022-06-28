@@ -17,7 +17,7 @@ $text = htmlspecialchars($_POST['text']);
 $image = 'cryptocurrency1.jpg';
 
 $regexAlpha = '/^[A-Za-z]+$/i';
-$regexAlphaNum = '/^[a-zA-Z0-9 ]+$/i';
+$regexAlphaNum = '/^[a-zA-Z0-9!@#$%&*()-=+,.?\/<>\'\"; ]+$/i';
 if (!preg_match($regexAlphaNum, $judul)) {
     $res['error'] = 2;
     echo json_encode($res);

@@ -58,10 +58,10 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
         include 'components/html-adminnavbar.php';
         $page = $_GET['page'];
-        if (in_array($page, ['feedback', 'lessons', 'logout', 'news', 'questions', 'users'])) {
+        if (in_array($page, ['feedback', 'lessons', 'logout', 'news', 'questions', 'users', 'revenue'])) {
             include 'administrator/' . $page . '.php';
         } else {
-            header("Location: ./");
+            header("Location: ./?page=news");
         }
     }
 
@@ -86,7 +86,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
             $accountMgmt = ['login', 'logout', 'register'];
-            $regularPages = ['aboutus', 'cuancademy', 'homepage', 'lesson', 'news', 'newscontent', 'simulasinabung', 'userprofile', 'subscribe', 'virtualaccount', 'subscribe'];
+            $regularPages = ['aboutus', 'cuancademy', 'homepage', 'lesson', 'news', 'newscontent', 'simulasinabung', 'userprofile', 'subscribe', 'virtualaccount', 'subscribe', ''];
 
             if (in_array($page, $accountMgmt)) {
                 include $page . '.php';
@@ -97,7 +97,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
                 include $page . '.php';
                 include 'components/html-footer.php';
             } else {
-                alertRedirect('Error', 'Halaman tidak ditemukan', './', 'Ok');
+                header("Location: ./");
             }
         } else {
             include 'components/html-navbar.php';
