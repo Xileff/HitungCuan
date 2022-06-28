@@ -1,50 +1,56 @@
-<?php
-global $conn;
-$questions = $conn->query("SELECT id, id_lesson, tanggal, teks FROM tbl_lessons_question WHERE answered = 0");
-?>
+<script src="administrator/httprequest/request/questions.js" type="module"></script>
 <div class="container mt-5 pt-5">
-    <?php if ($questions->num_rows === 0) : ?>
-        <h1>There are no unanswered questions.</h1>
-    <?php else : ?>
-        <h1 class="fw-bold text-center">Questions</h1>
-        <table class="table table-hover table-dark text-center">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Subject</th>
-                    <th>Tanggal</th>
-                    <th>Teks</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($questions as $q) :
-                    $jsonQuestion = json_encode($q);
-                    $question = json_decode($jsonQuestion);
-                    $idQuestion = $question->id;
-                ?>
-                    <tr>
-                        <td><?= $question->id ?></td>
-                        <td>
-                            <?php
-                            $idLesson = $question->id_lesson;
-                            $subject = $conn->query("SELECT nama_subject FROM subject WHERE id = (SELECT id_subject FROM lessons where id = $idLesson)")->fetch_assoc();
-                            $jsonSubject = json_encode($subject);
-                            $subject = json_decode($jsonSubject);
-
-                            echo $subject->nama_subject;
-                            ?>
-                        </td>
-                        <td><?= $question->tanggal ?></td>
-                        <td><?= $question->teks ?></td>
-                        <td class="p-2">
-                            <a href="<?= "?page=answerquestions&action=add&id=$idQuestion" ?>" class="w-50">
-                                <button class="btn btn-warning rounded mx-auto mb-1 p-1 px-3 text-center">See more</button>
-                            </a>
-                        </td>
-                    </tr>
-                <?php endforeach ?>
-            </tbody>
-        </table>
-    <?php endif ?>
+    <h1 class="fw-bold text-center">Questions</h1>
+    <select name="" id="selectSubject" class="form-select mb-2">
+        <option value="-1">All</option>
+        <option value="1">Income Management</option>
+        <option value="2">Expenses</option>
+        <option value="3">Investment</option>
+    </select>
+    <table class="table table-hover table-dark text-center">
+        <thead>
+            <tr>
+                <th>Question ID</th>
+                <th>Username</th>
+                <th>Lesson Name</th>
+                <th>Subject</th>
+                <th>Date Posted</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <!--  -->
+    <!-- Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-secondary">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="username" class="text-info mb-1"></p>
+                    <p id="questionLesson" class="mb-1"></p>
+                    <p id="questionDate" class="mb-1"></p>
+                    <br>
+                    <p class="mb-0 text-info">Question : </p>
+                    <p id="questionText" class="mb-2"></p>
+                    <form id="form" action="" method="post" class="d-flex flex-column">
+                        <div class="form-group mb-4">
+                            <label class="fw-bold" for="text">Answer</label>
+                            <textarea id="text" type="text" name="answer" class="form-control" rows="10" cols="50"></textarea>
+                        </div>
+                        <span class="montserrat text-warning align-self-end mb-1">Jawaban tidak dapat diubah atau dihapus</span>
+                        <input type="hidden" name="questionId" id="questionId">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnAnswer" class="btn btn-success rounded-5 align-self-end">Answer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  -->
 </div>

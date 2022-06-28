@@ -9,12 +9,12 @@ $password = stripslashes(htmlspecialchars($_POST['password']));
 
 if (login('tbl_admin', $username, $password)) {
     $_SESSION['admin'] = true;
-    $_SESSION['username'] = $username;
+    $_SESSION['admin_username'] = $username;
     $result["success"] = true;
     $result["url"] = "?page=news";
 } else if (login('tbl_users', $username, $password)) {
     $_SESSION['user'] = true;
-    $_SESSION['username'] = $username;
+    $_SESSION['user_username'] = $username;
     if (isset($_POST['rememberme'])) {
         $_SESSION['remember'] = true;
     }
