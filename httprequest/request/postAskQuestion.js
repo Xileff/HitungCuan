@@ -21,12 +21,13 @@ $(document).ready(function(){
             data: formQuestion,
             dataType: 'JSON',
             success: function(response){
-                if(response.status){
+                if(response.success){
                     alertSuccess('Berhasil', 'Pertanyaan anda sudah terupload', 'Ok');
                     loadQuestions(url_idlesson)
+                    $('#txtComment').val('')
                 }
                 else {
-                    alertError('Gagal', 'Kesalahan server, silakan coba lagi', 'Ok');
+                    alertError('Gagal', response.msg, 'Ok');
                 }
             }
         })
