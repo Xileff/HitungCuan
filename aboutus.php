@@ -50,11 +50,3 @@
         </form>
     </div>
 </body>
-<script>
-    document.getElementById('btnFeedback').addEventListener('click', (e) => {
-        if (document.getElementById('txtFeedback').value.length < 1) {
-            alertError('Feedback Kosong', 'Anda tidak dapat mengirimkan saran dan masukan yang kosong', 'Ok');
-            e.preventDefault();
-        }
-    })
-</script>
