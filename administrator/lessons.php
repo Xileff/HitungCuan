@@ -4,7 +4,7 @@
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-add btn-success mb-2" data-bs-toggle="modal" data-bs-target="#modal">Add new</button>
     <input type="text" id="search" class="form-control mb-2" placeholder="Cari materi berdasarkan judul">
-    <table class="table table-hover table-dark text-center">
+    <table class="table table-dark text-light table-hover text-center">
         <thead>
             <tr>
                 <th>ID</th>

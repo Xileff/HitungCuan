@@ -1,8 +1,27 @@
-<?php
-global $conn;
+<script>
+    $(this).ready(function() {
+        $.ajax({
+            type: 'GET',
+            url: 'administrator/httprequest/response/getFeedback.php',
+            dataType: 'json',
+            success: feedbacks => {
+                let tr = ""
+                $.each(feedbacks, (i, f) => {
+                    tr += `
+                <tr class="text-light">
+                    <td>${f.id}</td>
+                    <td>${f.username}</td>
+                    <td>${f.tanggal}</td>
+                    <td>${f.teks}</td>
+                </tr>
+                `
+                })
 
-$feedbacks = $conn->query("SELECT * FROM tbl_feedback");
-?>
+                $('tbody').html(tr)
+            }
+        })
+    })
+</script>
 
 <div class="container mt-5 pt-5 montserrat">
     <h1>Feedback</h1>
@@ -16,14 +35,6 @@ $feedbacks = $conn->query("SELECT * FROM tbl_feedback");
             </tr>
         </thead>
         <tbody>
-            <?php while ($feedback = $feedbacks->fetch_assoc()) : ?>
-                <tr class="text-light">
-                    <td><?= $feedback['id'] ?></td>
-                    <td><?= $feedback['username'] ?></td>
-                    <td><?= tgl_indo($feedback['tanggal']) ?></td>
-                    <td><?= $feedback['teks'] ?></td>
-                </tr>
-            <?php endwhile ?>
         </tbody>
     </table>
 </div>

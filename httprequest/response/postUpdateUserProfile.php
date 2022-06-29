@@ -7,7 +7,7 @@ $result['success'] = false;
 $user = $conn->query("SELECT id, foto FROM tbl_users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc();
 
 // Prepare sql
-$stmt = $conn->prepare("UPDATE users SET 
+$stmt = $conn->prepare("UPDATE tbl_users SET 
                         nama = ?,
                         tgl_lahir = ?,
                         jenis_kelamin = ?,

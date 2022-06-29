@@ -11,8 +11,8 @@ if (isset($_POST['register'])) {
     if (strlen($password) >= 8 && strlen($password) <= 17) {
         // cek password === confirmPassword
         if ($password === $confirmPassword) {
-            $existingUser = $conn->query("SELECT * FROM users WHERE username = '$username' OR email = '$email';");
-            $existingAdmin = $conn->query("SELECT * FROM admin WHERE username = '$username' OR email = '$email'");
+            $existingUser = $conn->query("SELECT * FROM tbl_users WHERE username = '$username' OR email = '$email';");
+            $existingAdmin = $conn->query("SELECT * FROM tbl_admin WHERE username = '$username' OR email = '$email'");
             // cek email/username udah kepakai atau blum
             if ($existingUser->num_rows === 0 && $existingAdmin->num_rows === 0) {
                 // register

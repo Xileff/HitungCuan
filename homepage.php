@@ -128,8 +128,8 @@
         <h2 class="text-center">Kata Mereka</h2>
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3">
             <div class="col p-4">
-                <div class="card card-review h-100">
-                    <img src="assets/images/index/review1.jpg" alt="person" class="card-img-top img-fluid">
+                <div class="card card-review h-100" style="border-radius: 0.8rem;">
+                    <img src="assets/images/index/review1.jpg" alt="person" class="card-img-top img-fluid" style="border-top-left-radius: 0.8rem; border-top-right-radius: 0.8rem;">
                     <div class="card-body">
                         <h5 class="card-title">Boy 1</h5>
                         <p class="card-text index-review">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit maxime ipsum id perspiciatis. Sequi unde et asperiores distinctio temporibus ipsum.</p>
@@ -137,8 +137,8 @@
                 </div>
             </div>
             <div class="col p-4">
-                <div class="card card-review h-100">
-                    <img src="assets/images/index/review2.jpg" alt="person" class="card-img-top img-fluid">
+                <div class="card card-review h-100" style="border-radius: 0.8rem;">
+                    <img src="assets/images/index/review2.jpg" alt="person" class="card-img-top img-fluid" style="border-top-left-radius: 0.8rem; border-top-right-radius: 0.8rem;">
                     <div class="card-body">
                         <h5 class="card-title">Girl</h5>
                         <p class="card-text index-review">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum quidem tenetur at dignissimos omnis natus quae, praesentium vel beatae sequi?</p>
@@ -146,8 +146,8 @@
                 </div>
             </div>
             <div class="col p-4">
-                <div class="card card-review h-100">
-                    <img src="assets/images/index/review3.jpg" alt="person" class="card-img-top img-fluid">
+                <div class="card card-review h-100" style="border-radius: 0.8rem;">
+                    <img src="assets/images/index/review3.jpg" alt="person" class="card-img-top img-fluid" style="border-top-left-radius: 0.8rem; border-top-right-radius: 0.8rem;">
                     <div class="card-body">
                         <h5 class="card-title">Boy 2</h5>
                         <p class="card-text index-review">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi porro debitis molestiae ex exercitationem in velit alias deleniti laudantium inventore?</p>

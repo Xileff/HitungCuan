@@ -49,6 +49,7 @@ $(document).ready(function(){
                 contentType: false,
                 processData: false,
                 success: function(response){
+                    console.log(response)
                     if(response.success){
                         alertSuccess('Berhasil', 'Data anda telah terupdate', 'Ok')
                         loadData()
