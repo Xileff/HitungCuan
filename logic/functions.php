@@ -10,14 +10,12 @@ function uploadImage($image, $dir)
     $result['success'] = false;
 
     if ($image['error'] === 4) {
-        // alertRedirect('Error', 'Tidak ada gambar yang diupload', '', 'Ok');
         $result['error'] = 4;
         return $result;
     }
 
     if ($size > 1048576) {
         $result['error'] = 3;
-        // alertRedirect('Error', 'Ukuran melebihi 1MB!', '', 'Ok');
         return $result;
     }
 
@@ -29,7 +27,6 @@ function uploadImage($image, $dir)
 
     if (!in_array($extension, $imageExtensions)) {
         $result['error'] = 2;
-        // alertRedirect('Error', 'File bukan gambar!', '', 'Ok');
         return $result;
     }
 
@@ -84,18 +81,19 @@ function register($name, $username, $email, $password)
 function login($table, $username, $password)
 {
     global $conn;
+    $output = false;
+
+    $username = htmlspecialchars(stripslashes($username));
+    $password = htmlspecialchars(stripslashes($password));
+    $username = mysqli_real_escape_string($conn, $username);
+    $password = mysqli_real_escape_string($conn, $password);
+
     $hash = $conn->query("SELECT password FROM $table WHERE username = '$username'");
-    return ($hash->num_rows === 1) ? password_verify($password, $hash->fetch_assoc()['password']) : false;
-}
+    if ($hash->num_rows == 1) {
+        $output = password_verify($password, $hash->fetch_assoc()['password']);
+    }
 
-function refresh($delay = 0)
-{
-    header("refresh:$delay; url=" . $_SERVER['REQUEST_URI']);
-}
-
-function delayedRedirect($url, $delay = 0)
-{
-    header("refresh:$delay; url=$url");
+    return $output;
 }
 
 function tgl_indo($date)

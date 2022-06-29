@@ -9,10 +9,10 @@ $(document).ready(function(){
             dataType: 'JSON',
             success: function(response){
                 if(response.success === true){
-                    window.location.href = response.url;
+                    successRedirect('Berhasil', 'Anda berhasil login ke akun anda', 'Ok', response.url)
                 }
                 else {
-                    alertError('Gagal', 'Username atau password salah', 'Ok');
+                    alertError('Gagal', response.msg, 'Ok');
                 }
             }
         })
