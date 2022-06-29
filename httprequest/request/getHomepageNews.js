@@ -6,7 +6,6 @@ $(document).ready(function(){
         success: function(response){
             let result = ``
             $.each(response, (i, r) => {
-                console.log(r)
                 result += `
                 <div class="col p-2 mx-auto">
                     <a href="?page=newscontent&id=${r.id}" class="h-100 hvr-grow">

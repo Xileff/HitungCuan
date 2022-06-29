@@ -13,20 +13,17 @@ $(document).ready(function(){
         const formComment = $('#txtComment').val()
         $.ajax({
             type: 'GET',
-            url: 'httprequest/response/saveCommentNews.php',
+            url: 'httprequest/response/postCommentNews.php',
             data: {id_news: idNews, comment: formComment},
             dataType: 'JSON',
             success: function(response){
-                let status = response.status
-                if(status == 0){
-                    alertError('Belum Login', 'Anda harus login dulu untuk komentar','Ok')
-                }
-                else if(status == 1){
-                    alertError('Gagal komentar', 'Komentar anda gagal diupload, silahkan coba lagi.', 'Ok')
-                }
-                else if(status == 2){
+                console.log(response)
+                if(response.success){
                     alertSuccess('Berhasil komentar', 'Komentar anda telah terupload', 'Ok')
                     loadComments(idNews)
+                }
+                else {
+                    alertError('Gagal', response.msg, 'Ok')
                 }
             }
         })
