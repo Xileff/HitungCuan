@@ -60,12 +60,23 @@ function register($name, $username, $email, $password)
 {
     global $conn;
 
-    $name = filter_var(htmlspecialchars(stripslashes($name)), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $username = filter_var(htmlspecialchars(stripslashes($username)), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $email = filter_var(htmlspecialchars(stripslashes($email)), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $password = password_hash($password, PASSWORD_DEFAULT);
+    // Bersihkan tag html dan slash
+    $name = htmlspecialchars(stripslashes($name));
+    $username = htmlspecialchars(stripslashes($username));
+    $email = htmlspecialchars(stripslashes($email));
+    $password = htmlspecialchars(stripslashes($password));
 
-    $conn->query("INSERT INTO tbl_users VALUES ('','$name','$username','$email','$password','','','nophoto.jpg','" . date('Y-m-d') . "')");
+    // Pastikan string dianggap sebagai string biasa dan bukan perintah sql
+    $name = mysqli_real_escape_string($conn, $name);
+    $username = mysqli_real_escape_string($conn, $username);
+    $email = mysqli_real_escape_string($conn, $email);
+    $password = mysqli_real_escape_string($conn, $password);
+    $password = password_hash($password, PASSWORD_DEFAULT);
+    $dateJoined = date('Y-m-d');
+
+    $stmtRegister = $conn->prepare("INSERT INTO tbl_users VALUES ('', ?, ?, ?, ?, '', '', 'nophoto.jpg', '$dateJoined')");
+    $stmtRegister->bind_param('ssss', $name, $username, $email, $password);
+    $stmtRegister->execute();
 
     return $conn->affected_rows;
 }
