@@ -100,7 +100,7 @@ function validateName(text){
 }
 
 function validateUsername(text){
-    const alphanum = /^[a-zA-Z0-9]+$/;
+    const alphanum = /^[a-zA-Z0-9_]+$/;
     return alphanum.test(text)
 }
 

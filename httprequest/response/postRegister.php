@@ -12,7 +12,7 @@ $confirmPassword = stripslashes(htmlspecialchars($_POST['confirmPassword']));
 $res = ['success' => false];
 
 $regexName = '/^[A-Za-z\s]+$/i';
-$regexUsername = '/^[a-z0-9]+$/i';
+$regexUsername = '/^[a-z0-9_]+$/i';
 
 // validasi input
 if (!preg_match($regexName, $fullName)) {
@@ -44,6 +44,11 @@ if ($password !== $confirmPassword) {
     echo json_encode($res);
     return;
 }
+
+$fullName = mysqli_real_escape_string($conn, $fullName);
+$username = mysqli_real_escape_string($conn, $username);
+$email = mysqli_real_escape_string($conn, $email);
+$password = mysqli_real_escape_string($conn, $password);
 
 // Cek apakah sudah ada akun user/admin dengan username ini
 $existingUser = $conn->query("SELECT * FROM tbl_users WHERE username = '$username' OR email = '$email';");

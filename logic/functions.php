@@ -74,8 +74,10 @@ function register($name, $username, $email, $password)
     $stmtRegister = $conn->prepare("INSERT INTO tbl_users VALUES ('', ?, ?, ?, ?, '', '', 'nophoto.jpg', '$dateJoined')");
     $stmtRegister->bind_param('ssss', $name, $username, $email, $password);
     $stmtRegister->execute();
+    $affectedRows = $conn->affected_rows;
+    $stmtRegister->close();
 
-    return $conn->affected_rows;
+    return $affectedRows;
 }
 
 function login($table, $username, $password)

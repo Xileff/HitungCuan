@@ -14,7 +14,7 @@ $(this).ready(function(){
             return
         }
         if(!validateUsername(txtUsername.val()) || txtUsername.val().length < 8){
-            alertError('Error', 'Format username tidak valid,' ,'Ok')
+            alertError('Error', 'Format username tidak valid' ,'Ok')
             return
         }
         if(!validateEmail(txtEmail.val())) {

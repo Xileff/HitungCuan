@@ -12,7 +12,7 @@ $result = [
 $username = stripslashes(htmlspecialchars($_POST['username']));
 $password = stripslashes(htmlspecialchars($_POST['password']));
 
-$regexUsername = '/^[a-z0-9]+$/i';
+$regexUsername = '/^[a-z0-9_]+$/i';
 if (!preg_match($regexUsername, $username)) {
     $res['msg'] = 'Username tidak valid';
     echo json_encode($res);

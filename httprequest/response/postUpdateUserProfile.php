@@ -36,9 +36,10 @@ if ($_FILES['gambar']['error'] == 4) {
     $gambar = uploadImage($_FILES['gambar'], '../../assets/images/users-profile/');
     if (!$gambar['success']) {
         $result['imageError'] = $gambar['error'];
-        // 4. gada gambar
-        // 3. melebihi 1 MB
         // 2. format bukan gambar
+        // 3. melebihi 1 MB
+        // 4. gada gambar
+
         echo json_encode($result);
         return;
     }

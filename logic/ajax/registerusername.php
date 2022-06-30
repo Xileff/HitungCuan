@@ -2,7 +2,8 @@
 require '../../logic/dbconn.php';
 global $conn;
 
-$requestedUsername = $_GET['username'];
+$requestedUsername = stripslashes(htmlspecialchars($_GET['username']));
+$requestedUsername = mysqli_real_escape_string($conn, $requestedUsername);
 $username = $conn->query("SELECT username FROM tbl_users WHERE username = '$requestedUsername'");
 $adminUsername = $conn->query("SELECT username FROM tbl_admin WHERE username = '$requestedUsername'");
 ?>
