@@ -22,6 +22,9 @@
                 <a href="?page=questions" class="nav-link">Questions</a>
             </li>
             <li class="nav-item px-2 pt-1">
+                <a href="?page=lessonrequest" class="nav-link">Requests</a>
+            </li>
+            <li class="nav-item px-2 pt-1">
                 <a href="?page=news" class="nav-link">News</a>
             </li>
             <li class="nav-item px-2 pt-1">

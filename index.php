@@ -58,7 +58,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
         include 'components/html-adminnavbar.php';
         $page = $_GET['page'];
-        if (in_array($page, ['feedback', 'lessons', 'logout', 'news', 'questions', 'users', 'revenue'])) {
+        if (in_array($page, ['feedback', 'lessons', 'logout', 'news', 'questions', 'users', 'revenue', 'lessonrequest'])) {
             include 'administrator/' . $page . '.php';
         } else {
             header("Location: ./?page=news");

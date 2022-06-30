@@ -20,11 +20,12 @@ if (strlen($text) > 255) {
     return;
 }
 
-$stmtRequest = $conn->prepare("INSERT INTO tbl_lessons_request VALUES ('', ?, ?, ?)");
+$stmtRequest = $conn->prepare("INSERT INTO tbl_lessons_request VALUES ('', ?, ?, ?, ?)");
 $idSubject = mysqli_real_escape_string($conn, $idSubject);
 $text = mysqli_real_escape_string($conn, $text);
+$date = date('Y-m-d');
 
-$stmtRequest->bind_param('iis', $idUser, $idSubject, $text);
+$stmtRequest->bind_param('iiss', $idUser, $idSubject, $date, $text);
 $stmtRequest->execute();
 $res['success'] = $conn->affected_rows;
 $stmtRequest->close();
