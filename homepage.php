@@ -1,3 +1,5 @@
+<script src="httprequest/request/getHomepageNews.js" type="module"></script>
+
 <body>
     <div id="index-container" data-aos="fade-up">
         <div class="container mb-5">
@@ -19,58 +21,10 @@
 
     <!-- Berita Cuan -->
     <div class="container container-news pt-5 mb-5 d-flex flex-column align-items-center">
-        <h2 class="text-center mb-4">Berita Cuan</h2>
-        <!-- row row-cols-1 row-cols-sm-2 row-cols-md-4 -->
-        <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-news">
-            <div class="col p-2 mx-auto">
-                <a href="#">
-                    <div class="card card-news h-100">
-                        <img src="assets/images/index/cryptocurrency-square.jpg" class="card-img-top" alt="cryptocurrency">
-                        <div class="card-body card-news-body w-100">
-                            <h5 class="card-title news-title general-link hvr-underline-from-left">Crypto Crash Lagi?</h5>
-                            <p class="card-text news-date">Senin, 7 Februari 2022</p>
-                        </div>
-                        <span class="card-news-author montserrat align-bottom px-3 pb-2">Author : HitungCuan</span>
-                    </div>
-                </a>
-            </div>
-            <div class="col p-2 mx-auto">
-                <a href="#">
-                    <div class="card card-news h-100">
-                        <img src="assets/images/index/graph-square.jpg" class="card-img-top" alt="graph">
-                        <div class="card-body card-news-body w-100">
-                            <h5 class="card-title news-title general-link hvr-underline-from-left">Binary Option : Judi Berkedok Trading</h5>
-                            <p class="card-text news-date">Senin, 7 Februari 2022</p>
-                        </div>
-                        <span class="card-news-author montserrat align-bottom px-3 pb-2">Author : HitungCuan</span>
-                    </div>
-                </a>
-            </div>
-            <div class="col p-2 mx-auto">
-                <a href="#">
-                    <div class="card card-news h-100">
-                        <img src="assets/images/index/empty-wallet-square.jpg" class="card-img-top" alt="dompet kosong">
-                        <div class="card-body card-news-body w-100">
-                            <h5 class="card-title news-title general-link hvr-underline-from-left">Aturan 50:30:20 untuk Keuangan</h5>
-                            <p class="card-text news-date">Senin, 7 Februari 2022</p>
-                        </div>
-                        <span class="card-news-author montserrat align-bottom px-3 pb-2">Author : HitungCuan</span>
-                    </div>
-                </a>
-            </div>
-            <div class="col p-2 mx-auto">
-                <a href="#">
-                    <div class="card card-news h-100">
-                        <img src="assets/images/index/NFT-square.jpg" class="card-img-top" alt="cryptocurrency">
-                        <div class="card-body card-news-body w-100">
-                            <h5 class="card-title news-title general-link hvr-underline-from-left">NFT Trending, Haruskah Beli Sekarang?</h5>
-                            <p class="card-text news-date">Senin, 7 Februari 2022</p>
-                        </div>
-                        <span class="card-news-author montserrat align-bottom px-3 pb-2">Author : HitungCuan</span>
-                    </div>
-                </a>
-            </div>
-        </div>
+        <h2 class="text-center mb-4">Berita Terbaru</h2>
+        <section id="homepageNewsContainer" class="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-news">
+            <!-- Ajax -->
+        </section>
         <a href="?page=news" style="text-decoration: none; color: white;">
             <p class="text-center general-link fs-6 hvr-underline-from-left">See more</p>
         </a>
@@ -174,8 +128,8 @@
         <h2 class="text-center">Kata Mereka</h2>
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3">
             <div class="col p-4">
-                <div class="card card-review h-100">
-                    <img src="assets/images/index/review1.jpg" alt="person" class="card-img-top img-fluid">
+                <div class="card card-review h-100" style="border-radius: 0.8rem;">
+                    <img src="assets/images/index/review1.jpg" alt="person" class="card-img-top img-fluid" style="border-top-left-radius: 0.8rem; border-top-right-radius: 0.8rem;">
                     <div class="card-body">
                         <h5 class="card-title">Boy 1</h5>
                         <p class="card-text index-review">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit maxime ipsum id perspiciatis. Sequi unde et asperiores distinctio temporibus ipsum.</p>
@@ -183,8 +137,8 @@
                 </div>
             </div>
             <div class="col p-4">
-                <div class="card card-review h-100">
-                    <img src="assets/images/index/review2.jpg" alt="person" class="card-img-top img-fluid">
+                <div class="card card-review h-100" style="border-radius: 0.8rem;">
+                    <img src="assets/images/index/review2.jpg" alt="person" class="card-img-top img-fluid" style="border-top-left-radius: 0.8rem; border-top-right-radius: 0.8rem;">
                     <div class="card-body">
                         <h5 class="card-title">Girl</h5>
                         <p class="card-text index-review">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum quidem tenetur at dignissimos omnis natus quae, praesentium vel beatae sequi?</p>
@@ -192,8 +146,8 @@
                 </div>
             </div>
             <div class="col p-4">
-                <div class="card card-review h-100">
-                    <img src="assets/images/index/review3.jpg" alt="person" class="card-img-top img-fluid">
+                <div class="card card-review h-100" style="border-radius: 0.8rem;">
+                    <img src="assets/images/index/review3.jpg" alt="person" class="card-img-top img-fluid" style="border-top-left-radius: 0.8rem; border-top-right-radius: 0.8rem;">
                     <div class="card-body">
                         <h5 class="card-title">Boy 2</h5>
                         <p class="card-text index-review">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi porro debitis molestiae ex exercitationem in velit alias deleniti laudantium inventore?</p>

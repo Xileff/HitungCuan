@@ -1,5 +1,28 @@
+<script>
+    $.ajax({
+        type: 'POST',
+        url: 'httprequest/response/checkAccount.php',
+        dataType: 'JSON',
+        success: function(response) {
+            const code = response.code
+            switch (code) {
+                case 0:
+                    $('#footer').hide()
+                    $('#inputCalculator').html(`<h1 class="p-5">Belum login<h1>`)
+                    errorRedirect('Oops', 'Anda harus login terlebih dahulu', 'Ok', '?page=login', )
+                    break
+                case 1:
+                    $('#footer').hide()
+                    $('#inputCalculator').html(`<h1 class="p-5">Hanya untuk user premium<h1>`)
+                    errorRedirect('Oops', 'Fitur ini hanya tersedia untuk akun premium', 'Ok', '?page=homepage')
+                    break
+            }
+        }
+    })
+</script>
+
 <body>
-    <div class="container mt-5 pt-5 px-5" data-aos="fade-up">
+    <div id="inputCalculator" class="container mt-5 pt-5 px-5" data-aos="fade-up">
         <div class="row d-flex flex-row justify-content-center">
             <form class="col-sm-4 col-md-4 col-lg-4 w-100 p-2 d-flex flex-column justify-content-center" action="" method="" style="font-weight: bold;">
                 <h1 class="poppins text-center p-4">Dalam 30 hari...</h1>
@@ -10,23 +33,23 @@
 
                 <h3 class="pt-2 montserrat">Berapa biaya tanggunganmu? (Kosongkan jika tidak ada)</h3>
                 <input id="inputTanggungan" class="form-control montserrat w-100 mt-1 mx-auto" placeholder="Isi hanya dengan angka, misalnya 3,000,000" type="text"></input>
-                <p class="fs-6 montserrat pt-2 pb-2 mb-3 text-secondary">Total biaya tanggungan adalah total uang yang kamu keluarkan untuk kebutuhan orang lain, biasanya keluarga. Misalnya, membayar uang sekolah adik, membayar uang sewa tempat tinggal keluarga,  dan lain sebagainya.</p>
-                
+                <p class="fs-6 montserrat pt-2 pb-2 mb-3 text-secondary">Total biaya tanggungan adalah total uang yang kamu keluarkan untuk kebutuhan orang lain, biasanya keluarga. Misalnya, membayar uang sekolah adik, membayar uang sewa tempat tinggal keluarga, dan lain sebagainya.</p>
+
                 <h3 class="pt-2 montserrat">Pengeluaran Kebutuhan</h3>
                 <input id="inputKebutuhan" class="form-control montserrat w-100 mt-1 mx-auto" placeholder="Isi hanya dengan angka, misalnya 3,000,000" type="text"></input>
                 <p class="fs-6 montserrat pt-2 pb-2 mb-3 text-secondary">Misalnya untuk makan, minum, isi bensin, dan lain sebagainya.</p>
-                
+
                 <h3 class="pt-2 montserrat">Pengeluaran Keinginan</h3>
                 <input id="inputKeinginan" class="form-control montserrat w-100 mt-1 mx-auto" placeholder="Isi hanya dengan angka, misalnya 3,000,000" type="text"></input>
                 <p class="fs-6 montserrat pt-2 pb-2 mb-3 text-secondary">Misalnya jajan di coffeeshop, makan di restoran/outlet bermerk, membeli gadget atau aksesorisnya, jalan-jalan healing, dan lain sebagainya</p>
-                
+
                 <h3 class="pt-2 montserrat">Cicilan Utang(Kosongkan jika tidak ada)</h3>
                 <input id="inputCicilan" class="form-control montserrat w-100 mt-1 mb-5 mx-auto" placeholder="Isi hanya dengan angka, misalnya 3,000,000" type="text"></input>
-                
+
                 <h3 class="pt-2 montserrat">Pengeluaran rutin lainnya</h3>
                 <input id="inputPengeluaranLainnya" class="form-control montserrat w-100 mt-1 mx-auto" placeholder="Isi hanya dengan angka, misalnya 3,000,000" type="text"></input>
                 <p class="fs-6 montserrat pt-2 pb-2 mb-3 text-secondary">Misalnya, kamu setiap 2 bulan sekali harus pergi ke dokter gigi, maka total biaya selama 2 bulan itu kamu bagi 2 untuk dimasukkan di sini. Jika 3 bulan sekali ada perawatan diri, maka biayanya dibagi 3 lalu dimasukkan di sini.</p>
-                
+
                 <h3 class="pt-2 montserrat">Tabungan per bulan</h3>
                 <input id="inputTabungan" class="form-control montserrat w-100 mt-1 mx-auto" placeholder="Isi hanya dengan angka, misalnya 3.000.000" type="text"></input>
                 <p class="fs-6 montserrat pt-2 pb-2 mb-3 text-secondary">Uang yang kamu sisihkan</p>
@@ -67,7 +90,7 @@
         </div>
     </div>
 
-    <?php include 'components/html-top.php'?>
+    <?php include 'components/html-top.php' ?>
 
     <!-- Other scripts -->
     <script src="assets/js/autoNumeric.min.js"></script>

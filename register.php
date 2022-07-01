@@ -1,28 +1,4 @@
-<?php
-
-if (isset($_POST['register'])) {
-    $fullName = filter_var(stripslashes(htmlspecialchars($_POST['nama'])), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $username = filter_var(stripslashes(htmlspecialchars($_POST['username'])), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $email = filter_var(stripslashes(htmlspecialchars($_POST['email'])), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $password = filter_var(stripslashes(htmlspecialchars($_POST['password'])), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $confirmPassword = filter_var(stripslashes(htmlspecialchars($_POST['confirmPassword'])), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-    // cek panjang password
-    if (strlen($password) >= 8 && strlen($password) <= 17) {
-        // cek password === confirmPassword
-        if ($password === $confirmPassword) {
-            $existingUser = $conn->query("SELECT * FROM users WHERE username = '$username' OR email = '$email';");
-            $existingAdmin = $conn->query("SELECT * FROM admin WHERE username = '$username' OR email = '$email'");
-            // cek email/username udah kepakai atau blum
-            if ($existingUser->num_rows === 0 && $existingAdmin->num_rows === 0) {
-                // register
-                register($fullName, $username, $email, $password) === 1 ? alertRedirect('Berhasil Registrasi', 'Akun berhasil didaftarkan', 'index.php?page=login', 'Login') : alertError('Error', 'Gagal mendaftarkan akun', 'Ok');
-            } else alertError('Username/Email Unavailable', 'Username atau email ini sudah terpakai', 'Ok');
-        } else alertError('Password', 'Pastikan password dan konfirmasi password sama', 'Ok');
-    } else alertError('Invalid Password', 'Password harus memiliki panjang 8-16 karakter', 'Ok');
-}
-
-?>
+<script src="httprequest/request/postRegister.js" type="module"></script>
 
 <body id="login-body">
     <div id="overlay"></div>
@@ -38,7 +14,7 @@ if (isset($_POST['register'])) {
                         <h3 class="montserrat text-center">Pendaftaran Akun Baru</h3>
                         <input class="form-control montserrat w-75 mt-3 mb-2 mx-auto" id="loginTxtNama" placeholder="Nama Lengkap" name="nama" autocomplete="off" />
                         <p id="txtUsedUsername" class="smoothTransition invisible faderight noheight mt-3 mb-0 mx-auto w-75 text-danger"></p>
-                        <input class="form-control montserrat w-75 mt-0 mb-2 mx-auto" id="loginTxtUser" placeholder="Username" name="username" pattern="[a-z]{1,51}[0-9]{0,51}" title="Username dimulai dengan huruf kecil, kemudian boleh diikuti dengan angka atau tidak diikuti angka." autocomplete="off" />
+                        <input class="form-control montserrat w-75 mt-0 mb-2 mx-auto" id="loginTxtUser" placeholder="Username(min: 8)" name="username" pattern="[a-z]{1,51}[0-9]{0,51}" title="Username hanya boleh mengandung huruf nonkapital, tidak boleh mengandung spasi, dan boleh memiliki angka" autocomplete="off" />
 
                         <p id="txtUsedEmail" class="smoothTransition invisible faderight noheight mt-3 mb-0 mx-auto w-75 text-danger"></p>
                         <input class="form-control montserrat w-75 mb-2 mx-auto" id="loginTxtEmail" placeholder="Email" name="email" type="email" pattern="[a-zA-Z0-9_\-\.]+[\.]{0,2}[a-zA-Z0-9_\-\.]{0,100}[@][a-z]+[\.][a-z]{2,}[\.]{0,2}[a-z]{0,100}[\.]{0,2}[a-z]{0,100}[\.]{0,2}[a-z]{0,100}[\.]{0,2}" title="Masukkan format email yang benar.\nContoh : felix12@gmail.com" autocomplete="off" />
@@ -52,10 +28,10 @@ if (isset($_POST['register'])) {
     </div>
 </body>
 <script>
-    const txtUsedUsername = document.getElementById('txtUsedUsername');
-    const txtUsedEmail = document.getElementById('txtUsedEmail');
-    const loginTxtUser = document.getElementById('loginTxtUser');
-    const loginTxtEmail = document.getElementById('loginTxtEmail');
+    const txtUsedUsername = document.getElementById('txtUsedUsername')
+    const txtUsedEmail = document.getElementById('txtUsedEmail')
+    const loginTxtUser = document.getElementById('loginTxtUser')
+    const loginTxtEmail = document.getElementById('loginTxtEmail')
 
     loginTxtUser.addEventListener('keyup', function() {
         const xhr = new XMLHttpRequest();
@@ -75,7 +51,7 @@ if (isset($_POST['register'])) {
 
         xhr.open("GET", `logic/ajax/registerusername.php?username=${loginTxtUser.value}`, true);
         xhr.send();
-    });
+    })
 
     loginTxtEmail.addEventListener('keyup', function() {
         const xhr = new XMLHttpRequest();
@@ -95,28 +71,5 @@ if (isset($_POST['register'])) {
 
         xhr.open("GET", `./logic/ajax/registeremail.php?email=${loginTxtEmail.value}`, true);
         xhr.send();
-    });
-
-    const namaLengkap = document.getElementById('loginTxtNama');
-    const username = document.getElementById('loginTxtUser');
-    const email = document.getElementById('loginTxtEmail');
-    const password = document.getElementById('loginTxtPassword');
-    const confirmPassword = document.getElementById('loginTxtConfirmPassword');
-    const btnSubmit = document.getElementById('btnLogin');
-
-    btnSubmit.addEventListener('click', e => {
-        if (namaLengkap.value.length === 0) {
-            alertError('Nama tidak boleh kosong', 'Isi data anda dengan benar', 'Ok');
-            e.preventDefault();
-        } else if (username.value.length === 0) {
-            alertError('Username tidak boleh kosong', 'Isi data anda dengan benar', 'Ok');
-            e.preventDefault();
-        } else if (email.value.length === 0) {
-            alertError('Email tidak boleh kosong', 'Isi data anda dengan benar', 'Ok');
-            e.preventDefault();
-        } else if (password.value.length === 0 || confirmPassword.value.length === 0) {
-            alertError('Password tidak boleh kosong', 'Isi data anda dengan benar', 'Ok');
-            e.preventDefault();
-        }
     })
 </script>

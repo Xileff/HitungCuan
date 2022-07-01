@@ -5,7 +5,7 @@ require '../../logic/functions.php';
 $idsubject = $_GET['subject'];
 $idlesson = $_GET['idlesson'];
 
-$thisLesson = $conn->query("SELECT * FROM lessons WHERE id = $idlesson AND id_subject = $idsubject");
+$thisLesson = $conn->query("SELECT * FROM tbl_lessons WHERE id = $idlesson AND id_subject = $idsubject");
 
 $result = ['success' => false];
 

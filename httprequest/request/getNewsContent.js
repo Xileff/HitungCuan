@@ -19,7 +19,7 @@ $(document).ready(function(){
             </div>
             <p id="news-caption" class="fs-6" style="color: gray;">Ilustrasi: ${newsData.judul_berita}</p>
             <div class="news-text">
-                <p class="fs-6">${newsData.teks.replaceAll('\n', '<br>')}}</p>
+                <p class="fs-6">${newsData.teks.replaceAll('\n', '<br>')}</p>
             </div>`
 
             $('#newsContainer').html(result)

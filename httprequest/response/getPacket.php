@@ -28,14 +28,14 @@ if (!in_array($packetId, [1, 2, 3])) {
 }
 
 // Sudah jadi premium member
-$idUser = $conn->query("SELECT id FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
+$idUser = $conn->query("SELECT id FROM tbl_users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
 if (isPremiumUser($idUser)['premium'] == true) {
     $result['code'] = 2;
     echo json_encode($result);
     return;
 }
 
-$packet = $conn->query("SELECT * FROM packet WHERE id = $packetId")->fetch_assoc();
+$packet = $conn->query("SELECT * FROM tbl_packet WHERE id = $packetId")->fetch_assoc();
 $packet['harga'] = rupiah($packet['harga']);
 $packet['expire'] = tgl_indo(date('Y-m-d', strtotime('+' . $packet['durasi'] . 'days')));
 

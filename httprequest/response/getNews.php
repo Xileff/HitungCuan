@@ -7,13 +7,13 @@ $newsList = [];
 $result = [];
 
 if ($val === '*') {
-    $newsList = $conn->query("SELECT * FROM news");
+    $newsList = $conn->query("SELECT * FROM tbl_news");
 } else {
     $keyword = $val;
-    $newsList = $conn->query("SELECT * FROM news WHERE judul_berita LIKE '%$keyword%'");
+    $newsList = $conn->query("SELECT * FROM tbl_news WHERE judul_berita LIKE '%$keyword%'");
 }
 while ($news = $newsList->fetch_assoc()) {
-    $author = $conn->query("SELECT nama FROM author WHERE id = " . $news['id_author'])->fetch_assoc()['nama'];
+    $author = $conn->query("SELECT nama FROM tbl_author WHERE id = " . $news['id_author'])->fetch_assoc()['nama'];
     $news['author'] = $author;
     $news['tanggal_rilis'] = tgl_indo($news['tanggal_rilis']);
     $result[] = $news;

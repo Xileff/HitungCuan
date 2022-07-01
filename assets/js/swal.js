@@ -58,3 +58,39 @@ function errorRedirect(title, text, confirmButtonText, link){
         window.location = link.toString();
     })   
 }
+
+function swalConfirm(paramTitle, paramText, paramConfirmButtonText, paramCancelButtonText, paramTitleSuccess, paramTitleSuccessText, paramTitleCancel, paramTitleCancelText){
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: paramTitle,
+        text: paramText,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: paramConfirmButtonText,
+        cancelButtonText: paramCancelButtonText,
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            paramTitleSuccess,
+            paramTitleSuccessText,
+            'success'
+          )
+        } else if (
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            paramTitleCancel,
+            paramTitleCancelText,
+            'error'
+          )
+        }
+      })
+}

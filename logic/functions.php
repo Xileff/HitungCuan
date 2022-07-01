@@ -7,29 +7,33 @@ function uploadImage($image, $dir)
     $nameWithExtension = $image['name'];
     $size = $image['size'];
     $tmpName = $image['tmp_name'];
-    $result = false;
+    $result['success'] = false;
 
     if ($image['error'] === 4) {
-        alertRedirect('Error', 'Tidak ada gambar yang diupload', '', 'Ok');
+        $result['error'] = 4;
         return $result;
     }
 
     if ($size > 1048576) {
-        alertRedirect('Error', 'Ukuran melebihi 1MB!', '', 'Ok');
+        $result['error'] = 3;
         return $result;
     }
 
-    $extension = strtolower(end(explode(".", $nameWithExtension)));
+
+    $nameWithExtension = explode(".", $nameWithExtension);
+    $nameWithExtension = end($nameWithExtension);
+    $extension = strtolower($nameWithExtension);
     $imageExtensions = ['jpg', 'png', 'jpeg'];
 
     if (!in_array($extension, $imageExtensions)) {
-        alertRedirect('Error', 'File bukan gambar!', '', 'Ok');
+        $result['error'] = 2;
         return $result;
     }
 
     $name = uniqid() . "." . $extension;
     if (move_uploaded_file($tmpName, $dir . $name)) {
-        $result = $name;
+        $result['success'] = true;
+        $result['fileName'] = $name;
     }
 
     return $result;
@@ -38,18 +42,9 @@ function uploadImage($image, $dir)
 function remember($username)
 {
     global $conn;
-    $user = $conn->query("SELECT id, username FROM users WHERE username = '$username'")->fetch_assoc();
+    $user = $conn->query("SELECT id, username FROM tbl_users WHERE username = '$username'")->fetch_assoc();
     setcookie('id', $user['id'], time() + 3600);
     setcookie('key', hash('sha256', $user['username']), time() + 3600);
-}
-
-function alertError($heading, $message, $button)
-{
-    echo "
-    <script>
-        alertError('$heading', '$message', '$button');
-    </script>";
-    return false;
 }
 
 function rupiah($angka)
@@ -58,62 +53,49 @@ function rupiah($angka)
     return $hasil_rupiah;
 }
 
-function alertErrorRefresh($heading, $message, $button)
-{
-    echo "
-    <script>
-        alertErrorRefresh('$heading', '$message', '$button');
-    </script>";
-    return false;
-}
-
-function alertSuccess($heading, $message, $button)
-{
-    echo "
-    <script>
-        alertSuccess('$heading', '$message', '$button');
-    </script>";
-    return false;
-}
-
-function alertRedirect($title, $text, $link, $confirmButtonText)
-{
-    echo "
-    <script>
-        alertRedirect('$title', '$text', '$link', '$confirmButtonText');
-    </script>
-    ";
-}
-
 function register($name, $username, $email, $password)
 {
     global $conn;
 
-    $name = filter_var(htmlspecialchars(stripslashes($name)), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $username = filter_var(htmlspecialchars(stripslashes($username)), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $email = filter_var(htmlspecialchars(stripslashes($email)), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    // Bersihkan tag html dan slash
+    $name = htmlspecialchars(stripslashes($name));
+    $username = htmlspecialchars(stripslashes($username));
+    $email = htmlspecialchars(stripslashes($email));
+    $password = htmlspecialchars(stripslashes($password));
+
+    // Pastikan string dianggap sebagai string biasa dan bukan perintah sql
+    $name = mysqli_real_escape_string($conn, $name);
+    $username = mysqli_real_escape_string($conn, $username);
+    $email = mysqli_real_escape_string($conn, $email);
+    $password = mysqli_real_escape_string($conn, $password);
     $password = password_hash($password, PASSWORD_DEFAULT);
+    $dateJoined = date('Y-m-d');
 
-    $conn->query("INSERT INTO users VALUES ('','$name','$username','$email','$password','','','nophoto.jpg','" . date('Y-m-d') . "')");
+    $stmtRegister = $conn->prepare("INSERT INTO tbl_users VALUES ('', ?, ?, ?, ?, '', '', 'nophoto.jpg', '$dateJoined')");
+    $stmtRegister->bind_param('ssss', $name, $username, $email, $password);
+    $stmtRegister->execute();
+    $affectedRows = $conn->affected_rows;
+    $stmtRegister->close();
 
-    return $conn->affected_rows;
+    return $affectedRows;
 }
 
 function login($table, $username, $password)
 {
     global $conn;
+    $output = false;
+
+    $username = htmlspecialchars(stripslashes($username));
+    $password = htmlspecialchars(stripslashes($password));
+    $username = mysqli_real_escape_string($conn, $username);
+    $password = mysqli_real_escape_string($conn, $password);
+
     $hash = $conn->query("SELECT password FROM $table WHERE username = '$username'");
-    return ($hash->num_rows === 1) ? password_verify($password, $hash->fetch_assoc()['password']) : false;
-}
+    if ($hash->num_rows == 1) {
+        $output = password_verify($password, $hash->fetch_assoc()['password']);
+    }
 
-function refresh($delay = 0)
-{
-    header("refresh:$delay; url=" . $_SERVER['REQUEST_URI']);
-}
-
-function delayedRedirect($url, $delay = 0)
-{
-    header("refresh:$delay; url=$url");
+    return $output;
 }
 
 function tgl_indo($date)
@@ -140,7 +122,7 @@ function tgl_indo($date)
 function isPremiumUser($userId)
 {
     global $conn;
-    $subscriptionData = $conn->query("SELECT * FROM subscription WHERE id_user = $userId");
+    $subscriptionData = $conn->query("SELECT * FROM tbl_subscription WHERE id_user = $userId");
     $result = ['premium' => false];
     if ($subscriptionData->num_rows === 1) {
         $result['premium'] = true;
@@ -152,10 +134,10 @@ function getLoggedUserData()
 {
     global $conn;
     if (isset($_SESSION['username'])) {
-        $user = $conn->query("SELECT email, foto, id, jenis_kelamin, nama, tgl_gabung, tgl_lahir, username FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc();
+        $user = $conn->query("SELECT email, foto, id, jenis_kelamin, nama, tgl_gabung, tgl_lahir, username FROM tbl_users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc();
         $premium = isPremiumUser($user['id']);
         $user = array_merge($user, $premium);
-        $va = $conn->query("SELECT id_packet, payment FROM virtual_account WHERE id_user = '" . $user['id'] . "'");
+        $va = $conn->query("SELECT id_packet, payment FROM tbl_virtual_account WHERE id_user = '" . $user['id'] . "'");
 
         return $va->num_rows === 1 ? array_merge($user, $va->fetch_assoc()) : $user;
     }

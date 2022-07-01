@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <body>
-    <div data-aos="fade-up">
-        <div class="container container-news pt-5 mt-5 d-flex flex-column align-items-center">
+    <div>
+        <div class="container container-news pt-5 mt-5 d-flex flex-column align-items-center" data-aos="fade-up">
             <h2 class="text-center mb-4">Berita Cuan</h2>
             <!-- Search Bar -->
             <div class="px-3 w-100">
@@ -15,7 +15,7 @@
             </div>
             <!-- Search Bar -->
 
-            <section id="newsList">
+            <section id="newsList" class="w-100 mb-5 pb-5">
 
             </section>
         </div>

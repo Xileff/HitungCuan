@@ -15,7 +15,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     global $conn;
     $id = $_COOKIE['id'];
 
-    $remembered_user = $conn->query("SELECT id, username FROM users WHERE id = $id")->fetch_assoc();
+    $remembered_user = $conn->query("SELECT id, username FROM tbl_users WHERE id = $id")->fetch_assoc();
 
     if (hash('sha256', $remembered_user['username']) === $_COOKIE['key']) {
         $_SESSION['user'] = true;
@@ -52,20 +52,16 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
-<body>
+<body class="100vh">
     <?php
     // Admin UI
     if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
         include 'components/html-adminnavbar.php';
         $page = $_GET['page'];
-        $actions = ['add', 'edit', 'delete'];
-        $action = isset($_GET['action']) ? $_GET['action'] : 'none';
-        if ($action === 'none') {
+        if (in_array($page, ['feedback', 'lessons', 'logout', 'news', 'questions', 'users', 'revenue', 'lessonrequest'])) {
             include 'administrator/' . $page . '.php';
-        } else if (in_array($action, $actions)) {
-            include 'administrator/crud/' . $action . $page . '.php';
         } else {
-            alertRedirect('Error', 'Tidak ada halaman tersebut', '?page=feedback&action=none', 'Ok');
+            header("Location: ./?page=news");
         }
     }
 
@@ -73,15 +69,15 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     else {
         // cek subscription user, sebelum render halaman
         if (isset($_SESSION['username'])) {
-            $userId = $conn->query("SELECT id FROM users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
+            $userId = $conn->query("SELECT id FROM tbl_users WHERE username = '" . $_SESSION['username'] . "'")->fetch_assoc()['id'];
 
             // Jika ada subscription, cek apakah masanya habis
-            $subscription = $conn->query("SELECT * FROM subscription WHERE id_user = $userId");
+            $subscription = $conn->query("SELECT * FROM tbl_subscription WHERE id_user = $userId");
             if ($subscription->num_rows === 1) {
-                $subsExpireDate = $conn->query("SELECT expire_date FROM subscription WHERE id_user = $userId")->fetch_assoc()['expire_date'];
+                $subsExpireDate = $conn->query("SELECT expire_date FROM tbl_subscription WHERE id_user = $userId")->fetch_assoc()['expire_date'];
 
                 if ($subsExpireDate === date('Y-m-d')) {
-                    $conn->query("DELETE FROM subscription WHERE id_user = $userId");
+                    $conn->query("DELETE FROM tbl_subscription WHERE id_user = $userId");
                 }
             }
         }
@@ -90,7 +86,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
             $accountMgmt = ['login', 'logout', 'register'];
-            $regularPages = ['aboutus', 'cuancademy', 'homepage', 'lesson', 'news', 'newscontent', 'simulasinabung', 'userprofile', 'subscribe', 'virtualaccount', 'subscribe'];
+            $regularPages = ['aboutus', 'cuancademy', 'homepage', 'lesson', 'news', 'newscontent', 'simulasinabung', 'userprofile', 'subscribe', 'virtualaccount', 'subscribe', ''];
 
             if (in_array($page, $accountMgmt)) {
                 include $page . '.php';
@@ -101,7 +97,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
                 include $page . '.php';
                 include 'components/html-footer.php';
             } else {
-                alertRedirect('Error', 'Halaman tidak ditemukan', './', 'Ok');
+                header("Location: ./");
             }
         } else {
             include 'components/html-navbar.php';

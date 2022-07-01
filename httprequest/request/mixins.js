@@ -84,4 +84,30 @@ function checkLoginStatus(){
     })
 }
 
-export { getUrlParameter, loadQuestions, checkLoginStatus }
+function getUserData(){
+    return $.ajax({
+        type: 'POST',
+        url: 'httprequest/response/postUserData.php',
+        dataType: 'JSON'
+    })
+}
+
+function validateName(text){
+    const twoWords = /^[a-zA-Z]+\s+[a-zA-Z]+$/
+    const oneWord = /^[a-zA-Z]+$/
+    const result = (twoWords.test(text) || oneWord.test(text))
+    return result
+}
+
+function validateUsername(text){
+    const alphanum = /^[a-zA-Z0-9_]+$/;
+    return alphanum.test(text)
+}
+
+function validateEmail(email) 
+    {
+        const re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+
+export { getUrlParameter, loadQuestions, checkLoginStatus, getUserData, validateUsername, validateEmail, validateName }

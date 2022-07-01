@@ -28,16 +28,16 @@ $(document).ready(function() {
                         // shift() will decrease array length
                         cols += `
                         <div class="col p-2">
-                            <a class="w-100" href="?page=newscontent&id=${newsData.id}">
-                                <div class="card card-news w-100 h-100 hvr-grow">
-                                    <img src="assets/images/news/${newsData.gambar}" class="card-img-top" alt="${newsData.gambar}">
-                                    <div class="card-body card-news-body w-100">
-                                        <h5 class="card-title news-title general-link">${newsData.judul_berita}</h5>
-                                        <p class="card-text news-date fs-6">${newsData.tanggal_rilis}</p>
-                                    </div>
-                                    <span class="card-news-author montserrat align-bottom px-3 pb-2">Author : ${newsData.author}</span>
+                          <a href="?page=newscontent&id=${newsData.id}" class="w-100 h-100 hvr-grow">
+                            <div class="card card-news h-100">
+                                <img src="assets/images/news/${newsData.gambar}" class="card-img-top" alt="cryptocurrency">
+                                <div class="card-body card-news-body w-100">
+                                    <h5 class="card-title news-title general-link hvr-underline-from-left">${newsData.judul_berita}</h5>
+                                    <p class="card-text news-date">${newsData.tanggal_rilis}</p>
                                 </div>
-                            </a>
+                                <span class="card-news-author montserrat align-bottom px-3 pb-2">Author : ${newsData.author}</span>
+                            </div>
+                          </a>
                         </div>
                         `
                     }
@@ -53,3 +53,14 @@ $(document).ready(function() {
     })
   }
 })
+
+{/* <a class="w-100" href="?page=newscontent&id=${newsData.id}">
+  <div class="card card-news w-100 h-100 hvr-grow">
+      <img src="assets/images/news/${newsData.gambar}" class="card-img-top" alt="${newsData.gambar}">
+      <div class="card-body card-news-body w-100">
+          <h5 class="card-title news-title general-link">${newsData.judul_berita}</h5>
+          <p class="card-text news-date fs-6">${newsData.tanggal_rilis}</p>
+      </div>
+      <span class="card-news-author montserrat align-bottom px-3">Author : ${newsData.author}</span>
+  </div>
+</a> */}
