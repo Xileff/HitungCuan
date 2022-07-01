@@ -39,7 +39,11 @@
                             `
                         })
 
-                        let total = response.total
+                        let total = response.total.toLocaleString("id-ID", {
+                            style: "currency",
+                            currency: "IDR"
+                        })
+                        $('#totalRevenue').html(total)
 
                         $('tbody').html(rows)
                     } else {
@@ -70,7 +74,7 @@
             </select>
         </div>
         <div class="col">
-            <h3 class="text-success montserrat fw-bold">Rp 1.000.000</h3>
+            <h3 id="totalRevenue" class="text-success montserrat fw-bold">Rp 1.000.000</h3>
         </div>
     </div>
     <table class="table table-dark text-light table-hover text-center">
