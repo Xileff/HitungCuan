@@ -1,12 +1,22 @@
 <script src="administrator/httprequest/request/requests.js" type="module"></script>
 <div class="container mt-5 pt-5">
     <h1 class="fw-bold text-center">Requests</h1>
-    <select name="" id="selectSubject" class="form-select mb-2">
-        <option value="-1">All</option>
-        <option value="1">Income Management</option>
-        <option value="2">Expenses</option>
-        <option value="3">Investment</option>
-    </select>
+    <div class="row">
+        <section class="col-10">
+            <select name="" id="selectSubject" class="form-select mb-2">
+                <option value="0">All</option>
+                <option value="1">Income Management</option>
+                <option value="2">Expenses</option>
+                <option value="3">Investment</option>
+            </select>
+        </section>
+        <section class="col-2">
+            <select name="" id="selectSortDate" class="form-select">
+                <option value="asc">Oldest</option>
+                <option value="desc">Newest</option>
+            </select>
+        </section>
+    </div>
     <table class="table table-hover table-dark text-center">
         <thead>
             <tr>
@@ -18,6 +28,7 @@
             </tr>
         </thead>
         <tbody>
+
         </tbody>
     </table>
     <!--  -->
@@ -33,19 +44,20 @@
                 <div class="modal-body montserrat">
                     <form id="form" action="" method="post" class="d-flex flex-column">
                         <h5>Subject</h5>
-                        <select name="subject" id="selectSubject" class="form-select mb-3" style="border-radius: 0.5rem;">
+                        <select disabled name="subject" id="modalSelectSubject" class="form-select mb-3" style="border-radius: 0.5rem;">
                             <option value="1">Income Management</option>
                             <option value="2">Expenses Management</option>
                             <option value="3">Investment</option>
                         </select>
                         <div class="form-group mb-4">
-                            <p class="montserrat fs-6 mb-0">Apa yang ingin anda pelajari lebih lanjut?</p>
-                            <textarea id="text" type="text" name="text" class="form-control" rows="5" cols="50" style="border-radius: 0.5rem;"></textarea>
+                            <p class="montserrat fs-6 mb-0">Detail request</p>
+                            <textarea disabled id="text" type="text" name="text" class="form-control" rows="5" cols="50" style="border-radius: 0.5rem;"></textarea>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button id="btnSubmitRequest" class="btn montserrat rounded-pill px-4 align-self-end" style="background-color: rgb(117, 249, 145);">Submit</button>
+                    <button id="btnMarkRequest" class="btn montserrat rounded-pill px-4 align-self-end bg-light">Send to team</button>
+                    <!-- Send to email -->
                 </div>
             </div>
         </div>

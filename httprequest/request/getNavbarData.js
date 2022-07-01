@@ -4,6 +4,7 @@ $(document).ready(function(){
         url: 'httprequest/response/postUserData.php',
         dataType: 'JSON',
         success: function(response) {
+            console.log(response)
             if(response){
                 $('#ajaxNavbar').html(`
                     <li class="nav-item dropdown me-3">

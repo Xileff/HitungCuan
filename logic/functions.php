@@ -10,11 +10,13 @@ function uploadImage($image, $dir)
     $result['success'] = false;
 
     if ($image['error'] === 4) {
+        // Gada gambar
         $result['error'] = 4;
         return $result;
     }
 
     if ($size > 1048576) {
+        // Melebihi 1 MB
         $result['error'] = 3;
         return $result;
     }
@@ -26,6 +28,7 @@ function uploadImage($image, $dir)
     $imageExtensions = ['jpg', 'png', 'jpeg'];
 
     if (!in_array($extension, $imageExtensions)) {
+        // Format bukan gambar yang valid
         $result['error'] = 2;
         return $result;
     }

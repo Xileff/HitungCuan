@@ -97,11 +97,11 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: "Poppins", "sans-serif";
+  font-family: "Poppins", sans-serif;
 }
 
 p {
-  font-family: "Montserrat", "sans-serif";
+  font-family: "Montserrat", sans-serif;
 }
 
 .link-unstyled,
@@ -112,11 +112,11 @@ p {
 }
 
 .poppins {
-  font-family: "Poppins", "sans-serif" !important;
+  font-family: "Poppins", sans-serif !important;
 }
 
 .montserrat {
-  font-family: "Montserrat", "sans-serif" !important;
+  font-family: "Montserrat", sans-serif !important;
 }
 
 .italic {
@@ -155,7 +155,7 @@ p {
 }
 
 #navbar-title {
-  font-family: "Montserrat", "sans-serif";
+  font-family: "Montserrat", sans-serif;
   font-weight: bold;
   font-size: 1.5rem;
   color: white;
@@ -166,7 +166,7 @@ p {
 }
 
 .nav-link {
-  font-family: "Poppins", "sans-serif";
+  font-family: "Poppins", sans-serif;
   color: white;
 }
 
@@ -207,12 +207,12 @@ p {
 }
 
 #index-headline h3 {
-  font-family: "Montserrat", "sans-serif";
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
 }
 
 .index-headline-button {
-  font-family: "Poppins", "sans-serif";
+  font-family: "Poppins", sans-serif;
   border-radius: 30px;
   border-style: none;
 }
@@ -1158,12 +1158,12 @@ footer a:hover {
 }
 
 .swal2-title {
-  font-family: "Poppins", "sans-serif" !important;
+  font-family: "Poppins", sans-serif !important;
 }
 
 .swal2-html-container,
 .swal2-confirm {
-  font-family: "Montserrat", "sans-serif" !important;
+  font-family: "Montserrat", sans-serif !important;
 }
 
 /* Scrollbar */

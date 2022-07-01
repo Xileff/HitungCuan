@@ -21,11 +21,11 @@ $(document).ready(function() {
             ${
                 (function(){
                     let cols = ``;
-                    // store response.length in colNum, as the value will decrease with each iteration because of response.shift()
+                    // simpan response.length di dalam variabel colNum, karena nilainya akan dikurangi pada setiap iterasi(ada response.shift() untuk mendapatkan data berita)
                     let colNum = response.length;
                     for(let col = 0; col < (colNum >= 4 ? 4 : colNum); col++){
                         const newsData = response.shift()   
-                        // shift() will decrease array length
+                        // shift() mengambil elemen terakhir dan mengurangi panjang array juga
                         cols += `
                         <div class="col p-2">
                           <a href="?page=newscontent&id=${newsData.id}" class="w-100 h-100 hvr-grow">
