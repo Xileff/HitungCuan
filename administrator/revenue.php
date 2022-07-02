@@ -48,4 +48,5 @@
             <span class="fs-6">Print Report</span>
         </button>
     </section>
+    <a id="btnDownload" href="" class="fs-6 link-unstyled" download="" hidden></a>
 </div>

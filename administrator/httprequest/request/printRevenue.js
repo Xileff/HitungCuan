@@ -1,17 +1,24 @@
-$(document).ready(function(){
+$(this).ready(function(){
+    $('#btnDownload').on("click", function(){
+        window.location.href = $('#btnDownload').attr('href')
+        alertSuccess('Berhasil', 'Laporan telah terdownload', 'Ok');
+        // $.ajax({
+        //     type: 'GET',
+        //     url: $('#btnDonwload').attr('href'),
+        //     success: function(){
+        //         window.location.href = $('#btnDownload').attr('href')
+        //         $.ajax({
+        //             type: 'GET',
+        //             url: 'administrator/httprequest/response/printRevenue.php',
+        //             data: {
+        //                 action: 'delete',
+        //                 fileName: $('#btnDownload').data('fileName')                
+        //             }
+        //         })
+        //     }
+        // })
+    })
     $('#btnPrint').click(function(){
-        // const date1 = $('#dateStart').val()
-        // const date2 = $('#dateEnd').val()
-        // const total = $('#totalRevenue').html()
-        // const table = document.getElementById('tableRevenue').innerHTML
-
-        // $('input[name="dateStart"]').val(date1)
-        // $('input[name="dateEnd"]').val(date2)
-        // $('textarea[name="dataTable"]').val(table)
-        // $('input[name="totalRevenue"]').val(total)
-
-        // console.log($('textarea[name="dataTable"]').val())
-
         let begin = $('#dateStart').val()
         let end = $('#dateEnd').val()
         let limit = $('#limit').val()
@@ -21,20 +28,17 @@ $(document).ready(function(){
             type: 'GET',
             url: 'administrator/httprequest/response/printRevenue.php',
             data: {
+                action: 'download',
                 dateStart: begin,
                 dateEnd: end,
                 limit: limit,
                 order: order
             },
-            // dataType: 'json',
+            dataType: 'json',
             success: response => {
-                console.log(response)
-                // if(response.success){
-                //     alertSuccess('Berhasil', 'Anda berhasil mendownload laporan penghasilan', 'Ok')
-                // }
-                // else {
-                //     alertError('Gagal', 'Silakan coba lagi setelah beberapa saat', 'Ok')
-                // }
+                $('#btnDownload').attr('href', `administrator/httprequest/response/revenueReport/${response.fileName}`)
+                $('#btnDownload').data('fileName', response.fileName)
+                $('#btnDownload').click()
             }
         })
     })
