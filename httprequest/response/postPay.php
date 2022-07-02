@@ -40,7 +40,8 @@ if ($_POST['operation'] === 'pay') {
         return;
     }
 
-    $conn->query("INSERT INTO tbl_subscription VALUES('', $packetId, $userId, '$vaNo','$expireDate')");
+    $today = date('Y-m-d');
+    $conn->query("INSERT INTO tbl_subscription VALUES('', $packetId, $userId, '$vaNo','$today','$expireDate')");
     if ($conn->affected_rows !== 1) {
         $result['success'] = false;
         $result['code'] = 1;

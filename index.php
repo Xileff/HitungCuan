@@ -120,3 +120,4 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
 </body>
 
 </html>
+<script src="httprequest/request/getTransactionPdf.js" type="module"></script>
