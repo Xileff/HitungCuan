@@ -7,6 +7,9 @@ $(this).ready(function(){
             dataType: 'json',
             success: response => {
                 // download di sini
+                if(response.success){
+                    alertSuccess('Berhasil', 'Bukti transaksi akan didownload ke perangkat anda', 'Ok')
+                }
             }
         })
     })
