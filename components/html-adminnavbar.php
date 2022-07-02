@@ -34,7 +34,6 @@
                 <li class="nav-item px-2 pb-1 pt-1 mx-2">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="../images/users-profile/childe.png" alt="" class="img-fluid article-img rounded-circle" style="height: 2.1rem;">
                         <span class="montserrat text-center mx-1">Admin : <?php echo $_SESSION["admin_username"] ?></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownDarkMenuLink">

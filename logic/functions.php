@@ -1,5 +1,4 @@
 <?php
-
 global $conn;
 
 function uploadImage($image, $dir)
@@ -149,4 +148,21 @@ function getLoggedUserData()
 function hideError()
 {
     error_reporting(E_ERROR | E_WARNING | E_PARSE);
+}
+
+function generatePdf($author, $title, $subject)
+{
+    $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, 'A4', true, 'UTF-8', false);
+    $pdf->SetCreator(PDF_CREATOR);
+    $pdf->SetAuthor($author);
+    $pdf->SetTitle($title);
+    $pdf->SetSubject($subject);
+
+    $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+    $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+    $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+    $pdf->setPrintHeader(false);
+    $pdf->setPrintFooter(false);
+
+    return $pdf;
 }
