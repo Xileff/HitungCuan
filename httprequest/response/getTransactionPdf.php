@@ -109,6 +109,7 @@ if ($_GET['action'] == 'download') {
     $res['success'] = false;
     if (file_exists('pdfTransaction/' . $fileName)) {
         $res['success'] = true;
+        $res['fileName'] = $fileName;
     }
     echo json_encode($res);
 }

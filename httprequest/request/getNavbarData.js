@@ -26,7 +26,7 @@ $(document).ready(function(){
                                     return response.premium == true ? 
                                     `<li>
                                         <button class="dropdown-item navbar-dropdown-menu montserrat font-green" id="btnBuktiTransaksi">Bukti transaksi</button>
-                                        <a href="#" hidden class="dropdown-item navbar-dropdown-menu montserrat font-green">Bukti Transaksi</a>
+                                        <a href="#" id="btnDownloadBuktiTransaksi" download hidden class="dropdown-item navbar-dropdown-menu montserrat font-green">Bukti Transaksi</a>
                                     </li>` 
                                     : ``
                                 })()
