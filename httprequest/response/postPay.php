@@ -32,6 +32,7 @@ if ($_POST['operation'] === 'pay') {
             break;
     }
 
+    $vaNo = $conn->query("SELECT id FROM tbl_virtual_account WHERE id_user = $userId")->fetch_assoc()['id'];
     $conn->query("DELETE FROM tbl_virtual_account WHERE id_user = $userId");
     if ($conn->affected_rows !== 1) {
         $result['code'] = 1;
@@ -39,7 +40,7 @@ if ($_POST['operation'] === 'pay') {
         return;
     }
 
-    $conn->query("INSERT INTO tbl_subscription VALUES('', $packetId, $userId, '$expireDate')");
+    $conn->query("INSERT INTO tbl_subscription VALUES('', $packetId, $userId, '$vaNo','$expireDate')");
     if ($conn->affected_rows !== 1) {
         $result['success'] = false;
         $result['code'] = 1;

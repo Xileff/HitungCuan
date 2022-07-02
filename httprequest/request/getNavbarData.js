@@ -4,7 +4,6 @@ $(document).ready(function(){
         url: 'httprequest/response/postUserData.php',
         dataType: 'JSON',
         success: function(response) {
-            console.log(response)
             if(response){
                 $('#ajaxNavbar').html(`
                     <li class="nav-item dropdown me-3">
@@ -22,6 +21,16 @@ $(document).ready(function(){
                             <li>
                                 <a class="dropdown-item navbar-dropdown-menu montserrat" href="?page=userprofile">Profile</a>
                             </li>
+                            ${
+                                (function(){
+                                    return response.premium == true ? 
+                                    `<li>
+                                        <button class="dropdown-item navbar-dropdown-menu montserrat font-green" id="btnBuktiTransaksi">Bukti transaksi</button>
+                                        <a href="#" hidden class="dropdown-item navbar-dropdown-menu montserrat font-green">Bukti Transaksi</a>
+                                    </li>` 
+                                    : ``
+                                })()
+                            }
                             <li>
                                 <a class="dropdown-item navbar-dropdown-menu montserrat" href="?page=logout">Log Out</a>
                             </li>

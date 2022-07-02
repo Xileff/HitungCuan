@@ -124,7 +124,7 @@ p {
 }
 
 .font-green {
-  color: rgb(117, 249, 145);
+  color: rgb(117, 249, 145) !important;
 }
 
 .font-red {
