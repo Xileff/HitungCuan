@@ -2,7 +2,8 @@
 require 'logic/dbconn.php';
 require 'logic/functions.php';
 session_start();
-
+// clearPdfRevenue();
+// clearPdfTransaction();
 // hideError();
 
 // remember jika ketika login pilih rememberme

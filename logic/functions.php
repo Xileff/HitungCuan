@@ -166,3 +166,37 @@ function generatePdf($author, $title, $subject)
 
     return $pdf;
 }
+
+function clearPdfRevenue()
+{
+    $pathPdfRevenue = "administrator/httprequest/response/revenueReport";
+
+    // List of name of files inside
+    // specified folder
+    $allPdfRevenue = glob($pathPdfRevenue . '/*');
+
+    // Deleting all the files in the list
+    foreach ($allPdfRevenue as $pdfRevenue) {
+
+        if (is_file($pdfRevenue))
+            // Delete the given file
+            unlink($pdfRevenue);
+    }
+}
+
+function clearPdfTransaction()
+{
+    $pathPdfTransaction = "httprequest/response/pdfTransaction";
+
+    // List of name of files inside
+    // specified folder
+    $allPdfTransaction = glob($pathPdfTransaction . '/*');
+
+    // Deleting all the files in the list
+    foreach ($allPdfTransaction as $pdfTransaction) {
+
+        if (is_file($pdfTransaction))
+            // Delete the given file
+            unlink($pdfTransaction);
+    }
+}
