@@ -53,11 +53,11 @@
                             <p class="montserrat fs-6 mb-0">Detail request</p>
                             <textarea disabled id="text" type="text" name="text" class="form-control" rows="5" cols="50" style="border-radius: 0.5rem;"></textarea>
                         </div>
+                        <!-- <input type="number" min="1" hidden name="requestid" id="requestid"> -->
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button id="btnMarkRequest" class="btn montserrat rounded-pill px-4 align-self-end bg-light">Send to team</button>
-                    <!-- Send to email -->
+                    <button id="btnSendRequest" class="btn montserrat rounded-pill px-4 align-self-end" style="background-color: rgb(117, 249, 145);">Send to team and delete this request</button>
                 </div>
             </div>
         </div>

@@ -13,13 +13,14 @@ $(this).ready(function(){
         loadRequests(subjectId, sortDate)
     })
 
-    // $('.btn-view').on("click", function(){
-    //     fillForm($(this).data('requestid'))
-    // })
-
     $(this).on("click", ".btn-view", function(){
         const subjectId = $(this).data('requestid')
         fillForm(subjectId)
+    })
+
+    $('#btnSendRequest').on("click", function(){
+        const reqId = $('#form').data('requestId')
+        sendRequest(reqId)
     })
 
     function loadRequests(paramSubjectId = 0, paramSort="asc"){
@@ -58,6 +59,7 @@ $(this).ready(function(){
     }
 
     function fillForm(requestId){
+        $('#form').data('requestId', requestId)
         $.ajax({
             type: 'GET',
             url: 'administrator/httprequest/response/getRequestDetail.php',
@@ -74,18 +76,24 @@ $(this).ready(function(){
                 }
             }
         })
-
     }
 
-    // function deleteRequest(){
-    //     $.ajax({
-    //         type: 'GET',
-    //         url: 'administrator/httprequest/response/getRequests.php',
-    //         data: { subjectId : subject_id, action: dismiss },
-    //         dataType: 'json',
-    //         success: response => {
-                
-    //         }
-    //     })
-    // }
+    function sendRequest(reqId){
+        $.ajax({
+            type: 'GET',
+            url: 'administrator/httprequest/response/getSendRequest.php',
+            data: { id: reqId },
+            dataType: 'json',
+            success: response => {
+                if(response.success){
+                    alertSuccess('Berhasil', response.msg, 'Ok')
+                }
+                else {
+                    alertError('Gagal', response.msg, 'Ok')
+                }
+                $('.btn-close').click()
+                loadRequests()
+            }
+        })
+    }
 })
