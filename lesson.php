@@ -73,12 +73,12 @@
             <form action="" method="POST" id="formQuestion">
                 <div class="row new-comment pt-1 pb-2">
                     <div class="col-sm col-md-10 col-lg-10">
-                        <input class="form-control montserrat w-100" id="txtComment" placeholder="Write Comment Here" name="question" autocomplete="off"></input>
+                        <input class="form-control montserrat w-100" id="txtComment" placeholder="Write question here" name="question" autocomplete="off"></input>
                         <!-- Begitu diload, input ini lgsg diset valuenya dgn jquery, supaya valuenya sesuai get yg di url. getLessonDetail(103) -->
                         <input type="text" id="idlesson" name="idlesson" hidden>
                     </div>
                     <div class="col-sm col-md-2 col-lg-2">
-                        <button type="submit" name="submit" id="btnComment" class="w-100 h-100 montserrat btn-sm btn-lg">Tanya</button>
+                        <button type="submit" name="submit" id="btnComment" class="w-100 h-100 montserrat btn-sm btn-lg">Ask</button>
                     </div>
                 </div>
             </form>

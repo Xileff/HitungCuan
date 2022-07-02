@@ -3,7 +3,7 @@
     <h1 class="fw-bold text-center">Requests</h1>
     <div class="row">
         <section class="col-10">
-            <select name="" id="selectSubject" class="form-select mb-2">
+            <select name="" id="selectSubject" class="form-select mb-2 rounded-pill">
                 <option value="0">All</option>
                 <option value="1">Income Management</option>
                 <option value="2">Expenses</option>
@@ -11,7 +11,7 @@
             </select>
         </section>
         <section class="col-2">
-            <select name="" id="selectSortDate" class="form-select">
+            <select name="" id="selectSortDate" class="form-select rounded-pill">
                 <option value="asc">Oldest</option>
                 <option value="desc">Newest</option>
             </select>

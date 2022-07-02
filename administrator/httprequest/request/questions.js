@@ -50,7 +50,7 @@ $(this).ready(function(){
                         <td>${q.subject}</td>
                         <td>${q.tanggal}</td>
                         <td>
-                            <button data-questionid="${q.id}" data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-showquestion btn-success rounded w-100 mx-auto mb-1 p-1 px-3 text-center">Show</button>
+                            <button data-questionid="${q.id}" data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-showquestion btn-success rounded-pill w-100 mx-auto mb-1 p-1 px-3 text-center">Show</button>
                         </td>
                     </tr>
                     `

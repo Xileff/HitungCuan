@@ -213,8 +213,8 @@ $(this).ready(function(){
                         <td>${n.subject}</td>
                         <td>${n.tanggal}</td>
                         <td class="p-2">
-                            <button data-lessonid="${n.id}" data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-edit btn-warning rounded w-100 mx-auto mb-1 p-1 px-3 text-center">Edit</button>
-                            <button data-lessonid="${n.id}" data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-delete btn-danger rounded w-100 mx-auto mb-1 p-1 px-3 text-center">Hapus</button>
+                            <button data-lessonid="${n.id}" data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-edit btn-warning rounded-pill w-100 mx-auto mb-1 p-1 px-3 text-center">Edit</button>
+                            <button data-lessonid="${n.id}" data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-delete btn-danger rounded-pill w-100 mx-auto mb-1 p-1 px-3 text-center">Hapus</button>
                         </td>
                     </tr>
                     `

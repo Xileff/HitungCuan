@@ -4,16 +4,16 @@
     <h1>Revenue</h1>
     <div class="row mb-3">
         <div class="col">
-            <input type="number" value="10" min="0" name="" id="limit" class="form-control" placeholder="Jumlah data">
+            <input type="number" value="10" min="0" name="" id="limit" class="form-control rounded-pill" placeholder="Jumlah data">
         </div>
         <div class="col">
-            <input type="date" value="2022-01-01" name="" id="dateStart" class="form-control">
+            <input type="date" value="2022-01-01" name="" id="dateStart" class="form-control rounded-pill">
         </div>
         <div class="col">
-            <input type="date" value="" name="" id="dateEnd" class="form-control">
+            <input type="date" value="" name="" id="dateEnd" class="form-control rounded-pill">
         </div>
         <div class="col">
-            <select id="selectOrder" class="form-select">
+            <select id="selectOrder" class="form-select rounded-pill">
                 <option value="asc">Oldest</option>
                 <option value="desc">Newest</option>
             </select>

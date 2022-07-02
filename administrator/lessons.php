@@ -2,8 +2,8 @@
 <div class="container mt-5 pt-5 montserrat">
     <h1 class="fw-bold text-center">Lessons</h1>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-add btn-success mb-2" data-bs-toggle="modal" data-bs-target="#modal">Add new</button>
-    <input type="text" id="search" class="form-control mb-2" placeholder="Cari materi berdasarkan judul">
+    <button type="button" class="btn btn-add btn-success mb-2 rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modal">Add new</button>
+    <input type="text" id="search" class="form-control mb-2 rounded-pill" placeholder="Cari materi berdasarkan judul">
     <table class="table table-dark text-light table-hover text-center">
         <thead>
             <tr>
@@ -21,10 +21,10 @@
 
     <!-- Modal -->
     <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content bg-secondary">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark" style="border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 0.8rem">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title font-green" id="exampleModalLabel">Modal title</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
