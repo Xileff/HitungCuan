@@ -1,5 +1,9 @@
 $(this).ready(function(){
     $('#btnSubmitRequest').click(function(){
+        if($('textarea#text').val().length < 1){
+            alertError('Gagal', 'Request tidak boleh kosong', 'Ok')
+            return
+        }
         const requestData = $('#form').serialize()
         $.ajax({
             type: 'POST',

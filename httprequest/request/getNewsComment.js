@@ -6,6 +6,10 @@ $(document).ready(function(){
 
     $('#btnComment').click(function(e){
         e.preventDefault()
+        if($('#txtComment').val().length < 1){
+            alertError('Komentar kosong', 'Ketiklah sesuatu sebelum anda mengupload komentar ini', 'Ok')
+            return
+        }
         saveComment()
     })
 
