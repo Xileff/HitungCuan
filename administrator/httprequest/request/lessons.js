@@ -93,6 +93,9 @@ $(this).ready(function(){
     $('input, select, textarea').on("change", () => {
         changed = true
     })
+    $('textarea').on("keyup", () => {
+        changed = true
+    })
     $(this).on("click", "#confirmEdit", function(){
         const formData = new FormData(document.getElementById('form'))
         let gambar = $('#inputImg').files
@@ -177,7 +180,7 @@ $(this).ready(function(){
                 $()
                 $('#judul').val(l.judul)
                 $('#tanggal').val(l.tanggal)
-                $('#text').val(l.teks)
+                $('#text').val(l.teks.replaceAll('\\r\\n', '\n'))
                 $('#imgPreview').attr('src', `assets/images/CuanCademy/lessons/${l.gambar}`)
                 $.ajax({
                     type: 'GET',
