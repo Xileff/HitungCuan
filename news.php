@@ -7,7 +7,7 @@
             <!-- Search Bar -->
             <div class="px-3 w-100">
                 <section class="input-group mb-3 montserrat form-control rounded-pill bg-light d-flex align-items-center p-2">
-                    <input type="text" class="search-bar montserrat bg-light px-2" style="width: 94%;" placeholder="Sedang cari berita apa kawan?" id="inputNews">
+                    <input type="text" class="search-bar montserrat bg-light px-2" style="width: 94%;" placeholder="Cari berdasarkan judul" id="inputNews">
                     <span style="width: 6%;" class="d-flex justify-content-center">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </span>

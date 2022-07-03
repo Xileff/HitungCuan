@@ -2,7 +2,8 @@
 require '../../logic/dbconn.php';
 require '../../logic/functions.php';
 
-$val = $_GET['val'];
+$val = htmlspecialchars(stripslashes($_GET['val']));
+$val = mysqli_real_escape_string($conn, $val);
 $newsList = [];
 $result = [];
 

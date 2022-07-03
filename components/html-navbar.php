@@ -18,7 +18,7 @@
                 <a href="?page=simulasinabung" class="nav-link">Cek Kondisi Keuangan</a>
             </li>
             <li class="nav-item px-2 pt-1">
-                <a href="?page=news" class="nav-link">Berita Cuan</a>
+                <a href="?page=news" class="nav-link">Berita</a>
             </li>
             <li class="nav-item px-2 pt-1">
                 <a href="?page=cuancademy" class="nav-link">CuanCademy</a>

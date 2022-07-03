@@ -4,7 +4,7 @@ require '../../logic/dbconn.php';
 require '../../logic/functions.php';
 
 $id = $_GET['newsId'];
-$comments = $conn->query("SELECT * FROM tbl_news_comment WHERE id_berita = '$id'");
+$comments = $conn->query("SELECT * FROM tbl_news_comment WHERE id_berita = '$id' ORDER BY tanggal DESC");
 $count = ['count' => $comments->num_rows];
 $result = [];
 $listComments = [];
