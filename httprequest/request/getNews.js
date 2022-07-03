@@ -1,20 +1,34 @@
 $(document).ready(function() {
-  loadNews()
-  $("#inputNews").keyup(function() {
-    const keyword = $(this).val();
-    loadNews(keyword);
+  loadNews("*", 1)
+  $("#inputNews").on("keyup", function() {
+    const keyword = $('#inputNews').val();
+    const orderBy = $('#sortNews').val()
+    loadNews(keyword, orderBy);
   })
 
-  function loadNews(keyword) {
+  $('#sortNews').on("change", function(){
+    const keyword = $('#inputNews').val();
+    const orderBy = $('#sortNews').val()
+    loadNews(keyword, orderBy);
+  })
+
+  function loadNews(keyword, sort) {
     $.ajax({
       type: "GET",
       url: "httprequest/response/getNews.php",
-      data: { val: (keyword == null ? '*' : keyword) },
+      data: { 
+        val: (keyword == null ? '*' : keyword),
+        order: sort
+       },
       dataType: 'JSON',
       success: function (response) {
         result = ``;
+        if(response.length == 0){
+          $('#newsList').html('<h1 class="text-center p-5 text-warning">Tidak ada hasil</h1>');
+          return
+        }
         let rowNums = Math.ceil(response.length / 4);
-        // store response.length in rowNums, as the value will decrease with each iteration because of response.shift()
+        // simpan response.length di variabel rowNums, karena nilainya akan berubah di setiap iterasi karena response.shift()
         for(let row = 0; row < rowNums; row++){
             result += `
             <section class="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-news justify-content-start w-100 m-0">
@@ -53,14 +67,3 @@ $(document).ready(function() {
     })
   }
 })
-
-{/* <a class="w-100" href="?page=newscontent&id=${newsData.id}">
-  <div class="card card-news w-100 h-100 hvr-grow">
-      <img src="assets/images/news/${newsData.gambar}" class="card-img-top" alt="${newsData.gambar}">
-      <div class="card-body card-news-body w-100">
-          <h5 class="card-title news-title general-link">${newsData.judul_berita}</h5>
-          <p class="card-text news-date fs-6">${newsData.tanggal_rilis}</p>
-      </div>
-      <span class="card-news-author montserrat align-bottom px-3">Author : ${newsData.author}</span>
-  </div>
-</a> */}
