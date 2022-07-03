@@ -99,6 +99,9 @@ $(this).ready(function(){
     $('input, select, textarea').on("change", () => {
         changed = true
     })
+    $('textarea').on("keyup", () => {
+        changed = true
+    })
     $(this).on("click", "#confirmEdit", function(){
         if(!changed){
             alertError('Tidak ada perubahan', 'Anda tidak mengubah data apa pun pada berita ini', 'Ok')
@@ -211,7 +214,7 @@ $(this).ready(function(){
                 $('#imgPreview').attr('src', `assets/images/news/${r.gambar}`)
                 $('#judul').val(r.judul_berita)
                 $('#date').val(r.tanggal_rilis)
-                $('#text').val(r.teks)
+                $('#text').val(r.teks.replaceAll('\\r\\n', '\r\n'))
                 
                 $.ajax({
                     type: 'GET',

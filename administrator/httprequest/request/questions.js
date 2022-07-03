@@ -72,7 +72,7 @@ $(this).ready(function(){
                 $('.modal #username').html(`By : ${formData.username}`)
                 $('.modal #questionLesson').html(`Lesson : ${formData.judul}`)
                 $('.modal #questionDate').html(`Asked on : ${formData.tanggal}`)
-                $('.modal #questionText').html(formData.teks)
+                $('.modal #questionText').html(formData.teks.replaceAll('\\r\\n', '\r\n'))
             }
         })
     }

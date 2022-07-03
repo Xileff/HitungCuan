@@ -72,7 +72,7 @@ $(this).ready(function(){
                         <option selected value="${data.id_subject}">${data.nama_subject}</option>
                     `)
 
-                    $('.modal #text').html(data.teks)
+                    $('.modal #text').html(data.teks.replaceAll('\\r\\n', '\r\n'))
                 }
             }
         })

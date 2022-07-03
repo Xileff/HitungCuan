@@ -12,7 +12,7 @@
                     <td>${f.id}</td>
                     <td>${f.username}</td>
                     <td>${f.tanggal}</td>
-                    <td>${f.teks}</td>
+                    <td>${f.teks.replaceAll('\\r\\n', '\r\n')}</td>
                 </tr>
                 `
                 })

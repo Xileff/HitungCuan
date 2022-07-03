@@ -63,7 +63,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-success rounded-5 align-self-end">Save</button>
+                    <button class="btn btn-success rounded-pill align-self-end">Save</button>
                 </div>
             </div>
         </div>
