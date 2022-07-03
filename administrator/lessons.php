@@ -46,8 +46,8 @@
                         </div>
                         <div class="form-group mb-4">
                             <label class="fw-bold" for="idSubject">Subject</label>
-                            <select name="idSubject" id="listSubject" class="form-select">
-                                <option value="1">Income Management</option>
+                            <select name="id_subject" id="listSubject" class="form-select">
+                                <option selected value="1">Income Management</option>
                                 <option value="2">Expenses</option>
                                 <option value="3">Investment</option>
                             </select>

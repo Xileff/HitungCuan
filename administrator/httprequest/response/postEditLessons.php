@@ -6,7 +6,7 @@ $res['success'] = false;
 
 $id = htmlspecialchars($_POST['id']);
 $judul = htmlspecialchars($_POST['judul']);
-$idSubject = htmlspecialchars($_POST['idSubject']);
+$idSubject = htmlspecialchars($_POST['id_subject']);
 $tanggal = htmlspecialchars($_POST['tanggal']);
 $teks = htmlspecialchars($_POST['text']);
 $oldGambar = $conn->query("SELECT gambar FROM tbl_lessons WHERE id = $id")->fetch_assoc()['gambar'];

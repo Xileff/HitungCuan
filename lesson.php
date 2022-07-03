@@ -13,8 +13,8 @@
                 <div class="w-75 mx-auto">
                     <h3 class="poppins text-center m-3" id="subjectName"></h3>
                     </h1>
-                    <div class="bg-light rounded-1">
-                        <input type="text" class="form-control montserrat" id="searchLesson" placeholder="Search lessons here">
+                    <div class="bg-light rounded-pill">
+                        <input type="text" class="form-control montserrat rounded-pill" id="searchLesson" placeholder="Search lessons here">
                     </div>
                     <div id="lessonList">
                         <!--D adad !-->

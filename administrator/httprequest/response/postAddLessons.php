@@ -5,7 +5,7 @@ require '../../../logic/functions.php';
 $res['success'] = false;
 
 $judul = htmlspecialchars($_POST['judul']);
-$idSubject = htmlspecialchars($_POST['idSubject']);
+$idSubject = htmlspecialchars($_POST['id_subject']);
 $tanggal = htmlspecialchars($_POST['tanggal']);
 $teks = htmlspecialchars(stripslashes($_POST['text']));
 $gambar = 'cryptocurrency1.jpg';

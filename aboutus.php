@@ -4,8 +4,9 @@
     <div class="container mt-5 pt-5">
         <h1 class="poppins text-center mb-5">Dev Profile</h1>
         <div class="row mb-5">
-            <div class="col-sm-6 col-md-6 col-lg-6 p-4 d-flex justify-content-center">
-                <img src="assets/images/aboutus/dark_strange.jpg" alt="dev_picture" style="max-width: 100%; max-height: 350px; border-radius: 5%;">
+            <div class="col-sm-6 col-md-6 col-lg-6 p-4 d-flex justify-content-center" style="border-radius: 0.8rem">
+                <img src="assets/images/aboutus/IMG_0820.JPG" alt="dev_picture" class="w-100" style="object-fit: cover; max-height:400px;border-radius: 0.8rem">
+                <!-- style="max-width: 100%; max-height: 350px; border-radius: 5%;" -->
             </div>
             <div class="col-sm-6 col-md-6 col-lg-6 pt-4 montserrat developer-text">
                 <p>

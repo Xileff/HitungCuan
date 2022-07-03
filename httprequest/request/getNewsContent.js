@@ -17,7 +17,7 @@ $(document).ready(function(){
             <div class="news-image mt-3">
                 <img src="assets/images/news/${newsData.gambar}" alt="news_image" class="w-100">
             </div>
-            <p id="news-caption" class="fs-6" style="color: gray;">Ilustrasi: ${newsData.judul_berita}</p>
+            <p id="news-caption" class="fs-6 " style="color: gray;">Ilustrasi: ${newsData.judul_berita}</p>
             <div class="news-text">
                 <p class="fs-6">${newsData.teks.replaceAll('\\r\\n', '<br>')}</p>
             </div>`

@@ -93,18 +93,21 @@ $(this).ready(function(){
     $('input, select, textarea').on("change", () => {
         changed = true
     })
+    $(this).on("change", "#listSubject", ()=>{
+        changed = true
+    })
     $('textarea').on("keyup", () => {
         changed = true
     })
+
     $(this).on("click", "#confirmEdit", function(){
         const formData = new FormData(document.getElementById('form'))
         let gambar = $('#inputImg').files
-        if(!changed){
+        if(changed == false){
             alertError('Tidak ada perubahan', '', 'Ok')
             $('.btn-close').click()
             return;
         }
-        changed = false
 
         if(gambar != undefined){
             gambar = gambar[0]
@@ -143,6 +146,7 @@ $(this).ready(function(){
                     alertError('Gagal', msg, 'Ok')
                 }
                 loadLessons()
+                changed = false
                 $('.btn-close').click()
             }
         })
@@ -232,6 +236,7 @@ $(this).ready(function(){
         $('form input').val('')
         $('form img').attr('src', 'assets/images/news/cryptocurrency1.jpg')
         $('form textarea').val('')
+        $('form select').removeAttr('disabled')
 
         const now = new Date();
         const day = ("0" + now.getDate()).slice(-2);

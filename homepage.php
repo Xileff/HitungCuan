@@ -131,8 +131,8 @@
                 <div class="card card-review h-100" style="border-radius: 0.8rem;">
                     <img src="assets/images/index/review1.jpg" alt="person" class="card-img-top img-fluid" style="border-top-left-radius: 0.8rem; border-top-right-radius: 0.8rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Boy 1</h5>
-                        <p class="card-text index-review">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit maxime ipsum id perspiciatis. Sequi unde et asperiores distinctio temporibus ipsum.</p>
+                        <h5 class="card-title">Kevin</h5>
+                        <p class="card-text index-review">Materinya sangat bagus dan terstruktur dengan rapi, sehingga mudah dimengerti oleh pemula</p>
                     </div>
                 </div>
             </div>
@@ -140,8 +140,8 @@
                 <div class="card card-review h-100" style="border-radius: 0.8rem;">
                     <img src="assets/images/index/review2.jpg" alt="person" class="card-img-top img-fluid" style="border-top-left-radius: 0.8rem; border-top-right-radius: 0.8rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Girl</h5>
-                        <p class="card-text index-review">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum quidem tenetur at dignissimos omnis natus quae, praesentium vel beatae sequi?</p>
+                        <h5 class="card-title">Cindy</h5>
+                        <p class="card-text index-review">Terima kasih untuk bimbingan dan materinya, saya jadi bisa lebih efisien dalam pengelolaan uang.</p>
                     </div>
                 </div>
             </div>
@@ -149,8 +149,8 @@
                 <div class="card card-review h-100" style="border-radius: 0.8rem;">
                     <img src="assets/images/index/review3.jpg" alt="person" class="card-img-top img-fluid" style="border-top-left-radius: 0.8rem; border-top-right-radius: 0.8rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Boy 2</h5>
-                        <p class="card-text index-review">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi porro debitis molestiae ex exercitationem in velit alias deleniti laudantium inventore?</p>
+                        <h5 class="card-title">Renard</h5>
+                        <p class="card-text index-review">Saya belajar banyak dari sini. Semoga website ini bisa terus maju dan memberikan fitur-fitur baru bagi usersnya</p>
                     </div>
                 </div>
             </div>

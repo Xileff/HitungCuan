@@ -101,6 +101,7 @@ function disableForm(){
 function enableForm(){
     $('form input').removeAttr('disabled')
     $('form textarea').removeAttr('disabled')
+    $('form select').removeAttr('disabled')
 }
 
 export { getUrlParameter, loadQuestions, checkLoginStatus, getUserData, disableForm, enableForm }
