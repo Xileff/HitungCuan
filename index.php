@@ -4,7 +4,7 @@ require 'logic/functions.php';
 session_start();
 // clearPdfRevenue();
 // clearPdfTransaction();
-// hideError();
+hideError();
 
 // remember jika ketika login pilih rememberme
 if (isset($_SESSION['user']) && isset($_SESSION['remember'])) {

@@ -8,8 +8,8 @@
             <div class="row px-3 w-100 justify-content-center">
                 <div class="col-2">
                     <select id="sortNews" class="form-select rounded-pill h-100 montserrat">
-                        <option value="1">Oldest</option>
-                        <option value="2">Newest</option>
+                        <option value="1">Terbaru</option>
+                        <option value="2">Terlama</option>
                     </select>
                 </div>
                 <div class="col-10">

@@ -7,7 +7,7 @@ $res['success'] = false;
 $judul = htmlspecialchars($_POST['judul']);
 $idSubject = htmlspecialchars($_POST['idSubject']);
 $tanggal = htmlspecialchars($_POST['tanggal']);
-$teks = htmlspecialchars($_POST['text']);
+$teks = htmlspecialchars(stripslashes($_POST['text']));
 $gambar = 'cryptocurrency1.jpg';
 
 // cek teks
@@ -38,7 +38,7 @@ if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] !== 4) {
 $judul = mysqli_real_escape_string($conn, $judul);
 $idSubject = mysqli_real_escape_string($conn, $idSubject);
 $tanggal = mysqli_real_escape_string($conn, $tanggal);
-$teks = mysqli_real_escape_string($conn, $teks);
+// $teks = mysqli_real_escape_string($conn, $teks);
 $gambar = mysqli_real_escape_string($conn, $gambar);
 
 $stmtInsert = $conn->prepare("INSERT INTO tbl_lessons VALUES ('', ?, ?, ?, ?, ?)");

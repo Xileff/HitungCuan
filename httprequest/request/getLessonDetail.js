@@ -29,6 +29,7 @@ $(document).ready(function(){
             dataType: 'JSON',
             success: function(response){
                 let lesson = response.data
+                console.log(lesson.teks)
                 $('#containerLesson').html(`
                 <div class="row">
                         <h1 class="poppins">${lesson.judul}</h1>
@@ -36,7 +37,7 @@ $(document).ready(function(){
                         <div class="news-image mt-3 mb-4">
                             <img src="assets/images/CuanCademy/lessons/${lesson.gambar}" alt="news_image" class="w-100">
                         </div>
-                        <p class="montserrat fs-5" style="color: gray;">${lesson.teks.replaceAll('\b', '<br>').replaceAll('\n','<br>')}</p>
+                        <p class="montserrat fs-5" style="color: gray;">${lesson.teks.replaceAll('\\r\\n', '<br>')}</p>
                 </div>`)
 
                 $('input#idlesson').val(lesson.id)
