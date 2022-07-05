@@ -43,8 +43,11 @@ if ($_FILES['gambar']['error'] == 4) {
         echo json_encode($result);
         return;
     }
+
     $gambar = $gambar['fileName'];
-    unlink('../../assets/images/users-profile/' . $gambarLama);
+    if ($gambarLama !== 'nophoto.jpg') {
+        unlink('../../assets/images/users-profile/' . $gambarLama);
+    }
 }
 
 $stmt->execute();
