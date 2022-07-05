@@ -8,7 +8,7 @@ $orderBy = htmlspecialchars(stripslashes($_GET['order']));
 if (!in_array($orderBy, [1, 2])) {
     $orderBy = 1;
 }
-$order = $orderBy == 2 ? 'ASC' : 'DESC';
+$order = $orderBy == 1 ? 'DESC' : 'ASC';
 
 $newsList = [];
 $result = [];
