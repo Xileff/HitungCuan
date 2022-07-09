@@ -27,6 +27,7 @@ $(this).ready(function(){
                 }
 
                 $('.btn-close').click()
+                $('textarea').val('')
                 loadQuestions()
             }
         })
